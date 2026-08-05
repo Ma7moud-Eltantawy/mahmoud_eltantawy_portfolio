@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Globe, FileText, Menu, X, Smartphone, Cpu, Network, Briefcase, Mail } from 'lucide-react';
 import { translations } from '../data/translations';
-import mahmoudPhoto from '../assets/mahmoud.jpg';
+import { mahmoudPhoto } from '../assets/mahmoudBase64';
 
 export default function Navbar({ lang, setLang, onOpenResume }) {
   const [scrolled, setScrolled] = useState(false);

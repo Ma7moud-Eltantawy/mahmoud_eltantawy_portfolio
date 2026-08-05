@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Smartphone, Cpu, Network, ShieldCheck, ArrowDown, ExternalLink, ChevronRight, CheckCircle2, MapPin } from 'lucide-react';
 import { translations } from '../data/translations';
 import { resumeData } from '../data/resumeData';
-import mahmoudPhoto from '../assets/mahmoud.jpg';
+import { mahmoudPhoto } from '../assets/mahmoudBase64';
 
 export default function Hero({ lang, onOpenResume }) {
   const t = translations[lang].hero;

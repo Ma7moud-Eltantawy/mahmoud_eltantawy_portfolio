@@ -19,6 +19,13 @@
     overflow-x: hidden;
     background-color: #FBFBFD;
   }
+
+  /* Hide default browser cursor on desktop so only ONE custom cursor is active */
+  @media (pointer: fine) {
+    html, body, button, a, input, textarea, select, [role="button"] {
+      cursor: none !important;
+    }
+  }
 }
 
 /* Custom Apple Style Scrollbars */
