@@ -1,7 +1,7 @@
 import React from 'react';
-import { X, Printer, Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
+import { X, Printer, Download, Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
 import { resumeData } from '../data/resumeData';
-import mahmoudPhoto from '../assets/mahmoud.jpg';
+import { mahmoudPhoto } from '../assets/mahmoudBase64';
 
 export default function ResumeModal({ isOpen, onClose, lang }) {
   if (!isOpen) return null;
@@ -12,9 +12,7 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
   const edu = resumeData.education;
   const courses = resumeData.courses;
 
-  const handlePrint = () => {
-    window.print();
-  };
+  const cvPdfUrl = `${import.meta.env.BASE_URL}Mahmoud_Eltantawy_CV.pdf`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
@@ -34,12 +32,23 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
           </div>
 
           <div className="flex items-center gap-3">
+            <a
+              href={cvPdfUrl}
+              target="_blank"
+              rel="noreferrer"
+              download="Mahmoud_Eltantawy_CV.pdf"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-sm"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download Original PDF</span>
+            </a>
+
             <button
-              onClick={handlePrint}
+              onClick={() => window.print()}
               className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span>Print Page</span>
             </button>
 
             <button
@@ -76,6 +85,23 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
               alt="Mahmoud El-Tantawy"
               className="w-24 h-24 rounded-2xl object-cover border-2 border-slate-200 shadow-md shrink-0"
             />
+          </div>
+
+          {/* Direct PDF View Prompt */}
+          <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-between gap-4">
+            <div>
+              <h4 className="text-xs font-extrabold text-blue-950">Official Verified PDF Document</h4>
+              <p className="text-[11px] text-blue-800">Directly uploaded from Mahmoud El-Tantawy's original resume file.</p>
+            </div>
+            <a
+              href={cvPdfUrl}
+              target="_blank"
+              rel="noreferrer"
+              download="Mahmoud_Eltantawy_CV.pdf"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs whitespace-nowrap shadow-sm"
+            >
+              Open PDF File
+            </a>
           </div>
 
           {/* Summary */}

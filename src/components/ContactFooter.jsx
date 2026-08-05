@@ -11,6 +11,13 @@ export default function ContactFooter({ lang, onOpenResume }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Construct direct mailto dispatch to mahmoudeltantawy2019@gmail.com
+    const mailtoSubject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
+    const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    
+    window.open(`mailto:mahmoudeltantawy2019@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
+    
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -37,12 +44,13 @@ export default function ContactFooter({ lang, onOpenResume }) {
         {/* Grid: Form & Channels */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Form */}
+          {/* Form sending directly to mahmoudeltantawy2019@gmail.com */}
           <div className="lg:col-span-7 bg-slate-900 rounded-3xl p-8 md:p-10 border border-slate-800 shadow-2xl">
             {submitted ? (
               <div className="py-12 text-center flex flex-col items-center gap-4">
                 <CheckCircle2 className="w-12 h-12 text-emerald-400 animate-bounce" />
                 <h3 className="text-xl font-bold text-white">{t.form.success}</h3>
+                <p className="text-xs text-slate-400">Message directed to mahmoudeltantawy2019@gmail.com</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -93,7 +101,7 @@ export default function ContactFooter({ lang, onOpenResume }) {
                   className="flex items-center justify-center gap-2 py-4 rounded-xl font-extrabold text-sm bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-600/20"
                 >
                   <Send className="w-4 h-4" />
-                  <span>{t.form.send}</span>
+                  <span>{t.form.send} (to mahmoudeltantawy2019@gmail.com)</span>
                 </button>
               </form>
             )}
@@ -115,7 +123,7 @@ export default function ContactFooter({ lang, onOpenResume }) {
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase">EMAIL</span>
+                  <span className="text-[10px] font-mono text-slate-500 uppercase">DIRECT EMAIL</span>
                   <span className="text-xs sm:text-sm font-bold">{info.email}</span>
                 </div>
               </a>

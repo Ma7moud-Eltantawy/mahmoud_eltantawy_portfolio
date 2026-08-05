@@ -1,45 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { mahmoudPhoto } from '../assets/mahmoudBase64';
 
 export default function CustomCursor() {
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
-  const [hoverLabel, setHoverLabel] = useState('');
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only show custom cursor on non-touch devices
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
     setIsVisible(true);
 
     const handleMouseMove = (e) => {
+      // 1:1 Direct Instant Tracking (Zero Lag)
       setMousePos({ x: e.clientX, y: e.clientY });
 
-      // Check element under cursor for special hover state
       const target = e.target.closest('button, a, input, textarea, [role="button"]');
-      if (target) {
-        setIsHovered(true);
-        if (target.closest('#mobile')) {
-          setHoverLabel('FLUTTER');
-        } else if (target.closest('#apigateway')) {
-          setHoverLabel('APISIX');
-        } else if (target.closest('#architecture')) {
-          setHoverLabel('CLEAN ARCH');
-        } else {
-          setHoverLabel('');
-        }
-      } else {
-        setIsHovered(false);
-        setHoverLabel('');
-      }
+      setIsHovered(!!target);
     };
 
     const handleMouseLeave = () => setIsVisible(false);
     const handleMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
@@ -55,44 +37,52 @@ export default function CustomCursor() {
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
       
-      {/* SINGLE UNIFIED IDENTITY CURSOR */}
-      <motion.div
-        animate={{
-          x: mousePos.x + 8,
-          y: mousePos.y + 8,
-          scale: isHovered ? 1.15 : 1
+      {/* 1:1 Instant Hardware-Speed Mobile Tech Pointer Arrow */}
+      <div
+        style={{
+          transform: `translate3d(${mousePos.x}px, ${mousePos.y}px, 0)`,
+          willChange: 'transform'
         }}
-        transition={{
-          type: 'spring',
-          damping: 32,
-          stiffness: 450,
-          mass: 0.2
-        }}
-        className={`fixed flex items-center gap-2.5 px-3 py-1.5 rounded-full border transition-all duration-200 shadow-2xl backdrop-blur-md ${
-          isHovered
-            ? 'bg-slate-900 border-cyan-400 shadow-cyan-500/40 text-cyan-400'
-            : 'bg-slate-950/90 border-blue-500/40 shadow-blue-500/20 text-white'
-        }`}
+        className="fixed top-0 left-0 transition-transform duration-[0ms] ease-linear"
       >
-        {/* Mahmoud's Profile Photo */}
-        <img
-          src={mahmoudPhoto}
-          alt="Mahmoud"
-          className="w-5 h-5 rounded-full object-cover border border-cyan-400 shrink-0 shadow-sm"
-        />
+        {/* Sleek Mobile & Flutter Dev Tech Pointer SVG */}
+        <div className={`relative transition-transform duration-150 ${isHovered ? 'scale-125' : 'scale-100'}`}>
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="drop-shadow-lg"
+          >
+            {/* Tech Pointer Arrow Body */}
+            <path
+              d="M3 3L11 25L15.5 15.5L25 11L3 3Z"
+              fill="url(#flutterPointerGrad)"
+              stroke="#0f172a"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+            {/* Flutter Wing Accent Inset */}
+            <path
+              d="M8 8L13 13.5L11.5 17L8 8Z"
+              fill="#38bdf8"
+            />
+            <defs>
+              <linearGradient id="flutterPointerGrad" x1="3" y1="3" x2="25" y2="25" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#0284c7" />
+                <stop offset="1" stopColor="#38bdf8" />
+              </linearGradient>
+            </defs>
+          </svg>
 
-        {/* Mahmoud's Name */}
-        <span className="font-mono text-[10px] font-black tracking-wider uppercase">
-          MAHMOUD
-        </span>
+          {/* Hover Glow Dot */}
+          {isHovered && (
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+          )}
+        </div>
 
-        {/* Optional Action Badge on Hover */}
-        {isHovered && hoverLabel && (
-          <span className="font-mono text-[8px] font-extrabold px-1.5 py-0.5 rounded bg-cyan-400 text-slate-950 uppercase tracking-tight ml-0.5">
-            {hoverLabel}
-          </span>
-        )}
-      </motion.div>
+      </div>
 
     </div>
   );
