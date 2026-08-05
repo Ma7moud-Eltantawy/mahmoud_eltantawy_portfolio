@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Printer, Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
 import { resumeData } from '../data/resumeData';
+import mahmoudPhoto from '../assets/mahmoud.jpg';
 
 export default function ResumeModal({ isOpen, onClose, lang }) {
   if (!isOpen) return null;
@@ -23,7 +24,7 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
         <div className="sticky top-0 bg-white/95 backdrop-blur-md px-8 py-5 border-b border-slate-200 flex items-center justify-between z-20">
           <div className="flex items-center gap-3">
             <img
-              src="/mahmoud.jpg"
+              src={mahmoudPhoto}
               alt="Mahmoud El-Tantawy"
               className="w-9 h-9 rounded-full object-cover border border-slate-300"
             />
@@ -71,7 +72,7 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
             </div>
 
             <img
-              src="/mahmoud.jpg"
+              src={mahmoudPhoto}
               alt="Mahmoud El-Tantawy"
               className="w-24 h-24 rounded-2xl object-cover border-2 border-slate-200 shadow-md shrink-0"
             />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import mahmoudPhoto from '../assets/mahmoud.jpg';
 
 export default function CustomCursor() {
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
@@ -97,7 +98,7 @@ export default function CustomCursor() {
       >
         {/* Mahmoud's Profile Photo */}
         <img
-          src="/mahmoud.jpg"
+          src={mahmoudPhoto}
           alt="Mahmoud"
           className="w-5 h-5 rounded-full object-cover border border-cyan-400 shrink-0"
         />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Globe, FileText, Menu, X, Smartphone, Cpu, Network, Briefcase, Mail } from 'lucide-react';
 import { translations } from '../data/translations';
+import mahmoudPhoto from '../assets/mahmoud.jpg';
 
 export default function Navbar({ lang, setLang, onOpenResume }) {
   const [scrolled, setScrolled] = useState(false);
@@ -40,7 +41,7 @@ export default function Navbar({ lang, setLang, onOpenResume }) {
         <a href="#" className="flex items-center gap-3 group">
           <div className="relative">
             <img
-              src="/mahmoud.jpg"
+              src={mahmoudPhoto}
               alt="Mahmoud El-Tantawy"
               className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-md group-hover:scale-105 transition-transform"
             />
@@ -118,7 +119,7 @@ export default function Navbar({ lang, setLang, onOpenResume }) {
         <div className="lg:hidden glass-panel border-b border-slate-200 px-6 py-6 flex flex-col gap-4 animate-in slide-in-from-top duration-200">
           <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
             <img
-              src="/mahmoud.jpg"
+              src={mahmoudPhoto}
               alt="Mahmoud El-Tantawy"
               className="w-12 h-12 rounded-full object-cover border-2 border-blue-500 shadow-sm"
             />

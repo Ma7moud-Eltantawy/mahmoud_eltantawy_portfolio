@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Smartphone, Cpu, Network, ShieldCheck, ArrowDown, ExternalLink, ChevronRight, CheckCircle2, MapPin } from 'lucide-react';
 import { translations } from '../data/translations';
 import { resumeData } from '../data/resumeData';
+import mahmoudPhoto from '../assets/mahmoud.jpg';
 
 export default function Hero({ lang, onOpenResume }) {
   const t = translations[lang].hero;
@@ -17,7 +18,7 @@ export default function Hero({ lang, onOpenResume }) {
   return (
     <section className="relative min-h-screen pt-32 pb-20 flex flex-col justify-between overflow-hidden bg-[#FBFBFD]">
       
-      {/* Framer Motion GPU-Accelerated Dynamic Animated Fluid Background Orbs */}
+      {/* Dynamic Animated Fluid Ambient Background Color Orbs */}
       <motion.div
         animate={{
           x: [0, 90, -70, 0],
@@ -69,7 +70,7 @@ export default function Hero({ lang, onOpenResume }) {
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
           <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
             <img
-              src="/mahmoud.jpg"
+              src={mahmoudPhoto}
               alt="Mahmoud El-Tantawy"
               className="w-full h-full rounded-2xl object-cover border-2 border-white shadow-xl ring-4 ring-blue-500/20"
             />
