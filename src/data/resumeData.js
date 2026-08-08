@@ -9,8 +9,8 @@ export const resumeData = {
       ar: "مهندس برمجيات | مطور تطبيقات فلاتر وهندسة برمجيات | متقدم في بوابة واجهات البرمجة"
     },
     summary: {
-      en: "Software engineer and Flutter developer with over two years of professional experience building high-quality, scalable mobile applications and enterprise systems. Specialized in mobile development, clean architecture, payment integrations, and API Gateway infrastructure management (Apache APISIX & Keycloak).",
-      ar: "مهندس برمجيات ومطور تطبيقات فلاتر ببرة تزيد عن سنتين في بناء تطبيقات الهواتف الذكية عالية الجودة والأنظمة السحابية. متخصص في تطوير الفلاتر، الهندسة النظيفة (Clean Architecture)، حلول الدفع الرقمي، وإدارة بوابات واجهات البرمجة (Apache APISIX & Keycloak)."
+      en: "Software engineer and Flutter developer with over three years of professional experience building high-quality, scalable mobile applications and enterprise systems. Specialized in mobile development, clean architecture, payment integrations, and API Gateway infrastructure management (Apache APISIX & Keycloak).",
+      ar: "مهندس برمجيات ومطور تطبيقات فلاتر بخبرة تزيد عن 3 سنوات في بناء تطبيقات الهواتف الذكية عالية الجودة والأنظمة السحابية. متخصص في تطوير الفلاتر، الهندسة النظيفة (Clean Architecture)، حلول الدفع الرقمي، وإدارة بوابات واجهات البرمجة (Apache APISIX & Keycloak)."
     },
     email: "mahmoudeltantawy2019@gmail.com",
     phone: "+966 57 582 0045",
@@ -24,9 +24,9 @@ export const resumeData = {
   },
 
   metrics: [
-    { id: "exp", value: "2+", label: { en: "Years Professional Exp.", ar: "سنوات خبرة مهنية" } },
+    { id: "exp", value: "3+", label: { en: "Years Professional Exp.", ar: "سنوات خبرة مهنية" } },
     { id: "projects", value: "12+", label: { en: "Production Projects", ar: "مشروع إنتاجي" } },
-    { id: "tenant", value: "3", label: { en: "Multi-Tenant Enterprise Platforms", ar: "أنظمة متعددة المستأجرين" } },
+    { id: "tenant", value: "3+", label: { en: "Multi-Tenant Enterprise Platforms", ar: "أنظمة متعددة المستأجرين" } },
     { id: "gateway", value: "100%", label: { en: "API Gateway Security & Routing", ar: "حماية وتوجيه واجهات البرمجة" } }
   ],
 

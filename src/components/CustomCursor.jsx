@@ -35,7 +35,7 @@ export default function CustomCursor() {
   if (!isVisible) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
       
       {/* 1:1 Instant Hardware-Speed Mobile Tech Pointer Arrow */}
       <div
@@ -43,7 +43,7 @@ export default function CustomCursor() {
           transform: `translate3d(${mousePos.x}px, ${mousePos.y}px, 0)`,
           willChange: 'transform'
         }}
-        className="fixed top-0 left-0 transition-transform duration-[0ms] ease-linear"
+        className="fixed top-0 left-0 z-[9999] transition-transform duration-[0ms] ease-linear"
       >
         {/* Sleek Mobile & Flutter Dev Tech Pointer SVG */}
         <div className={`relative transition-transform duration-150 ${isHovered ? 'scale-125' : 'scale-100'}`}>
