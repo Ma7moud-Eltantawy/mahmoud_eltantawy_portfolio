@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import IntroSequence from './components/IntroSequence';
-import MobileShowcase from './components/MobileShowcase';
+import ProjectShowcase from './components/ProjectShowcase';
+import EngineeringPhilosophy from './components/EngineeringPhilosophy';
 import Architecture from './components/Architecture';
 import ApiGateway from './components/ApiGateway';
 import SecurityAuth from './components/SecurityAuth';
@@ -47,22 +48,34 @@ export default function App() {
 
         <IntroSequence lang={lang} />
 
-        <MobileShowcase lang={lang} />
+        {/* Adaptive Project & System Showcase (Mobile, APISIX Gateway, POS, QA) */}
+        <ProjectShowcase lang={lang} />
 
+        {/* Personal Engineering Philosophy & Mindset */}
+        <EngineeringPhilosophy lang={lang} />
+
+        {/* Clean Architecture & SOLID Deep Dive */}
         <Architecture lang={lang} />
 
+        {/* Live APISIX API Gateway Simulator */}
         <ApiGateway lang={lang} />
 
+        {/* Keycloak Authentication & Token Lifecycle */}
         <SecurityAuth lang={lang} />
 
+        {/* Payment & Hardware Integration (NearPay NFC) */}
         <PaymentArchitecture lang={lang} />
 
+        {/* Full Tech Ecosystem */}
         <TechEcosystem lang={lang} />
 
+        {/* Career Timeline */}
         <ExperienceTimeline lang={lang} />
 
+        {/* Key Metrics Banner */}
         <MetricsBanner lang={lang} />
 
+        {/* About Mahmoud */}
         <AboutSection lang={lang} />
       </main>
 

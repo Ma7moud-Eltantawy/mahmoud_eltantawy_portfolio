@@ -2,27 +2,53 @@ export const translations = {
   en: {
     nav: {
       brand: "Mahmoud El-Tantawy",
-      mobile: "Mobile App Dev",
+      mobile: "Projects & Systems",
       architecture: "Software Architecture",
       apiGateway: "API Gateway (APISIX)",
-      projects: "Showcase",
+      philosophy: "Engineering Mindset",
       experience: "Experience",
       contact: "Contact",
       resume: "View Resume"
     },
     hero: {
       headlinePart1: "Software Engineering.",
-      headlinePart2: "Mobile Development.",
+      headlinePart2: "Mobile & Clean Architecture.",
       headlinePart3: "API Gateway (APISIX).",
-      subtitle: "Senior Software Engineer specializing in Flutter Mobile App Development, Clean System Architecture, and Enterprise API Gateway Management (Apache APISIX & Keycloak IAM).",
-      ctaPrimary: "Explore Mobile Apps",
-      ctaSecondary: "Inspect Architecture & APISIX",
-      scrollHint: "Scroll to launch experience"
+      subtitle: "Software Engineer specializing in Flutter Mobile Applications, Clean Architecture, and Enterprise API Gateway Infrastructure (Apache APISIX & Keycloak IAM).",
+      ctaPrimary: "Explore Projects & Systems",
+      ctaSecondary: "Inspect APISIX & Architecture",
+      scrollHint: "Scroll to explore portfolio"
     },
     intro: {
-      badge: "System Architecture Showcase",
-      title: "From Mobile Apps to Gateway Infrastructure",
-      desc: "An integrated engineering ecosystem: starting at high-performance Flutter UI apps, extending through Clean Architecture, and governed by Apache APISIX API Gateway & Microservices management."
+      badge: "Full-Spectrum Engineering",
+      title: "From Mobile Pixels to Cloud API Gateway",
+      desc: "Bridging the complete stack: high-performance Flutter mobile applications, resilient Clean Architecture, direct SQL Server connections, and enterprise Apache APISIX API Gateway orchestration."
+    },
+    projectShowcase: {
+      badge: "01 — Project & Systems Portfolio",
+      title: "Engineered Solutions & Systems",
+      subtitle: "A curated collection of production systems across Mobile Development, API Gateway Infrastructure, Hardware/POS Systems, and API Security Verification.",
+      filters: {
+        all: "All Projects",
+        mobile: "Mobile Apps (Flutter)",
+        gateway: "API Gateway & Cloud (APISIX)",
+        pos_hardware: "POS & Direct DB Systems",
+        qa_security: "QA & API Security"
+      },
+      roleTitle: "Mahmoud's Engineering Role",
+      featuresTitle: "Core Technical Capabilities",
+      architectureTitle: "Architecture & Design Patterns",
+      mockupLabels: {
+        phonePreview: "Interactive Mobile UI",
+        gatewayTopology: "APISIX Gateway Route Topology",
+        posDisplay: "POS Terminal & Direct DB Socket",
+        qaRunner: "API Test Runner & Validation"
+      }
+    },
+    philosophySection: {
+      badge: "02 — Engineering Philosophy & Mindset",
+      title: "How I Engineer Scalable Software",
+      subtitle: "Principles, architecture decisions, and hands-on practices refined through building mission-critical platforms in Saudi Arabia and Egypt."
     },
     mobileSection: {
       badge: "01 — Mobile App Development (Flutter & Dart)",
@@ -34,7 +60,7 @@ export const translations = {
       viewScreenshots: "Interactive Screen Preview"
     },
     archSection: {
-      badge: "02 — Software Engineering & System Architecture",
+      badge: "03 — Software Engineering & System Architecture",
       title: "Clean Architecture, SOLID & Modular Design",
       subtitle: "Building resilient systems with strict separation of concerns, Adapter Pattern for external SDKs, Domain Use Cases, and offline queue synchronization.",
       interactiveHint: "Click nodes to inspect layer boundaries and contract specifications.",
@@ -47,7 +73,7 @@ export const translations = {
       }
     },
     gatewaySection: {
-      badge: "03 — API Gateway & Microservices Management (Apache APISIX)",
+      badge: "04 — API Gateway & Microservices Management (Apache APISIX)",
       title: "Enterprise API Gateway & Centralized Keycloak Auth",
       subtitle: "Deep practical experience managing microservices via Apache APISIX: routing dynamic endpoints, token introspection & claims validation with Keycloak IAM, X-Consumer header injection, and rate limiting.",
       interactiveTitle: "Live Apache APISIX Request Tracer",
@@ -61,7 +87,7 @@ export const translations = {
       }
     },
     securitySection: {
-      badge: "04 — Authentication & Security Lifecycle",
+      badge: "05 — Authentication & Security Lifecycle",
       title: "Centralized Keycloak JWT Token Management",
       subtitle: "Visualization of JWT token lifecycle, silent refresh handling, and microservices tenant isolation via Apache APISIX.",
       validToken: "Valid Access Token",
@@ -70,7 +96,7 @@ export const translations = {
       authFailure: "Simulate Invalid Token / Re-auth"
     },
     paymentSection: {
-      badge: "05 — Payment Architecture & Hardware Integration",
+      badge: "06 — Payment Architecture & Hardware Integration",
       title: "Saaed Pay & NearPay NFC Hardware Integration",
       subtitle: "Production payment architecture utilizing the Adapter Pattern to isolate client UI from NFC tap-to-pay SDKs and 3DS payment gateway webhooks.",
       nfcTap: "1. NearPay NFC Tap",
@@ -79,7 +105,7 @@ export const translations = {
       webhook: "4. Webhook State Mutation"
     },
     techSection: {
-      badge: "06 — Technical Ecosystem",
+      badge: "07 — Technical Ecosystem",
       title: "Core Engineering Competencies",
       subtitle: "Structured tech stack spanning Mobile App Dev, Software Architecture, and Apache APISIX API Gateway.",
       domains: {
@@ -91,18 +117,18 @@ export const translations = {
       }
     },
     expSection: {
-      badge: "07 — Career Trajectory",
+      badge: "08 — Career Trajectory",
       title: "Professional Experience",
       subtitle: "Engineering trajectory across Egypt and Saudi Arabia."
     },
     metricsSection: {
-      badge: "08 — Quantitative Impact",
+      badge: "09 — Quantitative Impact",
       title: "Engineering Achievements & Metrics"
     },
     contactSection: {
-      badge: "09 — Contact",
-      headline: "Have a system or app to build?",
-      ctaText: "Let's build it.",
+      badge: "10 — Contact & Collaboration",
+      headline: "Let's Engineer Something Exceptional",
+      ctaText: "Get in touch directly.",
       form: {
         name: "Your Name",
         email: "Your Email",
@@ -117,27 +143,53 @@ export const translations = {
   ar: {
     nav: {
       brand: "محمود الطنطاوي",
-      mobile: "تطوير الموبايل",
+      mobile: "المشاريع والأنظمة",
       architecture: "هندسة البرمجيات",
       apiGateway: "بوابة APIs (APISIX)",
-      projects: "المشاريع",
+      philosophy: "الفلسفة الهندسية",
       experience: "الخبرات",
       contact: "التواصل",
       resume: "السيرة الذاتية"
     },
     hero: {
       headlinePart1: "هندسة البرمجيات.",
-      headlinePart2: "تطوير تطبيقات الموبايل.",
+      headlinePart2: "تطبيقات الموبايل والمعمارية النظيفة.",
       headlinePart3: "إدارة بوابات APIs (APISIX).",
       subtitle: "مهندس برمجيات متخصص في تطوير تطبيقات الموبايل (Flutter)، هندسة المعمارية النظيفة (Clean Architecture)، وإدارة بوابات واجهات البرمجة والمايكروسيرفيسيز (Apache APISIX & Keycloak).",
-      ctaPrimary: "استكشف تطبيقات الموبايل",
-      ctaSecondary: "تفحص الهندسة وبوابة APISIX",
-      scrollHint: "قم بالتمرير للبدء"
+      ctaPrimary: "استكشف المشاريع والأنظمة",
+      ctaSecondary: "تفحص بوابة APISIX والمعمارية",
+      scrollHint: "قم بالتمرير لاستعراض البورتفوليو"
     },
     intro: {
-      badge: "عرض الأنظمة والمعمارية",
-      title: "من شاشات الموبايل إلى بنية بوابات APIs السحابية",
-      desc: "منظومة برمجية متكاملة تجمع بين تطبيقات الموبايل عالية الأداء بالفلاتر، والمعمارية النظيفة المحكمة، وإدارة المايكروسيرفيسيز والمصادقة المركزية عبر Apache APISIX و Keycloak."
+      badge: "هندسة شاملة ومتكاملة",
+      title: "من بكسل شاشة الموبايل إلى بوابة APIs السحابية",
+      desc: "منظومة برمجية متكاملة تجمع بين تطبيقات الموبايل عالية الأداء بالفلاتر، والمعمارية النظيفة المحكمة، والربط المباشر مع قواعد البيانات، وإدارة المايكروسيرفيسيز والمصادقة المركزية عبر Apache APISIX و Keycloak."
+    },
+    projectShowcase: {
+      badge: "01 — معرض المشاريع والأنظمة",
+      title: "أنظمة برمجية وحلول إنتاجية حقيقية",
+      subtitle: "استعراض مصنف للمشاريع التي قمت بتطويرها وهندستها تشمل تطبيقات الموبايل، وبوابات واجهات البرمجة، وأنظمة نقاط البيع، واختبارات الأمان.",
+      filters: {
+        all: "جميع المشاريع",
+        mobile: "تطبيقات الموبايل (Flutter)",
+        gateway: "بوابات APIs والمايكروسيرفيسيز (APISIX)",
+        pos_hardware: "أنظمة POS والربط المباشر",
+        qa_security: "اختبارات الجودة والأمان لـ APIs"
+      },
+      roleTitle: "دور محمود الهندسي في المشروع",
+      featuresTitle: "القدرات والميزات التقنية المنفذة",
+      architectureTitle: "المعمارية البرمجية وأنماط التصميم",
+      mockupLabels: {
+        phonePreview: "واجهة الموبايل التفاعلية",
+        gatewayTopology: "طوبولوجيا ومسارات بوابة APISIX",
+        posDisplay: "شاشة الكاشير والاتصال المباشر بقاعدة البيانات",
+        qaRunner: "مشغل ومؤكد اختبارات الـ API"
+      }
+    },
+    philosophySection: {
+      badge: "02 — الفلسفة الهندسية وأسلوب العمل",
+      title: "كيف أقوم بهندسة الأنظمة والبرمجيات؟",
+      subtitle: "مبادئ ومعايير برمجية واقعية صُقلت من خلال بناء أنظمة حيوية للشركات والمؤسسات في مصر والمملكة العربية السعودية."
     },
     mobileSection: {
       badge: "01 — تطوير تطبيقات الموبايل (Flutter & Dart)",
@@ -149,7 +201,7 @@ export const translations = {
       viewScreenshots: "معاينة واجهات التطبيق التفاعلية"
     },
     archSection: {
-      badge: "02 — هندسة البرمجيات وتصميم الأنظمة",
+      badge: "03 — هندسة البرمجيات وتصميم الأنظمة",
       title: "Clean Architecture ومبادئ SOLID والتصميم النظاراتي",
       subtitle: "تطبيق قواعد الهندسة النظيفة وفصل الصلاحيات بالكامل، نمط المحول (Adapter Pattern) للمدفوعات، وقواعد العمل المستقلة لضمان استقرار النظام ومزامنة قواعد البيانات.",
       interactiveHint: "اضغط على الطبقات لمعاينة حدود الصلاحيات والاتفاقيات البرمجية.",
@@ -162,7 +214,7 @@ export const translations = {
       }
     },
     gatewaySection: {
-      badge: "03 — إدارة بوابات واجهات البرمجة والمايكروسيرفيسيز (Apache APISIX)",
+      badge: "04 — إدارة بوابات واجهات البرمجة والمايكروسيرفيسيز (Apache APISIX)",
       title: "إدارة بوابة APISIX والمصادقة المركزية Keycloak IAM",
       subtitle: "خبرة عملية متعمقة في تكوين وإدارة Apache APISIX كبوابة مركزية للميكروسيرفيسيز: توجيه المسارات الديناميكية، التحقق من هوية JWT عبر Keycloak، حماية الخدمات وحقن ترويسة X-Consumer.",
       interactiveTitle: "مُحاكي حزم الطلبات التفاعلي لـ Apache APISIX",
@@ -176,7 +228,7 @@ export const translations = {
       }
     },
     securitySection: {
-      badge: "04 — دورة حياة المصادقة والأمان",
+      badge: "05 — دورة حياة المصادقة والأمان",
       title: "إدارة المصادقة المركزية بـ Keycloak & JWT Tokens",
       subtitle: "محاكاة تفاعلية لتنقل حالات رمز الوصول، التجديد الصامت في الخلفية، وعزل المايكروسيرفيسيز عبر Apache APISIX.",
       validToken: "رمز وصول صالح (Valid Access Token)",
@@ -185,7 +237,7 @@ export const translations = {
       authFailure: "محاكاة فشل المصادقة"
     },
     paymentSection: {
-      badge: "05 — معمارية المدفوعات وتكامل الأجهزة",
+      badge: "06 — معمارية المدفوعات وتكامل الأجهزة",
       title: "تطبيقات Saaed Pay وتكامل NearPay NFC",
       subtitle: "تصميم معمارية مدفوعات احترافية باستخدام نمط المحول (Adapter Pattern) لعزل واجهات الموبايل عن مكتبات الدفع باللمس ورسائل Webhooks.",
       nfcTap: "1. قراءة NFC عبر NearPay",
@@ -194,7 +246,7 @@ export const translations = {
       webhook: "4. تحديث حالة المعاملة عبر Webhook"
     },
     techSection: {
-      badge: "06 — المنظومة التقنية",
+      badge: "07 — المنظومة التقنية",
       title: "المهارات والخبرات البرمجية",
       subtitle: "قائمة تقنيات مهندسة تشمل تطبيقات الموبايل، هندسة البرمجيات، وبوابة Apache APISIX.",
       domains: {
@@ -206,18 +258,18 @@ export const translations = {
       }
     },
     expSection: {
-      badge: "07 — مسيرة العمل والخبرات",
+      badge: "08 — مسيرة العمل والخبرات",
       title: "الخبرات المهنية",
       subtitle: "المسار المهني للتطوير والهندسة في مصر والمملكة العربية السعودية."
     },
     metricsSection: {
-      badge: "08 — الأثر بالأرقام",
+      badge: "09 — الأثر بالأرقام",
       title: "إحصائيات الإنجاز والخبرات الميدانية"
     },
     contactSection: {
-      badge: "09 — التواصل والتعاون",
-      headline: "هل لديك تطبيق موبايل أو نظام يستحق البناء؟",
-      ctaText: "لنقم ببنائه الآن.",
+      badge: "10 — التواصل والتعاون",
+      headline: "هل لديك فكرة أو نظام يستحق البناء بأعلى المعايير؟",
+      ctaText: "تواصل معي مباشرة لنبدأ العمل.",
       form: {
         name: "الاسم الكامل",
         email: "البريد الإلكتروني",
@@ -230,4 +282,3 @@ export const translations = {
     }
   }
 };
-

@@ -109,7 +109,7 @@ export default function Hero({ lang, onOpenResume }) {
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-16">
             <button
-              onClick={() => scrollTo('mobile')}
+              onClick={() => scrollTo('projects')}
               className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm transition-all shadow-md shadow-blue-500/20 hover:scale-105"
             >
               <span>{t.ctaPrimary}</span>
@@ -336,7 +336,7 @@ export default function Hero({ lang, onOpenResume }) {
       {/* Scroll Down Indicator */}
       <div className="flex justify-center mt-12">
         <button
-          onClick={() => scrollTo('mobile')}
+          onClick={() => scrollTo('projects')}
           className="flex flex-col items-center gap-2 text-slate-400 hover:text-slate-800 transition-colors group"
         >
           <span className="text-xs font-bold uppercase tracking-wider">{t.scrollHint}</span>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, FileText, Menu, X, Smartphone, Cpu, Network, Briefcase, Mail } from 'lucide-react';
+import { Globe, FileText, Menu, X, Smartphone, Cpu, Network, Briefcase, Mail, Sparkles } from 'lucide-react';
 import { translations } from '../data/translations';
 import { mahmoudPhoto } from '../assets/mahmoudBase64';
 
@@ -17,10 +17,10 @@ export default function Navbar({ lang, setLang, onOpenResume }) {
   }, []);
 
   const navLinks = [
-    { id: 'mobile', label: t.mobile, icon: Smartphone },
+    { id: 'projects', label: t.mobile, icon: Smartphone },
+    { id: 'philosophy', label: t.philosophy, icon: Sparkles },
     { id: 'architecture', label: t.architecture, icon: Cpu },
     { id: 'apigateway', label: t.apiGateway, icon: Network },
-    { id: 'showcase', label: t.projects, icon: Briefcase },
     { id: 'experience', label: t.experience, icon: Briefcase },
     { id: 'contact', label: t.contact, icon: Mail }
   ];
