@@ -8,7 +8,7 @@ import { mahmoudPhoto } from '../assets/mahmoudBase64';
 export default function Hero({ lang, onOpenResume }) {
   const t = translations[lang].hero;
   const info = resumeData.personalInfo;
-  const [activeTab, setActiveTab] = useState('mobile');
+  const [activeTab, setActiveTab] = useState('gateway');
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -66,7 +66,7 @@ export default function Hero({ lang, onOpenResume }) {
 
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10 my-auto">
         
-        {/* Profile Card & Badge */}
+        {/* Profile Card & Engineering Positioning Badge */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
           <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
             <img
@@ -102,14 +102,14 @@ export default function Hero({ lang, onOpenResume }) {
             <span className="block text-slate-400">{t.headlinePart3}</span>
           </h1>
 
-          <p className="text-slate-600 text-lg sm:text-xl font-medium max-w-2xl leading-relaxed mb-10">
+          <p className="text-slate-600 text-lg sm:text-xl font-medium max-w-3xl leading-relaxed mb-10">
             {t.subtitle}
           </p>
 
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-16">
             <button
-              onClick={() => scrollTo('mobile')}
+              onClick={() => scrollTo('showcase')}
               className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm transition-all shadow-md shadow-blue-500/20 hover:scale-105"
             >
               <span>{t.ctaPrimary}</span>
@@ -128,7 +128,7 @@ export default function Hero({ lang, onOpenResume }) {
               onClick={onOpenResume}
               className="flex items-center gap-2 px-5 py-3.5 rounded-full bg-slate-100/80 backdrop-blur-md hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors border border-slate-200"
             >
-              <span>CV Resume</span>
+              <span>Curriculum Vitae</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -140,23 +140,23 @@ export default function Hero({ lang, onOpenResume }) {
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-6 mb-8">
             <div>
               <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                SYSTEM INTEGRATION CANVAS
+                SYSTEM INTEGRATION FLOW
               </span>
               <h3 className="text-xl font-black text-slate-900">
-                {lang === 'en' ? "End-to-End Infrastructure Story" : "قصة المنظومة البرمجية متكاملة"}
+                {lang === 'en' ? "End-to-End System Architecture Story" : "معمارية المنظومة البرمجية المتكاملة"}
               </h3>
             </div>
 
             {/* Pillar Selector Tabs */}
             <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl">
               <button
-                onClick={() => setActiveTab('mobile')}
+                onClick={() => setActiveTab('gateway')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeTab === 'mobile' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  activeTab === 'gateway' ? 'bg-white text-amber-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                <Smartphone className="w-4 h-4" />
-                <span>01. Mobile App</span>
+                <Network className="w-4 h-4" />
+                <span>01. API Gateway</span>
               </button>
 
               <button
@@ -166,17 +166,17 @@ export default function Hero({ lang, onOpenResume }) {
                 }`}
               >
                 <Cpu className="w-4 h-4" />
-                <span>02. Architecture</span>
+                <span>02. System Design</span>
               </button>
 
               <button
-                onClick={() => setActiveTab('gateway')}
+                onClick={() => setActiveTab('mobile')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeTab === 'gateway' ? 'bg-white text-amber-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  activeTab === 'mobile' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                <Network className="w-4 h-4" />
-                <span>03. API Gateway</span>
+                <Smartphone className="w-4 h-4" />
+                <span>03. Client Engineering</span>
               </button>
             </div>
           </div>
@@ -186,28 +186,28 @@ export default function Hero({ lang, onOpenResume }) {
             
             {/* Left Diagram Text */}
             <div className="lg:col-span-5 flex flex-col gap-4">
-              {activeTab === 'mobile' && (
+              {activeTab === 'gateway' && (
                 <>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 w-fit">
-                    <Smartphone className="w-3.5 h-3.5" />
-                    <span>FLUTTER / DART / NATIVE</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 w-fit">
+                    <Network className="w-3.5 h-3.5" />
+                    <span>APACHE APISIX & KEYCLOAK</span>
                   </div>
                   <h4 className="text-2xl font-black text-slate-900">
-                    {lang === 'en' ? "Production Flutter Client" : "تطبيقات الهواتف الذكية"}
+                    {lang === 'en' ? "Centralized API Gateway & Security" : "بوابة واجهات APIs والأمان المركزي"}
                   </h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
                     {lang === 'en'
-                      ? "Responsive Flutter mobile client supporting offline SQLite local database, NearPay NFC payments, BLoC/Provider state management, and real-time WebSockets."
-                      : "تطبيقات فلاتر سلسة تدعم التخزين المحلي SQLite، ودفع NearPay NFC، وإدارة الحالات BLoC و Provider والاتصال اللحظي."}
+                      ? "Apache APISIX acts as the centralized entry point: handling dynamic routing, JWT token introspection with Keycloak, proxy rewrites, and X-Consumer injection to isolate backend microservices."
+                      : "بوابة Apache APISIX تمثل نقطة الدخول الموحدة: إدارة التوجيه، والتحقق من رموز JWT عبر Keycloak، وإعادة كتابة المسارات، وعزل الخدمات الخلفية."}
                   </p>
                   <ul className="flex flex-col gap-2 mt-2">
                     <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                      <span>Saaed Pay NFC & Digital Wallet</span>
+                      <CheckCircle2 className="w-4 h-4 text-amber-500" />
+                      <span>Qiyasi Microservices Gateway Routing</span>
                     </li>
                     <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                      <span>Multi-Tenant ERP (Ezee Manager Pro)</span>
+                      <CheckCircle2 className="w-4 h-4 text-amber-500" />
+                      <span>Rate Limiting, CORS & Token Rotation</span>
                     </li>
                   </ul>
                 </>
@@ -217,51 +217,51 @@ export default function Hero({ lang, onOpenResume }) {
                 <>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 w-fit">
                     <Cpu className="w-3.5 h-3.5" />
-                    <span>CLEAN ARCHITECTURE & SOLID</span>
+                    <span>CLEAN ARCHITECTURE & ADAPTER PATTERN</span>
                   </div>
                   <h4 className="text-2xl font-black text-slate-900">
-                    {lang === 'en' ? "Modular System Design" : "معمارية الأنظمة والتصميم البرمجي"}
+                    {lang === 'en' ? "Modular Domain Boundaries" : "حدود قواعد العمل وتصميم الأنظمة"}
                   </h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
                     {lang === 'en'
-                      ? "Strict separation of concerns: Presentation layer, Use Cases domain logic, Repository interfaces, and Data Sources."
-                      : "فصل تام بين واجهات التطبيق، وقواعد العمل، والأنماط الهيكلية لحفظ وإدارة البيانات."}
+                      ? "Strict separation of concerns: Business rules isolated in pure Domain use-cases, hardware/payment SDKs abstracted behind the Adapter Pattern, and deterministic state reconciliation."
+                      : "فصل تام بين واجهات التطبيق وقواعد العمل؛ عزل مكتبات الدفع وعتاد NFC خلف واجهات مجردة بنمط المحول، مع معالجة استباقية للأخطاء."}
                   </p>
                   <ul className="flex flex-col gap-2 mt-2">
                     <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
                       <CheckCircle2 className="w-4 h-4 text-purple-500" />
-                      <span>Adapter Pattern for Payment Gateways</span>
+                      <span>Payment Provider Abstraction Layer</span>
                     </li>
                     <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
                       <CheckCircle2 className="w-4 h-4 text-purple-500" />
-                      <span>Background Data Sync Queue Engine</span>
+                      <span>Offline-First Monotonic Sync Queues</span>
                     </li>
                   </ul>
                 </>
               )}
 
-              {activeTab === 'gateway' && (
+              {activeTab === 'mobile' && (
                 <>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 w-fit">
-                    <Network className="w-3.5 h-3.5" />
-                    <span>APACHE APISIX & KEYCLOAK</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 w-fit">
+                    <Smartphone className="w-3.5 h-3.5" />
+                    <span>FLUTTER & CLIENT SYSTEMS</span>
                   </div>
                   <h4 className="text-2xl font-black text-slate-900">
-                    {lang === 'en' ? "API Gateway & Security Layer" : "إدارة بوابة APIs والأمان"}
+                    {lang === 'en' ? "Production-Grade Flutter Applications" : "تطبيقات فلاتر بمقاييس الإنتاج"}
                   </h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
                     {lang === 'en'
-                      ? "Apache APISIX managing dynamic routes, JWT identity verification via Keycloak, proxy rewrites, X-Consumer injection, and microservices security."
-                      : "إدارة البوابة البرمجية عبر Apache APISIX، والتحقق من هوية JWT عبر Keycloak، وحماية جميع الخدمات المصغرة."}
+                      ? "High-performance client engineering: reactive state architectures, NearPay NFC tap-on-phone, local SQLite persistence, thermal receipt printing, and multi-tenant configurations."
+                      : "تطبيقات عالية الاستجابة: إدارة حالات تفاعلية، دفع NearPay NFC، قواعد بيانات SQLite محلية، وطباعة الفواتير وأنظمة متعددة المستأجرين."}
                   </p>
                   <ul className="flex flex-col gap-2 mt-2">
                     <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-amber-500" />
-                      <span>Qiyasi Microservices API Gateway</span>
+                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                      <span>Saaed Pay Fintech (NearPay NFC)</span>
                     </li>
                     <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-amber-500" />
-                      <span>Token Introspection & Header Rewrites</span>
+                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                      <span>Multi-Tenant ERP (Ezee Manager Pro)</span>
                     </li>
                   </ul>
                 </>
@@ -272,7 +272,7 @@ export default function Hero({ lang, onOpenResume }) {
             <div className="lg:col-span-7 bg-slate-900 text-white rounded-2xl p-6 md:p-8 relative overflow-hidden shadow-inner">
               
               <div className="flex items-center justify-between font-mono text-xs text-slate-400 border-b border-slate-800 pb-4 mb-6">
-                <span>FLOW: CLIENT → APISIX → KEYCLOAK → SERVICE</span>
+                <span>SYSTEM PIPELINE: CLIENT → APISIX → KEYCLOAK → MICROSERVICE</span>
                 <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">STATUS: 200 OK</span>
               </div>
 
@@ -284,8 +284,8 @@ export default function Hero({ lang, onOpenResume }) {
                   activeTab === 'mobile' ? 'bg-blue-600/20 border-blue-500 text-white shadow-lg' : 'bg-slate-800/60 border-slate-700/50 text-slate-400'
                 }`}>
                   <Smartphone className="w-6 h-6 mx-auto mb-2 text-blue-400" />
-                  <span className="text-xs font-extrabold block">Flutter Client</span>
-                  <span className="text-[10px] opacity-75 font-mono">Mobile App</span>
+                  <span className="text-xs font-extrabold block">Client App</span>
+                  <span className="text-[10px] opacity-75 font-mono">Flutter / Dart</span>
                 </div>
 
                 {/* Gateway APISIX */}
@@ -303,7 +303,7 @@ export default function Hero({ lang, onOpenResume }) {
                 }`}>
                   <ShieldCheck className="w-6 h-6 mx-auto mb-2 text-emerald-400" />
                   <span className="text-xs font-extrabold block">Keycloak IAM</span>
-                  <span className="text-[10px] opacity-75 font-mono">JWT Auth</span>
+                  <span className="text-[10px] opacity-75 font-mono">Token Introspect</span>
                 </div>
 
                 {/* Backend Engine */}
@@ -312,17 +312,17 @@ export default function Hero({ lang, onOpenResume }) {
                 }`}>
                   <Cpu className="w-6 h-6 mx-auto mb-2 text-purple-400" />
                   <span className="text-xs font-extrabold block">Microservices</span>
-                  <span className="text-[10px] opacity-75 font-mono">SQL / Node Engine</span>
+                  <span className="text-[10px] opacity-75 font-mono">SQL / Node Backend</span>
                 </div>
 
               </div>
 
               {/* Code snippet mock */}
               <div className="mt-6 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-300 overflow-x-auto">
-                <div className="text-slate-500">// Real APISIX Route snippet sample</div>
+                <div className="text-slate-500">// Real APISIX Route & Security Header Configuration</div>
                 <div><span className="text-amber-400">POST</span> /api/v1/auth/token <span className="text-emerald-400 font-bold">200 OK</span></div>
                 <div className="text-blue-400">X-Consumer-ID: <span className="text-white">"tenant_saudi_01"</span></div>
-                <div className="text-purple-400">Keycloak-JWT: <span className="text-white">"Bearer eyJhbGciOi..."</span></div>
+                <div className="text-purple-400">Authorization: <span className="text-white">"Bearer eyJhbGciOi..."</span></div>
               </div>
 
             </div>
@@ -336,7 +336,7 @@ export default function Hero({ lang, onOpenResume }) {
       {/* Scroll Down Indicator */}
       <div className="flex justify-center mt-12">
         <button
-          onClick={() => scrollTo('mobile')}
+          onClick={() => scrollTo('showcase')}
           className="flex flex-col items-center gap-2 text-slate-400 hover:text-slate-800 transition-colors group"
         >
           <span className="text-xs font-bold uppercase tracking-wider">{t.scrollHint}</span>

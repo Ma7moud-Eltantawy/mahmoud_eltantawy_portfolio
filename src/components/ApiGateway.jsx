@@ -11,28 +11,28 @@ export default function ApiGateway({ lang }) {
   const simulationSteps = [
     {
       step: 1,
-      title: lang === 'en' ? 'Client Request Dispatched' : 'إرسال الطلب من تطبيق الهاتف',
+      title: lang === 'en' ? 'Client Request Dispatched' : 'إرسال الطلب من تطبيق العميل',
       details: 'POST /api/v1/qiyasi/reports with Bearer JWT Token',
       icon: Network,
       color: '#0071E3'
     },
     {
       step: 2,
-      title: lang === 'en' ? 'APISIX Route & CORS Policy' : 'استقبال APISIX والتحقق من CORS',
-      details: 'Matches APISIX Route ID #1042. CORS headers verified.',
+      title: lang === 'en' ? 'APISIX Route & CORS Policy' : 'استقبال APISIX والتحقق من CORS ومعدل الطلب',
+      details: 'Matches APISIX Route ID #1042. CORS & Rate-limit verified.',
       icon: Layers,
       color: '#FF6B00'
     },
     {
       step: 3,
-      title: lang === 'en' ? 'Keycloak Token Introspection' : 'التحقق من الهوية عبر Keycloak',
-      details: 'Validates JWT signature & expiry via Keycloak IAM service.',
+      title: lang === 'en' ? 'Keycloak Token Introspection' : 'التحقق من الهوية والصلاحية عبر Keycloak IAM',
+      details: 'Validates JWT signature, claims, and realm expiration via Keycloak.',
       icon: ShieldCheck,
       color: '#10B981'
     },
     {
       step: 4,
-      title: lang === 'en' ? 'Header Rewrite & X-Consumer' : 'إعادة كتابة الترويسة وحقن X-Consumer',
+      title: lang === 'en' ? 'Header Rewrite & X-Consumer' : 'إعادة كتابة المسار وحقن ترويسة X-Consumer',
       details: 'Injects X-Consumer: "tenant_saudi_01". Path rewritten to /v1/engine/reports.',
       icon: Key,
       color: '#6E44FF'
@@ -40,7 +40,7 @@ export default function ApiGateway({ lang }) {
     {
       step: 5,
       title: lang === 'en' ? 'Backend Service Response' : 'استجابة الخدمة المصغرة برمز 200 OK',
-      details: 'Payload returned safely through gateway. Latency: 14ms.',
+      details: 'Microservice receives authenticated request. Payload returned in 14ms.',
       icon: Check,
       color: '#10B981'
     }
@@ -49,7 +49,7 @@ export default function ApiGateway({ lang }) {
   const runSimulation = () => {
     setIsSimulating(true);
     setActiveStep(0);
-    setRequestLogs(['[APISIX Tracer] Initializing HTTPS Connection...']);
+    setRequestLogs(['[APISIX Tracer] Initializing HTTPS Connection via Gateway Entrypoint...']);
 
     let current = 0;
     const interval = setInterval(() => {
@@ -63,7 +63,7 @@ export default function ApiGateway({ lang }) {
       } else {
         clearInterval(interval);
         setIsSimulating(false);
-        setRequestLogs((prev) => [...prev, '[APISIX Tracer] Request Complete. Status: 200 OK']);
+        setRequestLogs((prev) => [...prev, '[APISIX Tracer] Request Complete. Status: 200 OK (Round-trip: 14ms)']);
       }
     }, 1200);
   };
@@ -170,7 +170,7 @@ export default function ApiGateway({ lang }) {
               <div>
                 <div className="flex items-center justify-between text-slate-500 border-b border-slate-800 pb-3 mb-4">
                   <span>LIVE LOG TERMINAL</span>
-                  <span className="text-amber-400">APISIX_ENGINE_V3.8</span>
+                  <span className="text-amber-400">APISIX_GATEWAY_V3.8</span>
                 </div>
 
                 <div className="space-y-2 text-slate-300">
@@ -184,7 +184,7 @@ export default function ApiGateway({ lang }) {
               </div>
 
               <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                <span>GATEWAY LATENCY: <strong className="text-emerald-400">14ms</strong></span>
+                <span>GATEWAY OVERHEAD: <strong className="text-emerald-400">&lt; 2ms</strong></span>
                 <span>SECURITY: <strong className="text-blue-400">KEYCLOAK JWT VALIDATED</strong></span>
               </div>
             </div>
@@ -194,9 +194,9 @@ export default function ApiGateway({ lang }) {
               <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-start gap-3">
                 <ShieldCheck className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-extrabold text-white">Centralized Keycloak IAM</h4>
+                  <h4 className="text-xs font-extrabold text-white">Centralized Keycloak IAM Introspection</h4>
                   <p className="text-[11px] text-slate-400 mt-0.5">
-                    Integrated Keycloak OAuth2 server for seamless token introspection and microservices security.
+                    Offloaded auth signature validation from microservices directly to gateway plugins.
                   </p>
                 </div>
               </div>
@@ -204,9 +204,9 @@ export default function ApiGateway({ lang }) {
               <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-start gap-3">
                 <Key className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-extrabold text-white">X-Consumer Identity Injection</h4>
+                  <h4 className="text-xs font-extrabold text-white">X-Consumer & Tenant Identity Injection</h4>
                   <p className="text-[11px] text-slate-400 mt-0.5">
-                    Automatic tenant isolation header injection at gateway layer before proxying to backend engines.
+                    Automatic tenant isolation header injection at gateway entry before proxying upstream.
                   </p>
                 </div>
               </div>
@@ -214,9 +214,9 @@ export default function ApiGateway({ lang }) {
               <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-start gap-3">
                 <Layers className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-extrabold text-white">Route Proxy & URI Rewriting</h4>
+                  <h4 className="text-xs font-extrabold text-white">Proxy Route Rewriting & Contract Decoupling</h4>
                   <p className="text-[11px] text-slate-400 mt-0.5">
-                    Decoupled external API endpoints from internal microservices using APISIX proxy rewrite rules.
+                    Decoupled public semantic API endpoints from internal service URLs via proxy rewrite rules.
                   </p>
                 </div>
               </div>

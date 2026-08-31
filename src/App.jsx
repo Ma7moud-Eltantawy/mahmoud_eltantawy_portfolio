@@ -7,6 +7,7 @@ import Architecture from './components/Architecture';
 import ApiGateway from './components/ApiGateway';
 import SecurityAuth from './components/SecurityAuth';
 import PaymentArchitecture from './components/PaymentArchitecture';
+import EngineeringMindset from './components/EngineeringMindset';
 import TechEcosystem from './components/TechEcosystem';
 import ExperienceTimeline from './components/ExperienceTimeline';
 import MetricsBanner from './components/MetricsBanner';
@@ -56,6 +57,8 @@ export default function App() {
         <SecurityAuth lang={lang} />
 
         <PaymentArchitecture lang={lang} />
+
+        <EngineeringMindset lang={lang} />
 
         <TechEcosystem lang={lang} />
 

@@ -2,228 +2,262 @@ export const translations = {
   en: {
     nav: {
       brand: "Mahmoud El-Tantawy",
-      mobile: "Mobile App Dev",
-      architecture: "Software Architecture",
-      apiGateway: "API Gateway",
-      projects: "Showcase",
+      roleBadge: "SOFTWARE ENGINEER",
+      showcase: "Systems & Projects",
+      architecture: "System Design",
+      apiGateway: "API Management",
+      mindset: "How I Think",
+      skills: "Technical Skills",
       experience: "Experience",
       contact: "Contact",
       resume: "View Resume"
     },
     hero: {
-      headlinePart1: "Building interfaces.",
-      headlinePart2: "Designing systems.",
-      headlinePart3: "Connecting everything.",
-      subtitle: "Software Engineer specializing in Flutter Mobile Development, System Architecture, and Enterprise API Gateway Infrastructure (Apache APISIX & Keycloak).",
-      ctaPrimary: "Explore Ecosystem",
+      headlinePart1: "Engineering systems.",
+      headlinePart2: "Designing architectures.",
+      headlinePart3: "Connecting platforms.",
+      subtitle: "Software Engineer with hands-on experience in client-side engineering, system design, API management, and distributed system architectures. Bridging high-performance Flutter applications with Apache APISIX Gateway routing and Keycloak IAM security.",
+      ctaPrimary: "Explore Systems",
       ctaSecondary: "Inspect Architecture",
-      scrollHint: "Scroll to launch experience"
+      scrollHint: "Scroll to explore engineering architecture"
     },
     intro: {
-      badge: "Cinematic System Launch",
-      title: "From Mobile Screens to Gateway Infrastructure",
-      desc: "Watch the progressive initialization of Mahmoud's engineering domain: starting at the Flutter UI layer, expanding into Clean Architecture, and scaling across API Gateways and microservices."
+      badge: "Architecture Pipeline Trace",
+      title: "From Application Layer to Gateway Infrastructure",
+      desc: "An end-to-end trace of how systems are structured: starting from modular Flutter client layers, moving through domain contracts and offline queues, into centralized Apache APISIX API Gateway governance and Keycloak IAM security."
     },
-    mobileSection: {
-      badge: "01 — Mobile App Engineering",
-      title: "Where ideas become products.",
-      subtitle: "Engineered production-grade Flutter & Dart applications for Android & iOS with robust state management, NearPay NFC payments, direct database sync, and multi-tenant architectures.",
-      selectProject: "Select Project Showcase",
-      featuresTitle: "Key Technical Features",
-      architectureTitle: "Architecture & Engineering Highlights",
-      viewScreenshots: "Interactive Screen Preview"
+    showcaseSection: {
+      badge: "01 — Production Systems & Case Studies",
+      title: "Engineered for real-world constraints.",
+      subtitle: "Production-grade systems designed with explicit boundaries, offline-first reliability, payment provider abstractions, and centralized gateway security.",
+      selectProject: "Select Engineering Case Study",
+      problemTitle: "The Engineering Problem",
+      architectureTitle: "System Architecture",
+      decisionsTitle: "Key Technical Decisions & Patterns",
+      impactTitle: "System Impact & Outcome",
+      viewScreenshots: "Interface & State Preview"
     },
     archSection: {
-      badge: "02 — Software Architecture & System Design",
-      title: "I don't just build features. I design how they fit together.",
-      subtitle: "Clean Architecture, SOLID Principles, and Design Patterns applied to ensure long-term stability, offline reliability, and maintainability.",
-      interactiveHint: "Click nodes to inspect data flow and contract boundaries.",
+      badge: "02 — Software Architecture & Domain Boundaries",
+      title: "I don't start with code. I start with system boundaries.",
+      subtitle: "Applying Clean Architecture, SOLID principles, and proven design patterns to ensure modular testability, offline resilience, and replaceable external integrations.",
+      interactiveHint: "Click nodes to inspect data flows and contract boundaries.",
       layers: {
-        presentation: "Presentation Layer (Flutter UI, BLoC / GetX / Provider)",
-        domain: "Domain Layer (Use Cases, Entities, Business Rules)",
-        data: "Data Layer (Repositories, Adapters, SQLite, Network Sources)",
+        presentation: "Presentation Layer (Flutter UI, BLoC / Reactive Streams)",
+        domain: "Domain Layer (Entities, Use Cases, Repository Contracts)",
+        data: "Data Layer (Adapters, Offline SQLite Sync, Network Repositories)",
         gateway: "Gateway Layer (Apache APISIX, Route Transformation, CORS)",
-        services: "Backend Microservices (SQL Server, Node.js, Firebase)"
+        services: "Identity & Services (Keycloak IAM, SQL Server, Microservices)"
       }
     },
     gatewaySection: {
-      badge: "03 — API Gateway & API Management",
-      title: "The application is only one side of the system.",
-      subtitle: "Deep hands-on experience configuring Apache APISIX as an enterprise API Gateway: managing dynamic routes, JWT identity validation via Keycloak, and proxy rewrite headers.",
-      interactiveTitle: "Live APISIX Request Packet Tracer",
-      triggerRequest: "Simulate Live API Request",
+      badge: "03 — API Gateway & Centralized Governance",
+      title: "The client application is only one side of the system.",
+      subtitle: "Hands-on experience configuring Apache APISIX as a high-throughput API Gateway: managing dynamic route matching, token introspection with Keycloak, proxy URI rewrites, and consumer identification.",
+      interactiveTitle: "Live APISIX Gateway Packet Flow Tracer",
+      triggerRequest: "Dispatch API Request Packet",
       steps: {
-        step1: "Client Mobile App dispatches HTTPS request with Bearer JWT",
-        step2: "Apache APISIX intercepts request & validates CORS / Rate Limit",
-        step3: "Keycloak introspects token & verifies signature / claims",
-        step4: "APISIX injects X-Consumer & rewrites proxy path",
-        step5: "Backend Microservice receives verified request & returns payload"
+        step1: "Client application issues HTTPS request with Bearer JWT token",
+        step2: "Apache APISIX intercepts request, enforcing CORS and rate-limiting rules",
+        step3: "Keycloak IAM service introspects JWT token signature and expiry",
+        step4: "APISIX injects X-Consumer tenant header and executes proxy URI rewrite",
+        step5: "Downstream microservice processes authenticated payload and returns response"
       }
     },
     securitySection: {
       badge: "04 — Authentication & Security Lifecycle",
       title: "JWT Token Rotation & Access Control",
-      subtitle: "Visualization of state transitions during token expiry, silent background refresh, and re-authentication safeguards.",
-      validToken: "Valid Access Token",
-      tokenExpired: "Access Token Expired",
-      refreshTrigger: "Execute Refresh Token Flow",
-      authFailure: "Simulate Invalid Token / Failure"
+      subtitle: "Deterministic handling of token lifecycle states: silent background refresh, token rotation, and graceful re-authentication upon session expiration.",
+      validToken: "Valid Access Token (15m)",
+      tokenExpired: "Token Expired (401 Trigger)",
+      refreshTrigger: "Execute Refresh Token Rotation",
+      authFailure: "Simulate Session Invalidation (403)"
     },
     paymentSection: {
-      badge: "05 — Payment System Architecture",
-      title: "Saaed Pay & NearPay NFC Integration",
-      subtitle: "Systemic payment flow using the Adapter Pattern to decouple client UI from payment hardware SDKs, 3DS authentication, and webhook notifications.",
-      nfcTap: "1. NearPay NFC Tap",
-      adapterPattern: "2. Payment Adapter Layer",
-      threeDS: "3. 3DS Authentication",
-      webhook: "4. Webhook State Mutation"
+      badge: "05 — Distributed Payment Architecture",
+      title: "Payment Abstraction & Hardware Decoupling",
+      subtitle: "Decoupling client applications from proprietary payment SDKs (NearPay NFC) using the Adapter Pattern, with 3DS challenge workflows and server webhook reconciliation.",
+      nfcTap: "1. Hardware NFC Tap via SDK",
+      adapterPattern: "2. Normalized Adapter Layer",
+      threeDS: "3. 3DS Authentication Challenge",
+      webhook: "4. Webhook Reconciliation"
+    },
+    mindsetSection: {
+      badge: "06 — Engineering Mindset",
+      title: "How I Think About Systems",
+      quote: "“I don't start with technology. I start with the problem, constraints, failure scenarios, and the evolution the system may need to support.”",
+      subtitle: "Core architectural principles applied across every production project:"
     },
     techSection: {
-      badge: "06 — Technical Ecosystem",
-      title: "Technologies & Domain Expertise",
-      subtitle: "Single source of truth tech stack grouped by engineering domains.",
+      badge: "07 — Technical Ecosystem",
+      title: "Skills & Engineering Domains",
+      subtitle: "Structured engineering taxonomy categorized by discipline and verified production experience.",
       domains: {
-        mobile: "Mobile App Development",
-        architecture: "Architecture & Design",
-        apiManagement: "API Gateway & Security",
+        softwareEngineering: "Software Engineering & Mobile",
+        systemDesign: "System Design & Architecture",
+        apiManagement: "API Management & Gateway",
+        identitySecurity: "Identity & Security",
         backendData: "Backend & Databases",
-        devops: "DevOps & CI/CD"
+        devopsTooling: "DevOps & Tooling"
       }
     },
     expSection: {
-      badge: "07 — Career Journey",
-      title: "Professional Experience",
-      subtitle: "Chronological engineering trajectory in Egypt and Saudi Arabia."
+      badge: "08 — Career Trajectory",
+      title: "Professional Engineering Experience",
+      subtitle: "Demonstrated progression across application engineering, system design, and API management in Saudi Arabia and Egypt."
     },
     metricsSection: {
-      badge: "08 — Quantitative Impact",
-      title: "Proven Engineering Track Record"
+      badge: "09 — Quantitative Track Record",
+      title: "Measurable Engineering Impact"
+    },
+    aboutSection: {
+      badge: "10 — Professional Evolution",
+      title: "From Application Development to System Architecture",
+      desc: "My journey began with deep hands-on mobile development in Flutter, engineering mission-critical systems such as Saaed Pay and Multi-Tenant ERPs. Recognizing that client performance is fundamentally bounded by backend stability and communication integrity, I expanded into Clean Architecture, SOLID principles, and API Gateway infrastructure management with Apache APISIX & Keycloak IAM.",
+      subdesc: "Today, I focus on building reliable end-to-end software systems: designing clear domain boundaries, planning for offline failure states, centralizing cross-cutting gateway concerns, and evaluating architectural trade-offs pragmatically."
     },
     contactSection: {
-      badge: "09 — Get In Touch",
-      headline: "Have a system worth building?",
-      ctaText: "Let's build it.",
+      badge: "11 — Connect & Collaborate",
+      headline: "Open to opportunities in:",
+      ctaText: "Software Engineering • System Design • API Management",
       form: {
         name: "Your Name",
-        email: "Your Email",
-        message: "Project details or inquiry...",
-        send: "Send Message",
-        success: "Thank you! Your message has been sent."
+        email: "Your Email Address",
+        message: "Discuss engineering roles, system architecture, or projects...",
+        send: "Send Direct Inquiry",
+        success: "Thank you! Your message has been routed to Mahmoud."
       },
-      directContact: "Direct Channels",
+      directContact: "Direct Engineering Channels",
       downloadCv: "Download Formatted CV (PDF)"
     }
   },
   ar: {
     nav: {
       brand: "محمود الطنطاوي",
-      mobile: "تطوير الهواتف",
-      architecture: "هندسة البرمجيات",
-      apiGateway: "بوابة واجهات البرمجة",
-      projects: "المشاريع",
+      roleBadge: "مهندس برمجيات",
+      showcase: "الأنظمة والمشاريع",
+      architecture: "تصميم الأنظمة",
+      apiGateway: "إدارة واجهات APIs",
+      mindset: "طريقة التفكير",
+      skills: "المهارات التقنية",
       experience: "الخبرات",
       contact: "التواصل",
       resume: "عرض السيرة الذاتية"
     },
     hero: {
-      headlinePart1: "بناء الواجهات.",
-      headlinePart2: "تصميم الأنظمة.",
-      headlinePart3: "ربط كل شيء.",
-      subtitle: "مهندس برمجيات متخصص في تطوير تطبيقات الفلاتر (Flutter)، هندسة البرمجيات النظيفة، وإدارة بوابات واجهات البرمجة (Apache APISIX & Keycloak).",
-      ctaPrimary: "استكشف النظام البرمجي",
-      ctaSecondary: "تفحص معمارية الأنظمة",
-      scrollHint: "قم بالتمرير للبدء"
+      headlinePart1: "هندسة الأنظمة.",
+      headlinePart2: "تصميم المعماريات.",
+      headlinePart3: "ربط المنصات.",
+      subtitle: "مهندس برمجيات يمتلك خبرة عملية في تطوير التطبيقات، وتصميم الأنظمة، وإدارة بوابات واجهات البرمجة (APIs)، والأنظمة الموزعة. ربط تطبيقات فلاتر عالية الأداء مع بوابة Apache APISIX وتأمين الهويات عبر Keycloak.",
+      ctaPrimary: "استكشف الأنظمة البرمجية",
+      ctaSecondary: "تفحص تصميم المعماريات",
+      scrollHint: "قم بالتمرير لاستكشاف المعمارية الهندسية"
     },
     intro: {
-      badge: "العرض التفاعلي للأنظمة",
-      title: "من شاشات الهواتف الذكية إلى البوابات السحابية",
-      desc: "شاهد التسلسل الهندسي لمجالات خبرة محمود: بدءاً من واجهات الفلاتر التفاعلية، إلى المعمارية النظيفة، وحتى حماية بوابات واجهات البرمجة والخدمات المصغرة."
+      badge: "تتبع خط المعمارية البرمجية",
+      title: "من طبقة التطبيقات إلى بنية بوابات واجهات البرمجة",
+      desc: "تتبع شامل لكيفية ترابط الأنظمة: بدءاً من معمارية واجهات فلاتر المعيارية، مروراً بقواعد العمل وطوابير المزامنة بدون إنترنت، وصولاً إلى الحماية المركزية عبر بوابة Apache APISIX وخادم Keycloak IAM."
     },
-    mobileSection: {
-      badge: "01 — هندسة تطبيقات الهواتف الذكية",
-      title: "حيث تتدفق الأفكار لتصبح منتجات حقيقية.",
-      subtitle: "تطوير تطبيقات فلاتر (Flutter & Dart) احترافية لمنصتي Android و iOS مع إدارة حالات متقدمة، حلول دفع اللاتلامسي NearPay NFC، ومزامنة قواعد البيانات بدون إنترنت.",
-      selectProject: "اختر المشروع للمعاينة",
-      featuresTitle: "الميزات التقنية الرئيسية",
-      architectureTitle: "أبرز تفاصيل الهندسة والتطوير",
-      viewScreenshots: "معاينة واجهات التطبيق التفاعلية"
+    showcaseSection: {
+      badge: "01 — دراسات حالة الأنظمة في بيئات الإنتاج",
+      title: "مصممة للتعامل مع تحديات وظروف التشغيل الواقعية.",
+      subtitle: "أنظمة برمجية مصممة بحدود واضحة، وعمل موثوق بدون اتصال (Offline-First)، وتجريد مزودي الدفع بنمط المحول، وحماية مركزية لواجهات البرمجة.",
+      selectProject: "اختر دراسة الحالة الهندسية",
+      problemTitle: "المشكلة الهندسية والتشغيلية",
+      architectureTitle: "معمارية وبنية النظام",
+      decisionsTitle: "القرارات التقنية وأنماط التصميم",
+      impactTitle: "الأثر والنتيجة التشغيلية",
+      viewScreenshots: "معاينة الواجهات والحالات"
     },
     archSection: {
-      badge: "02 — هندسة البرمجيات وتصميم الأنظمة",
-      title: "أنا لا أبني الميزات فحسب، بل أصمم كيف تتناغم معاً.",
-      subtitle: "تطبيق قواعد Clean Architecture ومبادئ SOLID وأنماط التصميم (Design Patterns) لضمان استقرار النظام وقابليته للتوسع والعمل بدون إنترنت.",
-      interactiveHint: "اضغط على العقد البرمجية لمعاينة تدفق البيانات وحدود الصلاحيات.",
+      badge: "02 — هندسة البرمجيات وفصل قواعد العمل",
+      title: "أنا لا أبدأ بالكود. أبدأ بتحديد حدود ومكونات النظام.",
+      subtitle: "تطبيق مبادئ Clean Architecture و SOLID وأنماط التصميم الهندسية لضمان قابلية الاختبار، والاستقرار عند انقطاع الاتصال، وسهولة استبدال الخدمات الخارجية.",
+      interactiveHint: "اضغط على العقد البرمجية لمعاينة تدفق البيانات وحدود العقود البرمجية.",
       layers: {
-        presentation: "طبقة العرض presentation (واجهات الفلاتر، BLoC / GetX / Provider)",
-        domain: "طبقة قواعد العمل Domain (حالات الاستخدام use-cases، الكيانات)",
-        data: "طبقة البيانات Data (المستودعات، المحولات، SQLite، الشبكة)",
-        gateway: "طبقة البوابة Gateway (Apache APISIX، تحويل المسارات، CORS)",
-        services: "الخدمات الخلفية Backend Services (SQL Server, Node.js, Firebase)"
+        presentation: "طبقة العرض Presentation (واجهات فلاتر، BLoC / تدفق البيانات)",
+        domain: "طبقة قواعد العمل Domain (الكيانات، حالات الاستخدام، عقود المستودعات)",
+        data: "طبقة البيانات Data (المحولات، مزامنة SQLite، مصادر الشبكة)",
+        gateway: "طبقة البوابة Gateway (Apache APISIX، إعادة كتابة المسارات، CORS)",
+        services: "الهويات والخدمات (Keycloak IAM، SQL Server، الخدمات المصغرة)"
       }
     },
     gatewaySection: {
-      badge: "03 — إدارة بوابات واجهات البرمجة (API Gateway)",
-      title: "التطبيق هو جانب واحد فقط من المنظومة.",
-      subtitle: "خبرة متقدمة في إعداد وتكوين Apache APISIX كبوابة واجهات برمجة سحابية: إدارة التوجيه الديناميكي، والتحقق من هوية JWT عبر Keycloak، وإعادة كتابة الوكلاء.",
-      interactiveTitle: "مُحاكي حزم الطلبات التفاعلي لـ APISIX",
-      triggerRequest: "محاكاة إرسال طلب برمجية حقيقي",
+      badge: "03 — بوابة واجهات البرمجة (API Gateway) والإدارة المركزية",
+      title: "تطبيق الهاتف هو جانب واحد فقط من المنظومة المتكاملة.",
+      subtitle: "خبرة عملية في إعداد Apache APISIX كبوابة واجهات برمجة سحابية: إدارة التوجيه الديناميكي، والتحقق المركزي من الرموز عبر Keycloak، وإعادة كتابة المسارات، وحقن هوية المستهلك.",
+      interactiveTitle: "مُحاكي تدفق حزم الطلبات عبر بوابة APISIX",
+      triggerRequest: "محاكاة إرسال حزمة طلب برمجي",
       steps: {
-        step1: "تطبيق الهاتف يرسل طلب HTTPS مع رمز Bearer JWT",
-        step2: "بوابة Apache APISIX تلتقط الطلب وتتحقق من قواعد CORS ومعدل الطلبات",
-        step3: "خادم Keycloak يتحقق من التوقيع الرقمي وتاريخ صلاحية الرمز",
-        step4: "بوابة APISIX تحقن الترويسة X-Consumer وتعدل مسار الوكيل Proxy",
-        step5: "الخدمة المصغرة تستقبل الطلب الموثق وترسل الاستجابة"
+        step1: "التطبيق يرسل طلب HTTPS مرفقاً برمز Bearer JWT",
+        step2: "بوابة Apache APISIX تلتقط الطلب وتتحقق من سياسات CORS ومعدل الطلبات",
+        step3: "خادم Keycloak يتحقق من التوقيع الرقمي وصلاحية رمز JWT",
+        step4: "بوابة APISIX تحقن ترويسة X-Consumer وهوية المستأجر وتعدل مسار الوكيل",
+        step5: "الخدمة المصغرة تستقبل الطلب الموثق وترسل استجابة البيانات 200 OK"
       }
     },
     securitySection: {
       badge: "04 — دورة حياة المصادقة والأمان",
       title: "دورة تجديد رموز JWT والتحكم في الوصول",
-      subtitle: "محاكاة تفاعلية لتنقل حالات رمز الوصول، وتجديده الصامت في الخلفية عند الانتهاء، وحماية النظام من الرموز غير الصالحة.",
-      validToken: "رمز وصول صالح (Valid Access Token)",
-      tokenExpired: "انتهت صلاحية رمز الوصول",
+      subtitle: "إدارة منهجية لحالات رمز المصادقة: التجديد الصامت في الخلفية، وتدوير الرموز، وإعادة التوجيه الآمن عند انتهاء الجلسة.",
+      validToken: "رمز وصول صالح (15 دقيقة)",
+      tokenExpired: "انتهت صلاحية الرمز (حالة 401)",
       refreshTrigger: "تشغيل مسار التجديد الصامت Refresh Token",
-      authFailure: "محاكاة فشل المصادقة / إعادة التوجيه"
+      authFailure: "محاكاة إنهاء الجلسة وإعادة المصادقة (403)"
     },
     paymentSection: {
-      badge: "05 — معمارية أنظمة المدفوعات",
-      title: "تطبيق Saaed Pay وإدماج NearPay NFC",
-      subtitle: "تصميم معمارية مدفوعات مرنة باستخدام نمط المحول (Adapter Pattern) لعزل واجهات الفلاتر عن مكتبات الدفع، والتحقق من 3DS ومزامنة إشعارات الـ Webhook.",
-      nfcTap: "1. مسح NFC عبر NearPay",
-      adapterPattern: "2. طبقة محول المدفوعات (Adapter)",
+      badge: "05 — معمارية أنظمة المدفوعات الموزعة",
+      title: "تجريد مزودي الدفع وعزل مكتبات العتاد",
+      subtitle: "فصل تطبيقات العملاء عن مكتبات الدفع وأجهزة NearPay NFC باستخدام نمط المحول (Adapter Pattern)، مع تحديات 3DS ومطابقة حالات الدفع عبر الـ Webhooks.",
+      nfcTap: "1. مسح بطاقة NFC عبر SDK",
+      adapterPattern: "2. طبقة محول المدفوعات المعيارية",
       threeDS: "3. مصادقة الحماية 3DS",
-      webhook: "4. تحديث حالة المعاملة via Webhook"
+      webhook: "4. مطابقة المعاملة عبر الـ Webhook"
+    },
+    mindsetSection: {
+      badge: "06 — الفلسفة الهندسية",
+      title: "كيف أفكر في تصميم وبناء الأنظمة",
+      quote: "“أنا لا أبدأ باختيار التقنيات، بل أبدأ بفهم المشكلة، والقيود، وسيناريوهات الفشل، والتوسع المستقبلي الذي يجب أن يتحمله النظام.”",
+      subtitle: "المبادئ الهندسية الأساسية المطبقة في كافة الأنظمة ومشاريع الإنتاج:"
     },
     techSection: {
-      badge: "06 — المنظومة التقنية",
-      title: "التقنيات ومجالات التخصص",
-      subtitle: "استعراض شامل للتقنيات المستخدمة مقسمة حسب التخصصات البرمجية.",
+      badge: "07 — المنظومة التقنية",
+      title: "المهارات والتخصصات الهندسية",
+      subtitle: "تصنيف هندسي منظم للتقنيات والمهارات المعتمدة على خبرات تشغيل فعلية.",
       domains: {
-        mobile: "تطوير تطبيقات الهواتف",
-        architecture: "الهندسة وتصميم الأنظمة",
-        apiManagement: "بوابات APIs والأمان",
+        softwareEngineering: "هندسة البرمجيات وتطبيقات الهواتف",
+        systemDesign: "تصميم الأنظمة والمعماريات",
+        apiManagement: "إدارة بوابات APIs",
+        identitySecurity: "الهويات والأمان الرقمي",
         backendData: "الخلفية وقواعد البيانات",
-        devops: "النشر والتحكم بالنسخ"
+        devopsTooling: "أدوات التطوير والنشر المستمر"
       }
     },
     expSection: {
-      badge: "07 — مسيرة العمل والخبرات",
-      title: "الخبرات المهنية",
-      subtitle: "المسار المهني للتطوير والهندسة في مصر والمملكة العربية السعودية."
+      badge: "08 — المسار المهني",
+      title: "الخبرات الهندسية والعملية",
+      subtitle: "تدرج مهني يجمع بين تطوير التطبيقات، وتصميم الأنظمة، وإدارة بوابات APIs في السعودية ومصر."
     },
     metricsSection: {
-      badge: "08 — الأثر بالأرقام",
-      title: "إحصائيات الإنجاز والخبرات الميدانية"
+      badge: "09 — الأثر بالأرقام",
+      title: "مؤشرات الإنجاز والخبرة العملية"
+    },
+    aboutSection: {
+      badge: "10 — التطور المهني",
+      title: "من تطوير التطبيقات إلى هندسة ومعمارية الأنظمة",
+      desc: "بدأت رحلتي بالتعمق في تطوير تطبيقات فلاتر متقدمة لأنظمة مثل Saaed Pay ومنصات ERP متعددة المستأجرين. ومع الإدراك بأن أداء التطبيقات مرتبط مباشرة بثبات الخدمات الخلفية وكفاءة الاتصال، توسعت في تطبيق معمارية Clean Architecture، ومبادئ SOLID، وإدارة بنية بوابات واجهات البرمجة عبر Apache APISIX وخادم Keycloak IAM.",
+      subdesc: "أركز اليوم على بناء منظومات برمجية موثوقة ومتكاملة: تحديد حدود المكونات، والتخطيط للتعامل مع انقطاع الاتصال، ومركزية الاهتمامات المشتركة في البوابات البرمجية، والموازنة الواعية بين الخيارات الهندسية."
     },
     contactSection: {
-      badge: "09 — التواصل والتعاون",
-      headline: "هل لديك نظام يستحق البناء؟",
-      ctaText: "لنقم ببنائه الآن.",
+      badge: "11 — التواصل والتعاون المهني",
+      headline: "متاح لفرص التعاون في:",
+      ctaText: "هندسة البرمجيات • تصميم الأنظمة • إدارة واجهات APIs",
       form: {
         name: "الاسم الكامل",
         email: "البريد الإلكتروني",
-        message: "تفاصيل المشروع أو الاستفسار...",
-        send: "إرسال الرسالة",
-        success: "شكراً لك! تم إرسال رسالتك بنجاح."
+        message: "تفاصيل الفرصة المهنية أو معمارية المشروع...",
+        send: "إرسال الاستفسار المباشر",
+        success: "شكراً لك! تم توجيه رسالتك إلى محمود مباشرة."
       },
       directContact: "قنوات التواصل المباشرة",
       downloadCv: "تحميل السيرة الذاتية (PDF)"

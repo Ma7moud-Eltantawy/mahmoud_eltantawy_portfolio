@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, FileText, Menu, X, Smartphone, Cpu, Network, Briefcase, Mail } from 'lucide-react';
+import { Globe, FileText, Menu, X, Smartphone, Cpu, Network, Briefcase, Mail, Lightbulb } from 'lucide-react';
 import { translations } from '../data/translations';
 import { mahmoudPhoto } from '../assets/mahmoudBase64';
 
@@ -17,10 +17,11 @@ export default function Navbar({ lang, setLang, onOpenResume }) {
   }, []);
 
   const navLinks = [
-    { id: 'mobile', label: t.mobile, icon: Smartphone },
+    { id: 'showcase', label: t.showcase, icon: Briefcase },
     { id: 'architecture', label: t.architecture, icon: Cpu },
     { id: 'apigateway', label: t.apiGateway, icon: Network },
-    { id: 'showcase', label: t.projects, icon: Briefcase },
+    { id: 'mindset', label: t.mindset, icon: Lightbulb },
+    { id: 'tech', label: t.skills, icon: Cpu },
     { id: 'experience', label: t.experience, icon: Briefcase },
     { id: 'contact', label: t.contact, icon: Mail }
   ];
@@ -51,8 +52,8 @@ export default function Navbar({ lang, setLang, onOpenResume }) {
             <span className="font-extrabold text-slate-900 text-base tracking-tight leading-none group-hover:text-blue-600 transition-colors">
               {t.brand}
             </span>
-            <span className="text-[10px] text-slate-500 font-bold tracking-wider uppercase mt-0.5">
-              FLUTTER & API GATEWAY
+            <span className="text-[10px] text-blue-600 font-extrabold tracking-wider uppercase mt-0.5">
+              {t.roleBadge}
             </span>
           </div>
         </a>
@@ -125,7 +126,7 @@ export default function Navbar({ lang, setLang, onOpenResume }) {
             />
             <div>
               <h4 className="font-extrabold text-slate-900 text-sm">{t.brand}</h4>
-              <span className="text-xs font-mono text-blue-600">Flutter & API Gateway</span>
+              <span className="text-xs font-mono text-blue-600 font-bold">{t.roleBadge}</span>
             </div>
           </div>
 

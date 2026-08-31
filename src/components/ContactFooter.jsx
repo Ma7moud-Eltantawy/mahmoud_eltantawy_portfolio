@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Send, FileText, CheckCircle2, Globe, Code } from 'lucide-react';
+import { Mail, Phone, Send, FileText, CheckCircle2, Globe, Code, Briefcase } from 'lucide-react';
 import { translations } from '../data/translations';
 import { resumeData } from '../data/resumeData';
 
@@ -13,7 +13,7 @@ export default function ContactFooter({ lang, onOpenResume }) {
     e.preventDefault();
     
     // Construct direct mailto dispatch to mahmoudeltantawy2019@gmail.com
-    const mailtoSubject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
+    const mailtoSubject = encodeURIComponent(`Software Engineering Inquiry from ${formData.name}`);
     const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
     
     window.open(`mailto:mahmoudeltantawy2019@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
@@ -32,12 +32,13 @@ export default function ContactFooter({ lang, onOpenResume }) {
         {/* Main CTA Heading */}
         <div className="text-center max-w-4xl mx-auto mb-16">
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
+            <Briefcase className="w-3.5 h-3.5" />
             {t.badge}
           </span>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-tight mb-6">
-            <span className="block text-slate-400">{t.headline}</span>
-            <span className="block text-blue-500">{t.ctaText}</span>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
+            <span className="block text-slate-400 text-lg sm:text-2xl font-bold mb-2">{t.headline}</span>
+            <span className="block text-blue-500 text-2xl sm:text-4xl md:text-5xl font-black">{t.ctaText}</span>
           </h2>
         </div>
 
@@ -50,7 +51,7 @@ export default function ContactFooter({ lang, onOpenResume }) {
               <div className="py-12 text-center flex flex-col items-center gap-4">
                 <CheckCircle2 className="w-12 h-12 text-emerald-400 animate-bounce" />
                 <h3 className="text-xl font-bold text-white">{t.form.success}</h3>
-                <p className="text-xs text-slate-400">Message directed to mahmoudeltantawy2019@gmail.com</p>
+                <p className="text-xs text-slate-400">Inquiry directed to mahmoudeltantawy2019@gmail.com</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -64,7 +65,7 @@ export default function ContactFooter({ lang, onOpenResume }) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors"
-                    placeholder="e.g. Sarah Al-Otaibi"
+                    placeholder="e.g. Sarah Al-Otaibi / Engineering Lead"
                   />
                 </div>
 
@@ -92,7 +93,7 @@ export default function ContactFooter({ lang, onOpenResume }) {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none"
-                    placeholder="Discuss mobile app development, system architecture, or API Gateway configuration..."
+                    placeholder="Discuss Software Engineering opportunities, system design, API Gateway architecture..."
                   />
                 </div>
 
@@ -168,10 +169,10 @@ export default function ContactFooter({ lang, onOpenResume }) {
             <div className="p-8 rounded-3xl bg-gradient-to-br from-blue-900/40 to-slate-900 border border-blue-500/30 flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <FileText className="w-6 h-6 text-blue-400" />
-                <h4 className="text-base font-extrabold text-white">Full Professional Resume</h4>
+                <h4 className="text-base font-extrabold text-white">Full Professional Curriculum Vitae</h4>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Inspect complete verified breakdown of Mahmoud's experience, certifications, and technical projects.
+                Inspect complete verified breakdown of Mahmoud's engineering background, projects, and architecture experience.
               </p>
               <button
                 onClick={onOpenResume}
@@ -188,7 +189,7 @@ export default function ContactFooter({ lang, onOpenResume }) {
         {/* Footer Subtext */}
         <div className="mt-20 pt-8 border-t border-slate-900 flex flex-wrap items-center justify-between text-xs text-slate-500 font-mono gap-4">
           <span>© {new Date().getFullYear()} MAHMOUD EL-TANTAWY. ALL RIGHTS RESERVED.</span>
-          <span>FLUTTER • CLEAN ARCHITECTURE • APACHE APISIX</span>
+          <span>SOFTWARE ENGINEER • SYSTEM DESIGN • APACHE APISIX • FLUTTER</span>
         </div>
 
       </div>

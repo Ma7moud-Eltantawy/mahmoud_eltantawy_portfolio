@@ -27,7 +27,7 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
               className="w-9 h-9 rounded-full object-cover border border-slate-300"
             />
             <span className="font-extrabold text-slate-900 text-sm sm:text-base">
-              {info.name[lang]} — Curricular Vitae
+              {info.name[lang]} — Curriculum Vitae
             </span>
           </div>
 
@@ -70,7 +70,7 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
                 {info.name[lang]}
               </h1>
               <p className="text-blue-600 font-extrabold text-sm sm:text-base mt-1">
-                FLUTTER DEVELOPER & SOFTWARE ENGINEER
+                SOFTWARE ENGINEER | SYSTEM DESIGN • API MANAGEMENT • DISTRIBUTED SYSTEMS • FLUTTER
               </p>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-4 text-xs font-medium text-slate-600">
@@ -106,7 +106,7 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
 
           {/* Summary */}
           <div>
-            <h2 className="text-xs font-mono font-black text-slate-400 uppercase tracking-widest mb-3">SUMMARY</h2>
+            <h2 className="text-xs font-mono font-black text-slate-400 uppercase tracking-widest mb-3">PROFESSIONAL SUMMARY</h2>
             <p className="text-sm text-slate-700 leading-relaxed font-medium">
               {info.summary[lang]}
             </p>
@@ -136,19 +136,9 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
             </div>
           </div>
 
-          {/* Education */}
-          <div>
-            <h2 className="text-xs font-mono font-black text-slate-400 uppercase tracking-widest mb-3">EDUCATION</h2>
-            <div className="border-l-2 border-purple-300 pl-4">
-              <h3 className="text-sm font-extrabold text-slate-900">{edu.degree[lang]}</h3>
-              <p className="text-xs text-slate-600 font-medium">{edu.institution[lang]} ({edu.period})</p>
-              <p className="text-xs font-mono text-purple-600 font-bold mt-0.5">Grade: {edu.grade[lang]} | {edu.location[lang]}</p>
-            </div>
-          </div>
-
           {/* Key Projects */}
           <div>
-            <h2 className="text-xs font-mono font-black text-slate-400 uppercase tracking-widest mb-4">FEATURED PROJECTS</h2>
+            <h2 className="text-xs font-mono font-black text-slate-400 uppercase tracking-widest mb-4">FEATURED SYSTEMS & CASE STUDIES</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {projs.map((p) => (
                 <div key={p.id} className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
@@ -163,6 +153,16 @@ export default function ResumeModal({ isOpen, onClose, lang }) {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Education */}
+          <div>
+            <h2 className="text-xs font-mono font-black text-slate-400 uppercase tracking-widest mb-3">EDUCATION</h2>
+            <div className="border-l-2 border-purple-300 pl-4">
+              <h3 className="text-sm font-extrabold text-slate-900">{edu.degree[lang]}</h3>
+              <p className="text-xs text-slate-600 font-medium">{edu.institution[lang]} ({edu.period})</p>
+              <p className="text-xs font-mono text-purple-600 font-bold mt-0.5">Grade: {edu.grade[lang]} | {edu.location[lang]}</p>
             </div>
           </div>
 
