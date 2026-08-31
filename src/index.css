@@ -112,18 +112,21 @@
 .gradient-text-mobile {
   background: linear-gradient(135deg, #0071E3 0%, #00C7FF 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-arch {
   background: linear-gradient(135deg, #6E44FF 0%, #A855F7 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-gateway {
   background: linear-gradient(135deg, #FF6B00 0%, #F59E0B 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -138,22 +141,34 @@
   animation: flowLine 2s linear infinite;
 }
 
+/* Scrollbar Hide Utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Phone Mockup */
 .phone-mockup-frame {
   position: relative;
-  width: 280px;
+  width: 100%;
+  max-width: 280px;
   height: 560px;
   border-radius: 44px;
   background: #111;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #2A2A2E, 0 0 0 14px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 10px #2A2A2E, 0 0 0 12px rgba(255, 255, 255, 0.1);
   overflow: hidden;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .phone-mockup-frame {
-    width: 320px;
+    max-width: 320px;
     height: 640px;
     border-radius: 48px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #2A2A2E, 0 0 0 14px rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -168,3 +183,4 @@
   border-radius: 20px;
   z-index: 20;
 }
+

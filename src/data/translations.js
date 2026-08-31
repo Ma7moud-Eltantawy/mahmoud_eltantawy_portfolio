@@ -142,7 +142,7 @@ export const translations = {
       skills: "المهارات التقنية",
       experience: "الخبرات",
       contact: "التواصل",
-      resume: "عرض السيرة الذاتية"
+      resume: "السيرة الذاتية"
     },
     hero: {
       headlinePart1: "هندسة الأنظمة.",

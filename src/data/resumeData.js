@@ -23,6 +23,57 @@ export const resumeData = {
     dob: "24/05/2000"
   },
 
+  engineeringPhilosophy: [
+    {
+      id: "full-spectrum",
+      icon: "Layers",
+      title: {
+        en: "Full-Spectrum Architecture",
+        ar: "معمارية شاملة ومتكاملة"
+      },
+      tagline: {
+        en: "From the Mobile Pixel to the Gateway Header",
+        ar: "من شاشة الموبايل وحتى ترويسة البوابة السحابية"
+      },
+      desc: {
+        en: "I don't just build UI; I engineer how mobile apps communicate securely through API Gateways (APISIX), authenticate with Keycloak IAM, and sync seamlessly with backend microservices.",
+        ar: "لا أكتفي ببناء واجهات المستخدم، بل أهندس طريقة اتصال التطبيق بأمان عبر بوابات APISIX، والتحقق عبر Keycloak، والمزامنة الذكية مع الخدمات المصغرة."
+      }
+    },
+    {
+      id: "offline-resilience",
+      icon: "Database",
+      title: {
+        en: "Mission-Critical Offline Reliability",
+        ar: "استمرارية العمل دون انقطاع (Offline First)"
+      },
+      tagline: {
+        en: "Zero Downtime for Real-world Business",
+        ar: "ضمان عدم توقف عمليات الشركات والمطاعم"
+      },
+      desc: {
+        en: "In POS and ERP platforms, internet drops must not stop sales. I engineer direct SQL socket connections and background SQLite sync workers that ensure sub-millisecond local speed.",
+        ar: "في أنظمة نقاط البيع والمؤسسات، انقطاع الإنترنت لا يجب أن يوقف البيع. لذلك أقوم ببناء ربط مباشر مع قواعد البيانات SQL Server ومزامنة خلفية ذكية."
+      }
+    },
+    {
+      id: "clean-standards",
+      icon: "Cpu",
+      title: {
+        en: "Clean Code & Design Patterns",
+        ar: "كود نظيف وأنماط برمجية قياسية"
+      },
+      tagline: {
+        en: "Maintainable, Testable, Decoupled",
+        ar: "سهولة التطوير وقابلية التوسع والاختبار"
+      },
+      desc: {
+        en: "Applying SOLID principles, Repository and Adapter patterns to isolate external payment SDKs (NearPay NFC) and APIs, making codebases scalable across platforms and future-proof.",
+        ar: "تطبيق مبادئ SOLID ونمط المحول (Adapter Pattern) لعزل مكتبات الدفع وSDKs، مما يجعل الكود قابلاً للتوسع وإعادة الاستخدام لسنوات."
+      }
+    }
+  ],
+
   metrics: [
     { id: "exp", value: "2+", label: { en: "Years Engineering Experience", ar: "سنوات خبرة برمجية وهندسية" } },
     { id: "projects", value: "12+", label: { en: "Production Systems Delivered", ar: "أنظمة برمجية في بيئات الإنتاج" } },
