@@ -1,0 +1,211 @@
+   /* =========================================
+   CLASSIC CARD CONTACT SECTION
+   ========================================= */
+.contact-classic {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4efe6; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10vh;
+}
+
+/* شكل موجة البحر المتكررة */
+.contact-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55vh; /* متظبطة عشان الكيرفات تطلع شكلها طبيعي ومريحة للعين */
+  z-index: 1;
+  background-color: transparent !important; 
+}
+
+.contact-wave svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* الحاوية الرئيسية (فوق الموجة) */
+.contact-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 5%;
+  margin-top: 8vh;
+}
+
+/* نصوص العنوان العلوية */
+.contact-header {
+  text-align: center;
+  color: #ffffff; 
+  margin-bottom: 2.5rem;
+}
+.contact-label {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.7); 
+  margin-bottom: 1rem;
+}
+.contact-label .accent {
+  color: #f97316;
+}
+.contact-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.contact-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* الكارت الأبيض */
+.contact-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  padding: 3rem 4rem;
+  width: 100%;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.card-header p {
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.card-header strong {
+  color: #171615;
+}
+
+/* الفورم وتنسيقها */
+.classic-form {
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-card {
+    padding: 2rem;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.input-group label .req {
+  color: #f97316; 
+}
+
+/* ستايل المربعات */
+.input-group input,
+.input-group textarea,
+.select-wrapper-classic select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  background-color: #fafafa;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #171615;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #aaa;
+  font-weight: 400;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.select-wrapper-classic select:focus {
+  border-color: #f97316;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.input-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.message-group {
+  margin-bottom: 2rem;
+}
+
+/* القايمة المنسدلة */
+.select-wrapper-classic {
+  position: relative;
+}
+.select-wrapper-classic select {
+  cursor: pointer;
+  appearance: none;
+  padding-right: 2.5rem;
+}
+.select-wrapper-classic::after {
+  content: "▼";
+  font-size: 0.8rem;
+  color: #777;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* زرار الإرسال */
+.form-action {
+  text-align: center;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #f97316 0%, #d05b0c 100%);
+  color: #ffffff;
+  border: none;
+  padding: 1rem 4rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px; 
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+}
+
+.status-msg {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #171615;
+}

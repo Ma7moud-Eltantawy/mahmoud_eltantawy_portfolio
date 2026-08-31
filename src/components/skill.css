@@ -1,0 +1,194 @@
+:root {
+  --bg-section: #f4efe6; 
+  /* ألوان الباستيل الأصلية من الديزاين */
+  --card-ai-bg: #dcd4e8; 
+  --card-fe-bg: #ead2d0; 
+  --card-se-bg: #ead9ad; 
+  --accent-orange: #f97316; 
+  --text-dark: #171615; 
+}
+
+.skills-section {
+  height: 100vh; 
+  width: 100%;
+  background-color: var(--bg-section);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; 
+  perspective: 1500px;
+}
+
+.skills-hero-text {
+  position: absolute; 
+  top: 15vh;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 5%;
+  z-index: 10;
+}
+
+.skills-label {
+  font-family: monospace;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.skills-label span { color: var(--accent-orange); }
+
+.skills-title {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.skills-title em {
+  font-style: italic;
+  color: var(--accent-orange);
+}
+
+.skills-dek {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.service_card-list {
+  position: absolute;
+  inset: 0; 
+  perspective: 125svh; 
+  perspective-origin: center; 
+  z-index: 5; 
+}
+
+.service-card {
+  width: clamp(280px, 23.875em, 380px); 
+  aspect-ratio: 382 / 528; 
+  transform-style: preserve-3d; 
+  backface-visibility: hidden; 
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0; margin: auto; /* التوسيط الحديدي */
+  --border-radius: 1.45em; 
+}
+
+.service-card:nth-child(2) { z-index: -1; }
+.service-card:nth-child(3) { z-index: -2; }
+
+.service-card_flip-front,
+.service-card_flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius); 
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5em;
+  isolation: isolate; /* بيمنع أي تداخل بصري أثناء الـ 3D */
+}
+
+/* =========================================
+   وش الكارت المذهل المطابق للصورة
+   ========================================= */
+.service-card_flip-front {
+  box-shadow: 0 18px 35px rgba(40, 34, 28, 0.12), 0 4px 10px rgba(40, 34, 28, 0.06);
+  /* العزل التام عشان الـ SVG ميبوظش الطول */
+  display: block; 
+}
+
+.card-ai .service-card_flip-front { background-color: var(--card-ai-bg); }
+.card-fe .service-card_flip-front { background-color: var(--card-fe-bg); }
+.card-se .service-card_flip-front { background-color: var(--card-se-bg); }
+
+/* الإطار الداخلي */
+.card-frame {
+  position: absolute;
+  top: 18px; bottom: 18px; left: 18px; right: 18px;
+  border: 1px solid rgba(30, 27, 24, 0.72);
+  border-radius: 0.95em;
+  pointer-events: none;
+}
+
+/* النقط على اليمين والشمال */
+.dot-group {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--card-bg); /* لإخفاء الخط تحت النقط */
+  padding: 10px 0;
+}
+.dot-group.left { left: -3px; }
+.dot-group.right { right: -3px; }
+
+.dot-group span {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background-color: #111;
+}
+
+/* أيقونات الزوايا (Corner Icons) */
+.corner {
+  position: absolute;
+  width: 22px; height: 22px;
+}
+.corner.top-left { top: 32px; left: 32px; }
+.corner.top-right { top: 32px; right: 32px; }
+.corner.bottom-left { bottom: 32px; left: 32px; }
+.corner.bottom-right { bottom: 32px; right: 32px; }
+
+.corner svg { width: 100%; height: 100%; display: block; }
+
+/* الشكل الهندسي الكبير في النص */
+.center-shape {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%; 
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+.center-shape svg { width: 100%; height: 100%; display: block; overflow: visible;}
+
+/* =========================================
+   ظهر الكارت (المحتوى)
+   ========================================= */
+.service-card_flip-back {
+  transform: rotateY(180deg); 
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.card-ai .service-card_flip-back { background-color: #e8dcc7; }
+.card-fe .service-card_flip-back { background-color: #f1d5c0; }
+.card-se .service-card_flip-back { background-color: #d8cbbb; }
+
+.service-card_flip-back h3 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.service-card_flip-back ul { list-style: none; padding: 0; width: 100%; }
+.service-card_flip-back ul li {
+  font-size: 1.1rem;
+  line-height: 2.4;
+  color: #222;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex; align-items: center; font-weight: 500;
+}
+.service-card_flip-back ul li::before {
+  content: "◆"; color: var(--accent-orange); margin-right: 12px; font-size: 0.6rem;
+}

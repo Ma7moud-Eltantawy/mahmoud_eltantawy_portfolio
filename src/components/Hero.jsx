@@ -1,349 +1,602 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Smartphone, Cpu, Network, ShieldCheck, ArrowDown, ExternalLink, ChevronRight, CheckCircle2, MapPin } from 'lucide-react';
-import { translations } from '../data/translations';
-import { resumeData } from '../data/resumeData';
-import { mahmoudPhoto } from '../assets/mahmoudBase64';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SITE } from "../data/site";
 
-export default function Hero({ lang, onOpenResume }) {
-  const t = translations[lang].hero;
-  const info = resumeData.personalInfo;
-  const [activeTab, setActiveTab] = useState('gateway');
+gsap.registerPlugin(ScrollTrigger);
 
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+export default function Hero({ play }) {
+  const sectionRef = useRef();
+  const glowRef = useRef();
+
+  useEffect(() => {
+    if (!play) return;
+
+    let ctx = gsap.context(() => {
+      // Center cards
+      gsap.set(".ui-card", { xPercent: -50, yPercent: -50 });
+
+      const tlEnter = gsap.timeline();
+
+      // Card entrance
+      tlEnter.fromTo(
+        ".ui-card",
+        {
+          y: 800,
+          autoAlpha: 0,
+          rotation: () => gsap.utils.random(-10, 10),
+        },
+        {
+          y: 0,
+          autoAlpha: 1,
+          rotation: 0,
+          duration: 1.5,
+          stagger: 0.1,
+          ease: "back.out(1.2)",
+        }
+      );
+
+      // Continuous floating cards
+      tlEnter.add(() => {
+        gsap.to(".ui-card", {
+          y: "-=12",
+          duration: 3.5,
+          repeat: -1,
+          yoyo: true,
+          stagger: 0.2,
+          ease: "sine.inOut",
+        });
+      });
+
+      // Mouse glow
+      const onMouseMove = (e) => {
+        if (!sectionRef.current || !glowRef.current) return;
+        const rect = sectionRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        gsap.to(glowRef.current, {
+          x: x,
+          y: y,
+          duration: 1.5,
+          ease: "power3.out",
+        });
+      };
+
+      window.addEventListener("mousemove", onMouseMove);
+
+      // 3D Hover effect
+      gsap.utils.toArray(".ui-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = ((y - centerY) / centerY) * -1.5;
+          const rotateY = ((x - centerX) / centerX) * 1.5;
+
+          gsap.to(card, {
+            rotationX: rotateX,
+            rotationY: rotateY,
+            transformPerspective: 1000,
+            ease: "power2.out",
+            duration: 0.4,
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            rotationX: 0,
+            rotationY: 0,
+            ease: "power3.out",
+            duration: 0.8,
+          });
+        });
+      });
+
+      // ScrollTrigger
+      if (window.innerWidth > 950) {
+        const tlScroll = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+
+        tlScroll
+          .fromTo(
+            ".card-bio",
+            { opacity: 1 },
+            {
+              yPercent: -150,
+              opacity: 0,
+              scale: 0.9,
+              rotation: -5,
+              duration: 1,
+              immediateRender: false,
+            },
+            0
+          )
+          .fromTo(
+            ".card-photo",
+            { opacity: 1 },
+            {
+              yPercent: -250,
+              opacity: 0,
+              scale: 1.1,
+              rotation: 12,
+              duration: 1,
+              immediateRender: false,
+            },
+            0
+          )
+          .fromTo(
+            ".card-stats",
+            { opacity: 1 },
+            {
+              yPercent: -100,
+              opacity: 0,
+              scale: 0.8,
+              rotation: -15,
+              duration: 1,
+              immediateRender: false,
+            },
+            0
+          )
+          .fromTo(
+            ".card-phil",
+            { opacity: 1 },
+            {
+              yPercent: -300,
+              opacity: 0,
+              scale: 1.05,
+              rotation: 8,
+              duration: 1,
+              immediateRender: false,
+            },
+            0
+          )
+          .fromTo(
+            ".card-tech",
+            { opacity: 1 },
+            {
+              yPercent: -180,
+              opacity: 0,
+              scale: 0.95,
+              rotation: -8,
+              duration: 1,
+              immediateRender: false,
+            },
+            0
+          );
+      }
+
+      return () => {
+        window.removeEventListener("mousemove", onMouseMove);
+      };
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [play]);
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 flex flex-col justify-between overflow-hidden bg-[#FBFBFD]">
-      
-      {/* Dynamic Animated Fluid Ambient Background Color Orbs */}
-      <motion.div
-        animate={{
-          x: [0, 90, -70, 0],
-          y: [0, -60, 50, 0],
-          scale: [1, 1.3, 0.9, 1],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          repeatType: "mirror",
-          ease: "easeInOut"
-        }}
-        className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-blue-500/35 via-cyan-400/25 to-blue-600/30 rounded-full blur-[100px] pointer-events-none"
-      />
+    <section
+      id="about"
+      ref={sectionRef}
+      className="hero-canvas-section"
+    >
+      <style>
+        {`
+          .hero-canvas-section {
+            min-height: 100vh;
+            width: 100%;
+            background-color: var(--paper);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            background-image:
+              url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
+              radial-gradient(var(--ink-faint) 1px, transparent 1px);
+            background-size: auto, 30px 30px;
+            perspective: 1200px;
+          }
 
-      <motion.div
-        animate={{
-          x: [0, -80, 60, 0],
-          y: [0, 80, -50, 0],
-          scale: [1, 1.25, 0.85, 1],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          repeatType: "mirror",
-          ease: "easeInOut"
-        }}
-        className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-gradient-to-br from-purple-600/30 via-indigo-500/25 to-pink-500/20 rounded-full blur-[120px] pointer-events-none"
-      />
+          .mouse-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(
+              circle,
+              var(--accent-soft) 0%,
+              var(--accent-muted) 40%,
+              transparent 70%
+            );
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            filter: blur(60px);
+            will-change: transform;
+            pointer-events: none;
+            z-index: 0;
+          }
 
-      <motion.div
-        animate={{
-          x: [0, 70, -40, 0],
-          y: [0, 50, -60, 0],
-          scale: [1, 1.35, 0.95, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          repeatType: "mirror",
-          ease: "easeInOut"
-        }}
-        className="absolute bottom-20 left-10 w-[450px] h-[450px] bg-gradient-to-r from-amber-500/25 via-orange-400/20 to-emerald-400/20 rounded-full blur-[110px] pointer-events-none"
-      />
+          .ui-card {
+            position: absolute;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px var(--accent-muted);
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            will-change: transform, top, left, opacity, visibility;
+            transition:
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform-style: preserve-3d;
+          }
 
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10 my-auto">
-        
-        {/* Profile Card & Engineering Positioning Badge */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
-          <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
-            <img
-              src={mahmoudPhoto}
-              alt="Mahmoud El-Tantawy"
-              className="w-full h-full rounded-2xl object-cover border-2 border-white shadow-xl ring-4 ring-blue-500/20"
-            />
-            <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full" />
-          </div>
+          .ui-card:hover {
+            box-shadow: 0 30px 60px var(--accent-soft);
+            border-color: var(--accent) !important;
+            z-index: 20 !important;
+          }
 
-          <div className="flex flex-col gap-1.5">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3.5 py-1 rounded-full text-xs font-extrabold bg-slate-900 text-white shadow-sm tracking-wide uppercase">
-                {info.name[lang]}
-              </span>
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200/60 shadow-xs">
-                {info.title[lang]}
-              </span>
-            </div>
+          .card-bio {
+            top: 50%;
+            left: 50%;
+            width: 550px;
+            background: var(--paper-2);
+            border: 1px solid var(--line);
+            z-index: 10;
+          }
 
-            <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-              <MapPin className="w-3.5 h-3.5 text-slate-400" />
-              <span>{info.location[lang]}</span>
-            </div>
-          </div>
-        </div>
+          .card-stats {
+            top: calc(50% - 180px);
+            left: calc(50% - 370px);
+            width: 220px;
+            background: var(--paper-2);
+            border: 1px solid var(--line);
+            z-index: 5;
+            text-align: center;
+          }
 
-        {/* Main Cinematic Statement */}
-        <div className="max-w-4xl text-center md:text-left rtl:md:text-right">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.08] mb-8">
-            <span className="block text-slate-900">{t.headlinePart1}</span>
-            <span className="block text-blue-600 font-extrabold">{t.headlinePart2}</span>
-            <span className="block text-slate-400">{t.headlinePart3}</span>
-          </h1>
+          .card-photo {
+            top: calc(50% - 150px);
+            left: calc(50% + 400px);
+            width: 280px;
+            background: var(--ink);
+            color: var(--paper);
+            z-index: 5;
+            padding: 1.5rem;
+            overflow: hidden;
+          }
 
-          <p className="text-slate-600 text-lg sm:text-xl font-medium max-w-3xl leading-relaxed mb-10">
-            {t.subtitle}
-          </p>
+          .card-phil {
+            top: calc(50% + 180px);
+            left: calc(50% - 400px);
+            width: 320px;
+            background: var(--ink);
+            color: var(--paper);
+            z-index: 5;
+            border: 1px solid var(--bone-faint);
+          }
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-16">
-            <button
-              onClick={() => scrollTo('showcase')}
-              className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm transition-all shadow-md shadow-blue-500/20 hover:scale-105"
-            >
-              <span>{t.ctaPrimary}</span>
-              <ChevronRight className="w-4 h-4 rtl:rotate-180" />
-            </button>
+          .card-tech {
+            top: calc(50% + 200px);
+            left: calc(50% + 410px);
+            width: 300px;
+            background: var(--paper-2);
+            border: 1px solid var(--line);
+            z-index: 5;
+          }
 
-            <button
-              onClick={() => scrollTo('architecture')}
-              className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-900 border border-slate-300 font-bold text-sm transition-all shadow-sm hover:scale-105"
-            >
-              <span>{t.ctaSecondary}</span>
-              <Cpu className="w-4 h-4 text-purple-600" />
-            </button>
+          .img-scan-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+          }
 
-            <button
-              onClick={onOpenResume}
-              className="flex items-center gap-2 px-5 py-3.5 rounded-full bg-slate-100/80 backdrop-blur-md hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors border border-slate-200"
-            >
-              <span>Curriculum Vitae</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
+          .img-scan-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(80%) contrast(1.1);
+            transition: 0.4s ease;
+          }
 
-        {/* Interactive Floating System Composition (App -> Architecture -> Gateway) */}
-        <div className="mt-6 p-6 md:p-10 rounded-3xl bg-white/85 backdrop-blur-2xl border border-slate-200/80 shadow-2xl">
-          
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-6 mb-8">
-            <div>
-              <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                SYSTEM INTEGRATION FLOW
-              </span>
-              <h3 className="text-xl font-black text-slate-900">
-                {lang === 'en' ? "End-to-End System Architecture Story" : "معمارية المنظومة البرمجية المتكاملة"}
-              </h3>
-            </div>
+          .card-photo:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+          }
 
-            {/* Pillar Selector Tabs */}
-            <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl">
-              <button
-                onClick={() => setActiveTab('gateway')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeTab === 'gateway' ? 'bg-white text-amber-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Network className="w-4 h-4" />
-                <span>01. API Gateway</span>
-              </button>
+          .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #4ade80;
+            animation: pulse-green 2s infinite;
+          }
 
-              <button
-                onClick={() => setActiveTab('arch')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeTab === 'arch' ? 'bg-white text-purple-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Cpu className="w-4 h-4" />
-                <span>02. System Design</span>
-              </button>
+          @keyframes pulse-green {
+            0% {
+              box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+            }
 
-              <button
-                onClick={() => setActiveTab('mobile')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeTab === 'mobile' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Smartphone className="w-4 h-4" />
-                <span>03. Client Engineering</span>
-              </button>
-            </div>
-          </div>
+            70% {
+              box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+            }
 
-          {/* Visual System Flow Diagrams */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[300px]">
-            
-            {/* Left Diagram Text */}
-            <div className="lg:col-span-5 flex flex-col gap-4">
-              {activeTab === 'gateway' && (
-                <>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 w-fit">
-                    <Network className="w-3.5 h-3.5" />
-                    <span>APACHE APISIX & KEYCLOAK</span>
-                  </div>
-                  <h4 className="text-2xl font-black text-slate-900">
-                    {lang === 'en' ? "Centralized API Gateway & Security" : "بوابة واجهات APIs والأمان المركزي"}
-                  </h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {lang === 'en'
-                      ? "Apache APISIX acts as the centralized entry point: handling dynamic routing, JWT token introspection with Keycloak, proxy rewrites, and X-Consumer injection to isolate backend microservices."
-                      : "بوابة Apache APISIX تمثل نقطة الدخول الموحدة: إدارة التوجيه، والتحقق من رموز JWT عبر Keycloak، وإعادة كتابة المسارات، وعزل الخدمات الخلفية."}
-                  </p>
-                  <ul className="flex flex-col gap-2 mt-2">
-                    <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-amber-500" />
-                      <span>Qiyasi Microservices Gateway Routing</span>
-                    </li>
-                    <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-amber-500" />
-                      <span>Rate Limiting, CORS & Token Rotation</span>
-                    </li>
-                  </ul>
-                </>
-              )}
+            100% {
+              box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+            }
+          }
 
-              {activeTab === 'arch' && (
-                <>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 w-fit">
-                    <Cpu className="w-3.5 h-3.5" />
-                    <span>CLEAN ARCHITECTURE & ADAPTER PATTERN</span>
-                  </div>
-                  <h4 className="text-2xl font-black text-slate-900">
-                    {lang === 'en' ? "Modular Domain Boundaries" : "حدود قواعد العمل وتصميم الأنظمة"}
-                  </h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {lang === 'en'
-                      ? "Strict separation of concerns: Business rules isolated in pure Domain use-cases, hardware/payment SDKs abstracted behind the Adapter Pattern, and deterministic state reconciliation."
-                      : "فصل تام بين واجهات التطبيق وقواعد العمل؛ عزل مكتبات الدفع وعتاد NFC خلف واجهات مجردة بنمط المحول، مع معالجة استباقية للأخطاء."}
-                  </p>
-                  <ul className="flex flex-col gap-2 mt-2">
-                    <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-purple-500" />
-                      <span>Payment Provider Abstraction Layer</span>
-                    </li>
-                    <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-purple-500" />
-                      <span>Offline-First Monotonic Sync Queues</span>
-                    </li>
-                  </ul>
-                </>
-              )}
+          .tag-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            display: block;
+            color: var(--accent);
+          }
 
-              {activeTab === 'mobile' && (
-                <>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 w-fit">
-                    <Smartphone className="w-3.5 h-3.5" />
-                    <span>FLUTTER & CLIENT SYSTEMS</span>
-                  </div>
-                  <h4 className="text-2xl font-black text-slate-900">
-                    {lang === 'en' ? "Production-Grade Flutter Applications" : "تطبيقات فلاتر بمقاييس الإنتاج"}
-                  </h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {lang === 'en'
-                      ? "High-performance client engineering: reactive state architectures, NearPay NFC tap-on-phone, local SQLite persistence, thermal receipt printing, and multi-tenant configurations."
-                      : "تطبيقات عالية الاستجابة: إدارة حالات تفاعلية، دفع NearPay NFC، قواعد بيانات SQLite محلية، وطباعة الفواتير وأنظمة متعددة المستأجرين."}
-                  </p>
-                  <ul className="flex flex-col gap-2 mt-2">
-                    <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                      <span>Saaed Pay Fintech (NearPay NFC)</span>
-                    </li>
-                    <li className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                      <span>Multi-Tenant ERP (Ezee Manager Pro)</span>
-                    </li>
-                  </ul>
-                </>
-              )}
-            </div>
+          .bio-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--ink);
+            margin: 0 0 1rem 0;
+            letter-spacing: -1px;
+          }
 
-            {/* Right Interactive Architecture Flow Box */}
-            <div className="lg:col-span-7 bg-slate-900 text-white rounded-2xl p-6 md:p-8 relative overflow-hidden shadow-inner">
-              
-              <div className="flex items-center justify-between font-mono text-xs text-slate-400 border-b border-slate-800 pb-4 mb-6">
-                <span>SYSTEM PIPELINE: CLIENT → APISIX → KEYCLOAK → MICROSERVICE</span>
-                <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">STATUS: 200 OK</span>
-              </div>
+          .bio-title em {
+            color: var(--accent);
+          }
 
-              {/* Node flow visual cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 relative z-10">
-                
-                {/* Mobile Client */}
-                <div className={`p-4 rounded-xl border text-center transition-all ${
-                  activeTab === 'mobile' ? 'bg-blue-600/20 border-blue-500 text-white shadow-lg' : 'bg-slate-800/60 border-slate-700/50 text-slate-400'
-                }`}>
-                  <Smartphone className="w-6 h-6 mx-auto mb-2 text-blue-400" />
-                  <span className="text-xs font-extrabold block">Client App</span>
-                  <span className="text-[10px] opacity-75 font-mono">Flutter / Dart</span>
-                </div>
+          .bio-text {
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+            line-height: 1.6;
+            margin: 0;
+          }
 
-                {/* Gateway APISIX */}
-                <div className={`p-4 rounded-xl border text-center transition-all ${
-                  activeTab === 'gateway' ? 'bg-amber-600/20 border-amber-500 text-white shadow-lg' : 'bg-slate-800/60 border-slate-700/50 text-slate-400'
-                }`}>
-                  <Network className="w-6 h-6 mx-auto mb-2 text-amber-400" />
-                  <span className="text-xs font-extrabold block">Apache APISIX</span>
-                  <span className="text-[10px] opacity-75 font-mono">API Gateway</span>
-                </div>
+          .stat-num {
+            font-size: 3.5rem;
+            font-family: var(--font-fraunces);
+            color: var(--accent);
+            margin: 0;
+            line-height: 1;
+          }
 
-                {/* Keycloak Auth */}
-                <div className={`p-4 rounded-xl border text-center transition-all ${
-                  activeTab === 'gateway' || activeTab === 'arch' ? 'bg-emerald-600/20 border-emerald-500 text-white shadow-lg' : 'bg-slate-800/60 border-slate-700/50 text-slate-400'
-                }`}>
-                  <ShieldCheck className="w-6 h-6 mx-auto mb-2 text-emerald-400" />
-                  <span className="text-xs font-extrabold block">Keycloak IAM</span>
-                  <span className="text-[10px] opacity-75 font-mono">Token Introspect</span>
-                </div>
+          .stat-text {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          }
 
-                {/* Backend Engine */}
-                <div className={`p-4 rounded-xl border text-center transition-all ${
-                  activeTab === 'arch' ? 'bg-purple-600/20 border-purple-500 text-white shadow-lg' : 'bg-slate-800/60 border-slate-700/50 text-slate-400'
-                }`}>
-                  <Cpu className="w-6 h-6 mx-auto mb-2 text-purple-400" />
-                  <span className="text-xs font-extrabold block">Microservices</span>
-                  <span className="text-[10px] opacity-75 font-mono">SQL / Node Backend</span>
-                </div>
+          .phil-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+          }
 
-              </div>
+          .phil-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--bone-faint);
+            padding-bottom: 1rem;
+            transition: 0.3s;
+          }
 
-              {/* Code snippet mock */}
-              <div className="mt-6 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-300 overflow-x-auto">
-                <div className="text-slate-500">// Real APISIX Route & Security Header Configuration</div>
-                <div><span className="text-amber-400">POST</span> /api/v1/auth/token <span className="text-emerald-400 font-bold">200 OK</span></div>
-                <div className="text-blue-400">X-Consumer-ID: <span className="text-white">"tenant_saudi_01"</span></div>
-                <div className="text-purple-400">Authorization: <span className="text-white">"Bearer eyJhbGciOi..."</span></div>
-              </div>
+          .phil-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+          }
 
-            </div>
+          .phil-item:hover {
+            transform: translateX(5px);
+            color: var(--accent);
+          }
 
-          </div>
+          .phil-num {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: bold;
+          }
 
-        </div>
+          .phil-text {
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--paper);
+          }
 
+          .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 1rem;
+          }
+
+          .tech-pill {
+            padding: 6px 12px;
+            border-radius: 50px;
+            border: 1px solid var(--line);
+            font-size: 0.8rem;
+            color: var(--ink-soft);
+            font-family: var(--font-mono);
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: default;
+          }
+
+          .tech-pill:hover {
+            background: var(--accent);
+            color: var(--paper);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px var(--accent-soft);
+          }
+
+          @media (max-width: 950px) {
+            .hero-canvas-section {
+              padding-top: 12vh;
+              height: auto;
+              display: block;
+            }
+
+            .mouse-glow {
+              display: none;
+            }
+
+            .ui-card {
+              position: relative !important;
+              top: auto !important;
+              left: auto !important;
+              transform: none !important;
+              width: 90% !important;
+              max-width: 450px;
+              margin: 1.5rem auto;
+              opacity: 1;
+              visibility: visible;
+              z-index: 1 !important;
+            }
+          }
+        `}
+      </style>
+
+      <div className="mouse-glow" ref={glowRef}></div>
+
+      <div className="ui-card card-stats">
+        <h2 className="stat-num">12+</h2>
+        <p className="stat-text">Production Systems</p>
+
+        <div
+          style={{
+            height: "1px",
+            background: "rgba(23,22,21,0.1)",
+            margin: "1rem 0",
+          }}
+        ></div>
+
+        <h2 className="stat-num">100%</h2>
+        <p className="stat-text">Gateway Isolation</p>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <div className="flex justify-center mt-12">
-        <button
-          onClick={() => scrollTo('showcase')}
-          className="flex flex-col items-center gap-2 text-slate-400 hover:text-slate-800 transition-colors group"
+      <div className="ui-card card-photo">
+        <div className="img-scan-container">
+          <img src={`${import.meta.env.BASE_URL}imgs/Profile.jpg`} alt="Mahmoud El-Tantawy" />
+        </div>
+
+        <h3
+          style={{
+            margin: "0 0 0.2rem 0",
+            fontSize: "1.2rem",
+            fontWeight: "900",
+            letterSpacing: "1px",
+          }}
         >
-          <span className="text-xs font-bold uppercase tracking-wider">{t.scrollHint}</span>
-          <ArrowDown className="w-4 h-4 animate-bounce text-blue-600" />
-        </button>
+          MAHMOUD EL-TANTAWY
+        </h3>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+          }}
+        >
+          <div className="status-dot"></div>
+
+          <p
+            style={{
+              margin: 0,
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              color: "var(--ink-faint)",
+            }}
+          >
+            SOFTWARE ENGINEER • ARCHITECTURE
+          </p>
+        </div>
       </div>
 
+      <div className="ui-card card-bio">
+        <span className="tag-label">// SOFTWARE ARCHITECTURE & SYSTEMS</span>
+
+        <h1 className="bio-title">
+          I build{" "}
+          <em style={{ fontFamily: "var(--font-fraunces)" }}>
+            resilient systems
+          </em>{" "}
+          and API Gateways that scale.
+        </h1>
+
+        <p className="bio-text">
+          Software Engineer with hands-on experience bridging client-side engineering, system design, API management, and distributed system architectures — from Flutter apps to Apache APISIX & Keycloak IAM.
+        </p>
+      </div>
+
+      <div className="ui-card card-phil">
+        <span
+          className="tag-label"
+          style={{ opacity: 0.9 }}
+        >
+           HOW I THINK
+        </span>
+
+        <ul className="phil-list">
+          <li className="phil-item">
+            <span className="phil-num">01.</span>
+            <span className="phil-text">Define Clean Boundaries</span>
+          </li>
+
+          <li className="phil-item">
+            <span className="phil-num">02.</span>
+            <span className="phil-text">Design for Failure & Sync</span>
+          </li>
+
+          <li className="phil-item">
+            <span className="phil-num">03.</span>
+            <span className="phil-text">Centralize Gateway Concerns</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="ui-card card-tech">
+        <span className="tag-label">CORE ARSENAL</span>
+
+        <div className="tech-pills">
+          <span className="tech-pill">Apache APISIX</span>
+          <span className="tech-pill">System Design</span>
+          <span className="tech-pill">Keycloak IAM</span>
+          <span className="tech-pill">Clean Architecture</span>
+          <span className="tech-pill">Flutter & Dart</span>
+          <span className="tech-pill">Offline Sync</span>
+          <span className="tech-pill">SQL Server</span>
+          <span className="tech-pill">Adapter Pattern</span>
+        </div>
+      </div>
     </section>
   );
 }

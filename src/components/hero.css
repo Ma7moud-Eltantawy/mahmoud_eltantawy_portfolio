@@ -1,0 +1,241 @@
+/* =========================================
+   HERO BENTO GRID SECTION
+   ========================================= */
+.hero-bento-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--paper);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15vh 5% 5vh 5%;
+  overflow: hidden;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 20px;
+  max-width: 1250px;
+  width: 100%;
+  z-index: 2;
+}
+
+/* =========================================
+   BENTO CARDS GLOBAL STYLES
+   ========================================= */
+.bento-card {
+  background: var(--paper-2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px var(--accent-muted);
+  border: 1px solid var(--line);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.bento-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* =========================================
+   SPECIFIC CARDS SIZING & PLACEMENT
+   ========================================= */
+.card-main {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.bento-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.bento-title {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--paper);
+}
+
+.bento-title .accent {
+  color: var(--accent);
+  font-style: italic;
+  font-family: var(--font-fraunces);
+}
+
+.card-visual {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  align-items: center;
+  background: var(--paper-2);
+}
+
+.glowing-orb {
+  width: 100px;
+  height: 100px;
+  background: var(--ink);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 30px var(--accent-soft);
+  animation: breathe 3s infinite ease-in-out;
+}
+
+.orb-text {
+  color: var(--paper);
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: var(--font-fraunces);
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px var(--accent-soft); }
+  50% { transform: scale(1.05); box-shadow: 0 0 40px var(--accent); }
+}
+
+.card-focus {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+.small-title {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.focus-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pill {
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--paper);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--ink);
+  width: fit-content;
+  border: 1px solid var(--line);
+}
+
+.card-bio {
+  grid-column: 3 / 5;
+  grid-row: 2 / 3;
+}
+
+.card-bio p {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.card-philosophy {
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.phil-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1;
+}
+
+.phil-icon {
+  font-size: 1.5rem;
+  background: var(--paper);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  color: var(--accent);
+  border: 1px solid var(--line);
+}
+
+.phil-text h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: var(--ink);
+}
+
+.phil-text p {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.card-stats {
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  gap: 1rem;
+}
+
+.stat-box h2 {
+  font-size: 2.5rem;
+  color: var(--accent);
+  font-family: var(--font-fraunces);
+  margin-bottom: -5px;
+}
+
+.stat-box p {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card-main { grid-column: 1 / 3; grid-row: 1 / 2; }
+  .card-visual { grid-column: 1 / 2; grid-row: 2 / 3; }
+  .card-focus { grid-column: 2 / 3; grid-row: 2 / 3; }
+  .card-bio { grid-column: 1 / 3; grid-row: 3 / 4; }
+  .card-philosophy { grid-column: 1 / 3; grid-row: 4 / 5; flex-direction: column; }
+  .card-stats { grid-column: 1 / 3; grid-row: 5 / 6; flex-direction: row; }
+}
+
+@media (max-width: 650px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-main, .card-visual, .card-focus, .card-bio, .card-philosophy, .card-stats {
+    grid-column: 1 / 2;
+    grid-row: auto;
+  }
+  .card-stats { flex-direction: column; }
+}
