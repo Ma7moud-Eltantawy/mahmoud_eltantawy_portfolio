@@ -1,6 +1,6 @@
 import React from "react";
 import { SITE } from "../data/site";
-import "./Journey.css";
+import "./journey.css";
 
 export default function Journey() {
   const milestones = SITE.journey.milestones;
