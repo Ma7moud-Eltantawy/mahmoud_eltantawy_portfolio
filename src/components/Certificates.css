@@ -113,6 +113,12 @@
   border-radius: 50%;
 }
 
+.cert-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 /* كارت الشهادة */
 .cert-card {
   background: var(--paper, #fffdf8);
@@ -120,12 +126,15 @@
   padding: 20px;
   box-shadow: 0 15px 35px var(--shadow, rgba(23, 19, 14, 0.16));
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   margin-top: 15px; /* إزاحة تحت المشبك */
+  border-radius: 4px;
 }
 
-.cert-card:hover {
-  box-shadow: 0 25px 45px rgba(244, 71, 11, 0.15);
+.cert-card-link:hover .cert-card {
+  border-color: var(--accent);
+  box-shadow: 0 25px 45px var(--accent-soft);
+  transform: translateY(-4px);
 }
 
 /* الصورة داخل الكارت */

@@ -101,21 +101,30 @@ export default function Certificates() {
             
             <div className="clip"></div>
             
-            <div className="cert-card">
-              <div className="cert-image">
-                <img src={`${import.meta.env.BASE_URL}${cert.image}`} alt={cert.title} loading="lazy" />
-              </div>
+            <a 
+              href={cert.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="cert-card-link"
+              data-cursor="link"
+              title={`Verify credential: ${cert.title}`}
+            >
+              <div className="cert-card">
+                <div className="cert-image">
+                  <img src={`${import.meta.env.BASE_URL}${cert.image}`} alt={cert.title} loading="lazy" />
+                </div>
 
-              <div className="cert-info">
-                <h3>{cert.title}</h3>
-                <p>{cert.issuer}</p>
-                
-                <div className="cert-meta">
-                  <span>{cert.tag}</span>
-                  <span>{cert.date}</span>
+                <div className="cert-info">
+                  <h3>{cert.title}</h3>
+                  <p>{cert.issuer}</p>
+                  
+                  <div className="cert-meta">
+                    <span>{cert.tag}</span>
+                    <span>{cert.date}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
 
           </div>
         ))}
