@@ -12,7 +12,10 @@ export default function Hero({ play }) {
   useEffect(() => {
     if (!play) return;
 
-    let ctx = gsap.context(() => {
+    let mm = gsap.matchMedia();
+
+    // Desktop Animations
+    mm.add("(min-width: 951px)", () => {
       // Center cards
       gsap.set(".ui-card", { xPercent: -50, yPercent: -50 });
 
@@ -66,10 +69,10 @@ export default function Hero({ play }) {
       window.addEventListener("mousemove", onMouseMove);
 
       // 3D Hover effect
+      const cardCleanups = [];
       gsap.utils.toArray(".ui-card").forEach((card) => {
-        card.addEventListener("mousemove", (e) => {
+        const handleMove = (e) => {
           const rect = card.getBoundingClientRect();
-
           const x = e.clientX - rect.left;
           const y = e.clientY - rect.top;
 
@@ -86,103 +89,127 @@ export default function Hero({ play }) {
             ease: "power2.out",
             duration: 0.4,
           });
-        });
+        };
 
-        card.addEventListener("mouseleave", () => {
+        const handleLeave = () => {
           gsap.to(card, {
             rotationX: 0,
             rotationY: 0,
             ease: "power3.out",
             duration: 0.8,
           });
+        };
+
+        card.addEventListener("mousemove", handleMove);
+        card.addEventListener("mouseleave", handleLeave);
+        cardCleanups.push(() => {
+          card.removeEventListener("mousemove", handleMove);
+          card.removeEventListener("mouseleave", handleLeave);
         });
       });
 
-      // ScrollTrigger
-      if (window.innerWidth > 950) {
-        const tlScroll = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
+      // Desktop ScrollTrigger
+      const tlScroll = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
 
-        tlScroll
-          .fromTo(
-            ".card-bio",
-            { opacity: 1 },
-            {
-              yPercent: -150,
-              opacity: 0,
-              scale: 0.9,
-              rotation: -5,
-              duration: 1,
-              immediateRender: false,
-            },
-            0
-          )
-          .fromTo(
-            ".card-photo",
-            { opacity: 1 },
-            {
-              yPercent: -250,
-              opacity: 0,
-              scale: 1.1,
-              rotation: 12,
-              duration: 1,
-              immediateRender: false,
-            },
-            0
-          )
-          .fromTo(
-            ".card-stats",
-            { opacity: 1 },
-            {
-              yPercent: -100,
-              opacity: 0,
-              scale: 0.8,
-              rotation: -15,
-              duration: 1,
-              immediateRender: false,
-            },
-            0
-          )
-          .fromTo(
-            ".card-phil",
-            { opacity: 1 },
-            {
-              yPercent: -300,
-              opacity: 0,
-              scale: 1.05,
-              rotation: 8,
-              duration: 1,
-              immediateRender: false,
-            },
-            0
-          )
-          .fromTo(
-            ".card-tech",
-            { opacity: 1 },
-            {
-              yPercent: -180,
-              opacity: 0,
-              scale: 0.95,
-              rotation: -8,
-              duration: 1,
-              immediateRender: false,
-            },
-            0
-          );
-      }
+      tlScroll
+        .fromTo(
+          ".card-bio",
+          { opacity: 1 },
+          {
+            yPercent: -150,
+            opacity: 0,
+            scale: 0.9,
+            rotation: -5,
+            duration: 1,
+            immediateRender: false,
+          },
+          0
+        )
+        .fromTo(
+          ".card-photo",
+          { opacity: 1 },
+          {
+            yPercent: -250,
+            opacity: 0,
+            scale: 1.1,
+            rotation: 12,
+            duration: 1,
+            immediateRender: false,
+          },
+          0
+        )
+        .fromTo(
+          ".card-stats",
+          { opacity: 1 },
+          {
+            yPercent: -100,
+            opacity: 0,
+            scale: 0.8,
+            rotation: -15,
+            duration: 1,
+            immediateRender: false,
+          },
+          0
+        )
+        .fromTo(
+          ".card-phil",
+          { opacity: 1 },
+          {
+            yPercent: -300,
+            opacity: 0,
+            scale: 1.05,
+            rotation: 8,
+            duration: 1,
+            immediateRender: false,
+          },
+          0
+        )
+        .fromTo(
+          ".card-tech",
+          { opacity: 1 },
+          {
+            yPercent: -180,
+            opacity: 0,
+            scale: 0.95,
+            rotation: -8,
+            duration: 1,
+            immediateRender: false,
+          },
+          0
+        );
 
       return () => {
         window.removeEventListener("mousemove", onMouseMove);
+        cardCleanups.forEach((c) => c());
       };
-    }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    // Mobile Animations (Clean Reveal without breaking natural flow)
+    mm.add("(max-width: 950px)", () => {
+      gsap.fromTo(
+        ".ui-card",
+        {
+          autoAlpha: 0,
+          y: 25,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: "power2.out",
+        }
+      );
+    });
+
+    return () => mm.revert();
   }, [play]);
 
   return (
@@ -266,6 +293,13 @@ export default function Hero({ play }) {
             border: 1px solid var(--line);
             z-index: 5;
             text-align: center;
+          }
+
+          .card-stats .stat-divider {
+            height: 1px;
+            width: 100%;
+            background: var(--line);
+            margin: 1rem 0;
           }
 
           .card-photo {
@@ -458,11 +492,21 @@ export default function Hero({ play }) {
             box-shadow: 0 8px 15px var(--accent-soft);
           }
 
+          /* =========================================
+             RESPONSIVE MOBILE & TABLET STYLING
+             ========================================= */
           @media (max-width: 950px) {
             .hero-canvas-section {
-              padding-top: 12vh;
-              height: auto;
-              display: block;
+              padding-top: max(85px, 11vh);
+              padding-bottom: 4rem;
+              padding-left: 1rem;
+              padding-right: 1rem;
+              height: auto !important;
+              min-height: auto !important;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              overflow: visible;
             }
 
             .mouse-glow {
@@ -473,13 +517,100 @@ export default function Hero({ play }) {
               position: relative !important;
               top: auto !important;
               left: auto !important;
+              right: auto !important;
+              bottom: auto !important;
               transform: none !important;
-              width: 90% !important;
-              max-width: 450px;
-              margin: 1.5rem auto;
-              opacity: 1;
-              visibility: visible;
+              width: 100% !important;
+              max-width: 480px !important;
+              margin: 0.75rem auto !important;
+              padding: 1.6rem 1.35rem !important;
+              border-radius: 20px !important;
+              opacity: 1 !important;
+              visibility: visible !important;
               z-index: 1 !important;
+            }
+
+            /* 1. Photo & Identity at the top */
+            .card-photo {
+              order: 1;
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .card-photo .img-scan-container {
+              max-width: 220px;
+              height: 220px;
+              margin: 0 auto 1.25rem auto;
+            }
+
+            .card-photo h3 {
+              font-size: 1.3rem !important;
+            }
+
+            /* 2. Main Bio Card */
+            .card-bio {
+              order: 2;
+            }
+
+            .bio-title {
+              font-size: clamp(1.5rem, 5.5vw, 2.1rem) !important;
+              line-height: 1.2 !important;
+            }
+
+            .bio-text {
+              font-size: 0.95rem !important;
+              line-height: 1.6 !important;
+            }
+
+            /* 3. Quick Stats (Side by side on mobile) */
+            .card-stats {
+              order: 3;
+              display: flex !important;
+              flex-direction: row !important;
+              justify-content: space-around !important;
+              align-items: center !important;
+              padding: 1.25rem 1rem !important;
+            }
+
+            .card-stats .stat-item {
+              flex: 1;
+              text-align: center;
+            }
+
+            .card-stats .stat-divider {
+              width: 1px !important;
+              height: 45px !important;
+              background: var(--line) !important;
+              margin: 0 0.75rem !important;
+            }
+
+            .stat-num {
+              font-size: 2.2rem !important;
+            }
+
+            .stat-text {
+              font-size: 0.65rem !important;
+            }
+
+            /* 4. Core Arsenal */
+            .card-tech {
+              order: 4;
+            }
+
+            /* 5. Philosophy */
+            .card-phil {
+              order: 5;
+            }
+
+            .phil-item {
+              gap: 12px;
+              padding-bottom: 0.85rem;
+            }
+
+            .phil-text {
+              font-size: 0.92rem;
             }
           }
         `}
@@ -487,22 +618,22 @@ export default function Hero({ play }) {
 
       <div className="mouse-glow" ref={glowRef}></div>
 
+      {/* 1. Stats Card */}
       <div className="ui-card card-stats">
-        <h2 className="stat-num">12+</h2>
-        <p className="stat-text">Production Systems</p>
+        <div className="stat-item">
+          <h2 className="stat-num">12+</h2>
+          <p className="stat-text">Production Systems</p>
+        </div>
 
-        <div
-          style={{
-            height: "1px",
-            background: "rgba(23,22,21,0.1)",
-            margin: "1rem 0",
-          }}
-        ></div>
+        <div className="stat-divider"></div>
 
-        <h2 className="stat-num">100%</h2>
-        <p className="stat-text">Gateway Isolation</p>
+        <div className="stat-item">
+          <h2 className="stat-num">100%</h2>
+          <p className="stat-text">Gateway Isolation</p>
+        </div>
       </div>
 
+      {/* 2. Photo & Identity Card */}
       <div className="ui-card card-photo">
         <div className="img-scan-container">
           <img src={`${import.meta.env.BASE_URL}imgs/Profile.jpg`} alt="Mahmoud El-Tantawy" />
@@ -541,6 +672,7 @@ export default function Hero({ play }) {
         </div>
       </div>
 
+      {/* 3. Bio & Headline Card */}
       <div className="ui-card card-bio">
         <span className="tag-label">// SOFTWARE ARCHITECTURE & SYSTEMS</span>
 
@@ -557,6 +689,7 @@ export default function Hero({ play }) {
         </p>
       </div>
 
+      {/* 4. Philosophy Card */}
       <div className="ui-card card-phil">
         <span
           className="tag-label"
@@ -583,6 +716,7 @@ export default function Hero({ play }) {
         </ul>
       </div>
 
+      {/* 5. Core Arsenal Card */}
       <div className="ui-card card-tech">
         <span className="tag-label">CORE ARSENAL</span>
 
