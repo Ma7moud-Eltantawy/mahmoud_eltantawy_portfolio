@@ -1,8 +1,8 @@
 :root {
   --bg-section: var(--paper); 
-  --card-ai-bg: #1e293b; 
-  --card-fe-bg: #162a2b; 
-  --card-se-bg: #1a2e22; 
+  --card-ai-bg: #ffffff; 
+  --card-fe-bg: #ffffff; 
+  --card-se-bg: #ffffff; 
   --accent-orange: var(--accent); 
   --text-dark: var(--ink); 
 }
@@ -94,11 +94,12 @@
 }
 
 /* =========================================
-   وش الكارت المذهل المطابق للصورة
+   وش الكارت المذهل المطابق للصورة (ألوان فاتحة راقية)
    ========================================= */
 .service-card_flip-front {
-  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.15);
-  /* العزل التام عشان الـ SVG ميبوظش الطول */
+  background-color: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06);
   display: block; 
 }
 
@@ -110,7 +111,7 @@
 .card-frame {
   position: absolute;
   top: 18px; bottom: 18px; left: 18px; right: 18px;
-  border: 1px solid var(--line-strong, rgba(255, 255, 255, 0.15));
+  border: 1.5px solid rgba(15, 23, 42, 0.14);
   border-radius: 0.95em;
   pointer-events: none;
 }
@@ -123,7 +124,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: var(--card-bg); /* لإخفاء الخط تحت النقط */
+  background: #ffffff; /* لإخفاء الخط تحت النقط */
   padding: 10px 0;
 }
 .dot-group.left { left: -3px; }
