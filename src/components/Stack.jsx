@@ -11,8 +11,10 @@ const Stack = () => {
   const cardsRef = useRef([]);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      
+    let mm = gsap.matchMedia();
+
+    // DESKTOP & WIDE SCREENS (>= 900px)
+    mm.add("(min-width: 900px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -31,7 +33,7 @@ const Stack = () => {
           "intro"
         ); 
 
-      // 2. Spread
+      // 2. Spread (Horizontal Poker Spread)
       tl.to(cardsRef.current[0], { xPercent: -105, rotation: -8, duration: 1.5 }, "spread")
         .to(cardsRef.current[2], { xPercent: 105, rotation: 8, duration: 1.5 }, "spread")
         .to(cardsRef.current[1], { y: "-5vh", duration: 1.5 }, "spread");
@@ -52,10 +54,49 @@ const Stack = () => {
           duration: 1.5, 
           ease: "power2.in" 
         }, "gather+=1"); 
+    });
 
-    }, sectionRef);
+    // MOBILE & TABLET SCREENS (< 900px)
+    mm.add("(max-width: 899px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top", 
+          end: "+=350%",
+          pin: true,
+          scrub: 1.2, 
+        },
+      });
 
-    return () => ctx.revert();
+      // 1. Entrance: title fades up, cards enter centered
+      tl.to(textRef.current, { y: -80, opacity: 0, duration: 1 }, "intro")
+        .fromTo(cardsRef.current, 
+          { y: "100vh", opacity: 0 }, 
+          { y: "0vh", opacity: 1, stagger: 0.08, duration: 1.2, ease: "power2.out" }, 
+          "intro"
+        );
+
+      // 2. Card 1 Flip & Reveal
+      tl.to(cardsRef.current[0], { rotationY: 180, zIndex: 10, duration: 1.5 }, "card1");
+      tl.to({}, { duration: 1.5 }); // pause to read
+
+      // 3. Card 2 Slide & Flip
+      tl.to(cardsRef.current[0], { yPercent: -120, opacity: 0, duration: 1.2 }, "card2_in")
+        .to(cardsRef.current[1], { zIndex: 11, scale: 1.02, duration: 0.5 }, "card2_in")
+        .to(cardsRef.current[1], { rotationY: 180, duration: 1.5 }, "card2_flip");
+      tl.to({}, { duration: 1.5 }); // pause to read
+
+      // 4. Card 3 Slide & Flip
+      tl.to(cardsRef.current[1], { yPercent: -120, opacity: 0, duration: 1.2 }, "card3_in")
+        .to(cardsRef.current[2], { zIndex: 12, scale: 1.02, duration: 0.5 }, "card3_in")
+        .to(cardsRef.current[2], { rotationY: 180, duration: 1.5 }, "card3_flip");
+      tl.to({}, { duration: 2 }); // pause to read
+
+      // 5. Exit
+      tl.to(cardsRef.current[2], { yPercent: 120, opacity: 0, duration: 1.2 });
+    });
+
+    return () => mm.revert();
   }, []);
 
   return (
