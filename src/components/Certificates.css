@@ -190,3 +190,13 @@
   .certs-scroll-wrapper { padding-left: 5vw; padding-right: 20vw; }
   .hanging-cert { width: 280px; margin: 0 20px; margin-top: -15px; }
 }
+
+@media (max-width: 600px) {
+  .pinned-header { top: 8vh; left: 1rem; }
+  .section-title { font-size: clamp(28px, 8vw, 42px); }
+  .certs-scroll-wrapper { padding-left: 1rem; padding-right: 25vw; padding-top: 38vh; }
+  .hanging-cert { width: 240px; margin: 0 12px; }
+  .cert-card { padding: 14px; }
+  .cert-info h3 { font-size: 15px; }
+  .cert-info p { font-size: 12px; margin-bottom: 8px; }
+}
