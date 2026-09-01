@@ -10,7 +10,7 @@ export default function TechEcosystem({ lang }) {
 
   const categories = [
     { id: 'systemDesign', label: t.domains.systemDesign, icon: Cpu, color: '#6E44FF' },
-    { id: 'apiManagement', label: t.domains.apiManagement, icon: Network, color: '#FF6B00' },
+    { id: 'apiManagement', label: t.domains.apiManagement, icon: Network, color: '#10B981' },
     { id: 'softwareEngineering', label: t.domains.softwareEngineering, icon: Smartphone, color: '#0071E3' },
     { id: 'identitySecurity', label: t.domains.identitySecurity, icon: ShieldCheck, color: '#10B981' },
     { id: 'backendData', label: t.domains.backendData, icon: Database, color: '#3B82F6' },

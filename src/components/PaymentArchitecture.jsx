@@ -25,7 +25,7 @@ export default function PaymentArchitecture({ lang }) {
       title: t.threeDS,
       desc: lang === 'en' ? 'Cardholder verification via 3-Domain Secure OTP challenge.' : 'مصادقة حماية حامل البطاقة عبر تحدي الـ 3DS OTP.',
       icon: ShieldCheck,
-      color: '#FF6B00'
+      color: '#10B981'
     },
     {
       step: "04",

@@ -1,11 +1,11 @@
-   /* =========================================
+/* =========================================
    CLASSIC CARD CONTACT SECTION
    ========================================= */
 .contact-classic {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: #f4efe6; 
+  background-color: var(--paper); 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +18,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 55vh; /* متظبطة عشان الكيرفات تطلع شكلها طبيعي ومريحة للعين */
+  height: 55vh;
   z-index: 1;
   background-color: transparent !important; 
 }
@@ -42,17 +42,17 @@
 /* نصوص العنوان العلوية */
 .contact-header {
   text-align: center;
-  color: #ffffff; 
+  color: var(--ink); 
   margin-bottom: 2.5rem;
 }
 .contact-label {
   font-size: 0.85rem;
   letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.7); 
+  color: var(--ink-soft); 
   margin-bottom: 1rem;
 }
 .contact-label .accent {
-  color: #f97316;
+  color: var(--accent);
 }
 .contact-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
@@ -61,14 +61,15 @@
 }
 .contact-subtitle {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--ink-soft);
 }
 
-/* الكارت الأبيض */
+/* الكارت */
 .contact-card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  background-color: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
   padding: 3rem 4rem;
   width: 100%;
 }
@@ -78,12 +79,12 @@
   margin-bottom: 2.5rem;
 }
 .card-header p {
-  color: #555;
+  color: var(--ink-soft);
   font-size: 1.05rem;
   line-height: 1.6;
 }
 .card-header strong {
-  color: #171615;
+  color: var(--ink);
 }
 
 /* الفورم وتنسيقها */
@@ -116,11 +117,11 @@
 .input-group label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
+  color: var(--ink);
   margin-bottom: 0.5rem;
 }
 .input-group label .req {
-  color: #f97316; 
+  color: var(--accent); 
 }
 
 /* ستايل المربعات */
@@ -129,28 +130,28 @@
 .select-wrapper-classic select {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid #dcdcdc;
-  border-radius: 6px;
-  background-color: #fafafa;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background-color: var(--paper);
   font-family: inherit;
   font-size: 1rem;
-  color: #171615;
+  color: var(--ink);
   transition: all 0.3s ease;
   outline: none;
 }
 
 .input-group input::placeholder,
 .input-group textarea::placeholder {
-  color: #aaa;
+  color: var(--ink-faint);
   font-weight: 400;
 }
 
 .input-group input:focus,
 .input-group textarea:focus,
 .select-wrapper-classic select:focus {
-  border-color: #f97316;
-  background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  border-color: var(--accent);
+  background-color: var(--paper-2);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .input-group textarea {
@@ -174,7 +175,7 @@
 .select-wrapper-classic::after {
   content: "▼";
   font-size: 0.8rem;
-  color: #777;
+  color: var(--ink-soft);
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -188,7 +189,7 @@
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #f97316 0%, #d05b0c 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #059669 100%);
   color: #ffffff;
   border: none;
   padding: 1rem 4rem;
@@ -196,16 +197,17 @@
   font-weight: 600;
   border-radius: 50px; 
   cursor: pointer;
+  box-shadow: 0 4px 15px var(--accent-soft);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 10px 25px var(--accent-soft);
 }
 
 .status-msg {
   margin-top: 1rem;
   font-size: 0.85rem;
-  color: #171615;
+  color: var(--ink);
 }

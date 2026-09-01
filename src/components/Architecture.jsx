@@ -48,7 +48,7 @@ export default function Architecture({ lang }) {
       title: lang === 'en' ? 'Data Layer' : 'طبقة البيانات والمزامنة (Data Layer)',
       subtitle: 'Repositories, Adapters & Offline Cache',
       icon: Layers,
-      color: '#FF6B00',
+      color: '#06B6D4',
       pattern: 'Adapter Pattern & SQLite Offline Queues',
       description: {
         en: 'Implements repository contracts, managing data persistence and network synchronization. Employs the Adapter Pattern to decouple payment/hardware SDKs and monotonic SQLite queues for offline recovery.',
@@ -66,7 +66,7 @@ export default function Architecture({ lang }) {
       title: lang === 'en' ? 'API Gateway Layer' : 'طبقة البوابة البرمجية (Apache APISIX)',
       subtitle: 'Centralized Entry Point & Proxy Rules',
       icon: Network,
-      color: '#FF6B00',
+      color: '#10B981',
       pattern: 'API Gateway Pattern & Reverse Proxy',
       description: {
         en: 'Centralized entry point for external API traffic. Handles dynamic route matching, CORS policy headers, rate limiting, and consumer identification while keeping internal microservices isolated.',

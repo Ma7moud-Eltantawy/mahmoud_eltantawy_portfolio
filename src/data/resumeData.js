@@ -181,7 +181,7 @@ export const resumeData = {
         en: "Eliminated duplicate auth logic across services, unified CORS/Rate-limiting governance, and enabled zero-downtime routing modifications.",
         ar: "إلغاء تكرار منطق المصادقة عبر الخدمات، وتوحيد سياسات الحماية ومعدل الطلبات، وإتاحة تعديل مسارات التوجيه دون توقف النظام."
       },
-      accentColor: "#FF6B00"
+      accentColor: "#10B981"
     },
     {
       id: "saaed-pay",
@@ -297,7 +297,7 @@ export const resumeData = {
         en: "Eliminated order dispatch lag, providing instant synchronization between kitchen printers, waitstaff tablets, and cashiers.",
         ar: "إلغاء أي تأخير في تسجيل وتمرير الطلبات وتوفير مزامنة فورية بين طاولات الخدمة وطابعات المطبخ والكاشير."
       },
-      accentColor: "#FF6B00"
+      accentColor: "#10B981"
     },
     {
       id: "ezee-hr",

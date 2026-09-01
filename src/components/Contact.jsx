@@ -30,7 +30,7 @@ export default function Contact() {
       <div className="contact-wave">
         <svg viewBox="0 0 1440 400" preserveAspectRatio="none">
           <path 
-            fill="#171615" 
+            fill="var(--coal, #090d12)" 
             d="M0,0 L0,300 C250,200 450,400 720,300 C990,200 1190,400 1440,300 L1440,0 Z">
           </path>
         </svg>

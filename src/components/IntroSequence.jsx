@@ -27,7 +27,7 @@ export default function IntroSequence({ lang }) {
       title: lang === 'en' ? "03. Apache APISIX Gateway" : "03. بوابة واجهات البرمجة Apache APISIX",
       desc: lang === 'en' ? "Dynamic proxy routing, URI rewriting, rate limiting, and CORS header enforcement." : "توجيه الوكلاء، إعادة كتابة المسارات، وتحديد معدل الطلبات وحماية الترويسات.",
       icon: Network,
-      color: "#FF6B00"
+      color: "#10B981"
     },
     {
       id: "auth",

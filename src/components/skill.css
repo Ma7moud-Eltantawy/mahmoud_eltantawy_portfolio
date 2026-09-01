@@ -1,11 +1,10 @@
 :root {
-  --bg-section: #f4efe6; 
-  /* ألوان الباستيل الأصلية من الديزاين */
-  --card-ai-bg: #dcd4e8; 
-  --card-fe-bg: #ead2d0; 
-  --card-se-bg: #ead9ad; 
-  --accent-orange: #f97316; 
-  --text-dark: #171615; 
+  --bg-section: var(--paper); 
+  --card-ai-bg: #1e293b; 
+  --card-fe-bg: #162a2b; 
+  --card-se-bg: #1a2e22; 
+  --accent-orange: var(--accent); 
+  --text-dark: var(--ink); 
 }
 
 .skills-section {
@@ -33,11 +32,11 @@
   font-family: monospace;
   font-size: 0.85rem;
   letter-spacing: 1px;
-  color: #666;
+  color: var(--ink-soft);
   margin-bottom: 1.5rem;
 }
 
-.skills-label span { color: var(--accent-orange); }
+.skills-label span { color: var(--accent); }
 
 .skills-title {
   font-size: clamp(2.5rem, 5vw, 5rem);
@@ -49,12 +48,12 @@
 
 .skills-title em {
   font-style: italic;
-  color: var(--accent-orange);
+  color: var(--accent);
 }
 
 .skills-dek {
   font-size: 1.1rem;
-  color: #555;
+  color: var(--ink-soft);
   line-height: 1.6;
   max-width: 500px;
 }
@@ -98,7 +97,7 @@
    وش الكارت المذهل المطابق للصورة
    ========================================= */
 .service-card_flip-front {
-  box-shadow: 0 18px 35px rgba(40, 34, 28, 0.12), 0 4px 10px rgba(40, 34, 28, 0.06);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.15);
   /* العزل التام عشان الـ SVG ميبوظش الطول */
   display: block; 
 }
@@ -111,7 +110,7 @@
 .card-frame {
   position: absolute;
   top: 18px; bottom: 18px; left: 18px; right: 18px;
-  border: 1px solid rgba(30, 27, 24, 0.72);
+  border: 1px solid var(--line-strong, rgba(255, 255, 255, 0.15));
   border-radius: 0.95em;
   pointer-events: none;
 }
@@ -133,7 +132,7 @@
 .dot-group span {
   width: 5px; height: 5px;
   border-radius: 50%;
-  background-color: #111;
+  background-color: var(--accent);
 }
 
 /* أيقونات الزوايا (Corner Icons) */
@@ -164,15 +163,16 @@
    ========================================= */
 .service-card_flip-back {
   transform: rotateY(180deg); 
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--line);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   align-items: flex-start;
   justify-content: center;
+  background-color: var(--paper-2);
 }
 
-.card-ai .service-card_flip-back { background-color: #e8dcc7; }
-.card-fe .service-card_flip-back { background-color: #f1d5c0; }
-.card-se .service-card_flip-back { background-color: #d8cbbb; }
+.card-ai .service-card_flip-back { background-color: var(--paper-2); color: var(--ink); }
+.card-fe .service-card_flip-back { background-color: var(--paper-2); color: var(--ink); }
+.card-se .service-card_flip-back { background-color: var(--paper-2); color: var(--ink); }
 
 .service-card_flip-back h3 {
   font-size: 2.2rem;
@@ -185,10 +185,10 @@
 .service-card_flip-back ul li {
   font-size: 1.1rem;
   line-height: 2.4;
-  color: #222;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
   display: flex; align-items: center; font-weight: 500;
 }
 .service-card_flip-back ul li::before {
-  content: "◆"; color: var(--accent-orange); margin-right: 12px; font-size: 0.6rem;
+  content: "◆"; color: var(--accent); margin-right: 12px; font-size: 0.6rem;
 }

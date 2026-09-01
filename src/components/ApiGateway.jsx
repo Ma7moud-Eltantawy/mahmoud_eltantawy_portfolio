@@ -21,7 +21,7 @@ export default function ApiGateway({ lang }) {
       title: lang === 'en' ? 'APISIX Route & CORS Policy' : 'استقبال APISIX والتحقق من CORS ومعدل الطلب',
       details: 'Matches APISIX Route ID #1042. CORS & Rate-limit verified.',
       icon: Layers,
-      color: '#FF6B00'
+      color: '#06B6D4'
     },
     {
       step: 3,
