@@ -1,27 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mahmoud El-Tantawy — Software Engineer | System Design • API Management • Distributed Systems • Flutter</title>
-  <meta name="description" content="Mahmoud El-Tantawy — Software Engineer specializing in System Design, API Management (Apache APISIX), Keycloak IAM, and high-performance Flutter mobile applications." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Mahmoud Eltantawy · Software Engineer, Flutter & API Gateway</title>
+  <meta name="description" content="Mahmoud Eltantawy is a Software Engineer and Flutter Mobile Developer in Al Khobar, Saudi Arabia, building production apps (ERP, POS, HR, fintech) and API gateways with Apache APISIX and Keycloak." />
+  <meta name="author" content="Mahmoud Eltantawy" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://ma7moud-eltantawy.github.io/mahmoud_eltantawy_portfolio/" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Mahmoud Eltantawy · Software Engineer" />
+  <meta property="og:description" content="Flutter apps. API gateways. Engineered end to end." />
+  <meta property="og:url" content="https://ma7moud-eltantawy.github.io/mahmoud_eltantawy_portfolio/" />
+  <meta property="og:image" content="https://ma7moud-eltantawy.github.io/mahmoud_eltantawy_portfolio/imgs/profile.webp" />
+  <meta name="twitter:card" content="summary" />
+
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="shortcut icon" href="./favicon.ico" />
   <link rel="apple-touch-icon" href="./favicon.png" />
-  <script>
-    // apply saved theme before first paint to avoid a flash of the wrong theme
-    try {
-      var t = localStorage.getItem("theme");
-      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
-    } catch (e) {}
-  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap" rel="stylesheet" />
+
+  <script>
+    // apply a saved appearance before first paint so the page never flashes the wrong theme
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || t === "light") {
+        document.documentElement.setAttribute("data-theme", t);
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", t === "dark" ? "#000000" : "#ffffff");
+      }
+    } catch (e) {}
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mahmoud Eltantawy",
+      "jobTitle": "Software Engineer",
+      "worksFor": { "@type": "Organization", "name": "Dolf Technologies" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Al Khobar", "addressRegion": "Eastern Province", "addressCountry": "SA" },
+      "email": "mailto:mahmoudeltantawy2019@gmail.com",
+      "url": "https://ma7moud-eltantawy.github.io/mahmoud_eltantawy_portfolio/",
+      "sameAs": ["https://linkedin.com/in/mahmoud-eltantawy-7b26321b1", "https://github.com/ma7moud-eltantawy"],
+      "alumniOf": "Misr Higher Institute for Engineering and Technology (MET)",
+      "knowsAbout": ["Flutter", "Dart", "Apache APISIX", "Keycloak", "API Gateway", "Clean Architecture", "System Design"]
+    }
+  </script>
 </head>
 <body>
   <div id="root"></div>
+  <noscript>Mahmoud Eltantawy, Software Engineer. Email: mahmoudeltantawy2019@gmail.com</noscript>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

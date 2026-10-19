@@ -1,16 +1,28 @@
-# React + Vite
+# Mahmoud Eltantawy · Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio of Mahmoud Eltantawy, Software Engineer (Flutter · API Gateway · System Integration & Design).
 
-Currently, two official plugins are available:
+**Live:** https://ma7moud-eltantawy.github.io/mahmoud_eltantawy_portfolio/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+React 19 + Vite, hand-written CSS design system (no UI framework), deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Editing content
 
-## Expanding the Oxlint configuration
+All content lives in [`src/data/cv.js`](src/data/cv.js) and mirrors the CV in `public/Mahmoud_Eltantawy_CV.pdf`. Update both together.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Design system
+
+- `src/styles/tokens.css`: color, type, radius, spacing, and motion tokens, with light and dark palettes (follows the system setting; the nav toggle overrides it)
+- `src/styles/base.css`: reset, buttons, chips, cards, segmented control, modal, reveal motion
+- `src/styles/sections.css`: per-section layout, with breakpoints at 1068 / 834 / 734px
+
+## Develop
+
+```bash
+npm install
+npm run dev      # local dev server
+npm run build    # production build into dist/
+npm run lint
+```

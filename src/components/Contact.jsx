@@ -1,99 +1,94 @@
-import { useEffect, useRef, useState } from "react";
-import { SITE } from "../data/site";
-import "./contact.css";
+import { useState } from "react";
+import { NAV, PROFILE } from "../data/cv";
+import { asset } from "../lib/hooks";
+import Reveal from "./Reveal";
+import Icon from "./Icon";
 
-export default function Contact() {
-  const [type, setType] = useState(SITE.contact.types[0].key);
-  const [status, setStatus] = useState("");
-  const formRef = useRef(null);
+const CHANNELS = [
+  { icon: "call", label: "Phone", value: PROFILE.phone, href: PROFILE.phoneHref },
+  { icon: "linkedin", label: "LinkedIn", value: "mahmoud-eltantawy", href: PROFILE.linkedin, external: true },
+  { icon: "github", label: "GitHub", value: "ma7moud-eltantawy", href: PROFILE.github, external: true },
+  { icon: "pin", label: "Location", value: "Al Khobar, Saudi Arabia" },
+];
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    if (!form.checkValidity()) {
-      setStatus("PLEASE FILL IN ALL REQUIRED FIELDS.");
-      form.reportValidity();
-      return;
+export function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(PROFILE.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${PROFILE.email}`;
     }
-    const fd = new FormData(form);
-    const typeLabel = (SITE.contact.types.find((t) => t.key === fd.get("projectType")) || {}).label || "";
-    const subject = encodeURIComponent(`Engineering Inquiry — ${fd.get("name")} · ${typeLabel}`);
-    const body = encodeURIComponent(`Name: ${fd.get("name")}\nEmail: ${fd.get("email")}\nCompany: ${fd.get("company") || "N/A"}\nTopic: ${typeLabel}\n\nMessage:\n${fd.get("message")}`);
-    window.location.href = `mailto:${SITE.contact.email}?subject=${subject}&body=${body}`;
-    setStatus("OPENING YOUR MAIL CLIENT DIRECTLY TO MAHMOUD...");
   };
 
   return (
-    <section className="contact-classic" id="contact" aria-label="Contact">
-      
-      {/* Wave transition banner */}
-      <div className="contact-wave">
-        <svg viewBox="0 0 1440 400" preserveAspectRatio="none">
-          <path 
-            fill="var(--coal, #090d12)" 
-            d="M0,0 L0,300 C250,200 450,400 720,300 C990,200 1190,400 1440,300 L1440,0 Z">
-          </path>
-        </svg>
-      </div>
+    <section className="section contact" id="contact">
+      <div className="contact__aurora" aria-hidden="true" />
+      <div className="container contact__inner">
+        <Reveal as="p" className="eyebrow eyebrow--onDark">Contact</Reveal>
+        <Reveal as="h2" className="contact__title" delay={60}>
+          Let's build something
+          <br />
+          <span className="gradient-text gradient-text--dark">great together.</span>
+        </Reveal>
+        <Reveal as="p" className="contact__lead" delay={120}>
+          Open to Software Engineering, Flutter, and API Gateway roles. The fastest way to reach me is email.
+        </Reveal>
 
-      <div className="contact-container">
-        
-        {/* Header */}
-        <div className="contact-header">
-          <p className="mono contact-label">CONTACT&nbsp;&nbsp;<span className="accent">/05</span></p>
-          <h2 className="contact-title">Let's Connect</h2>
-          <p className="contact-subtitle">{SITE.contact.sub}</p>
-        </div>
+        <Reveal className="contact__email" delay={180}>
+          <a className="btn btn--primary btn--lg" href={`mailto:${PROFILE.email}`}>
+            <Icon name="mail" size={18} /> {PROFILE.email}
+          </a>
+          <button type="button" className="btn btn--glass btn--lg" onClick={copy} aria-live="polite">
+            <Icon name={copied ? "tick" : "copy"} size={18} /> {copied ? "Copied" : "Copy email"}
+          </button>
+        </Reveal>
 
-        {/* Floating Card */}
-        <div className="contact-card">
-          <div className="card-header">
-            <p>Direct inquiry to <strong>{SITE.contact.email}</strong> or reach out via WhatsApp/Phone at <strong>{SITE.contact.phone}</strong>.</p>
-          </div>
-
-          <form className="classic-form" ref={formRef} noValidate onSubmit={onSubmit}>
-            
-            <div className="form-grid">
-              <div className="input-group">
-                <label>Full name <span className="req">*</span></label>
-                <input type="text" name="name" required placeholder="Type your name" />
-              </div>
-
-              <div className="input-group">
-                <label>Email address <span className="req">*</span></label>
-                <input type="email" name="email" required placeholder="Type your email" />
-              </div>
-
-              <div className="input-group">
-                <label>Company / Team</label>
-                <input type="text" name="company" placeholder="Company or organization (optional)" />
-              </div>
-
-              <div className="input-group">
-                <label>Topic / Domain <span className="req">*</span></label>
-                <div className="select-wrapper-classic">
-                  <select name="projectType" value={type} onChange={(e) => setType(e.target.value)}>
-                    {SITE.contact.types.map((t) => (
-                      <option key={t.key} value={t.key}>{t.label}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="input-group message-group">
-              <label>Message <span className="req">*</span></label>
-              <textarea name="message" rows="4" required placeholder="Describe your software engineering, system architecture, or consulting project..."></textarea>
-            </div>
-
-            <div className="form-action">
-              <button type="submit" className="submit-btn">Send Message</button>
-              {status && <p className="mono status-msg">{status}</p>}
-            </div>
-
-          </form>
+        <div className="channels">
+          {CHANNELS.map((c, i) => {
+            const body = (
+              <>
+                <span className="channel__icon"><Icon name={c.icon} size={20} /></span>
+                <span className="channel__label">{c.label}</span>
+                <span className="channel__value">{c.value}</span>
+              </>
+            );
+            return (
+              <Reveal key={c.label} delay={220 + i * 60} className="channel-wrap">
+                {c.href ? (
+                  <a className="channel" href={c.href} {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                    {body}
+                  </a>
+                ) : (
+                  <div className="channel">{body}</div>
+                )}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <nav className="footer__links" aria-label="Footer">
+          {NAV.map((n) => (
+            <a key={n.id} href={`#${n.id}`}>{n.label}</a>
+          ))}
+          <a href={asset(PROFILE.cv)} download>Résumé (PDF)</a>
+        </nav>
+        <div className="footer__bottom">
+          <p>Copyright © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</p>
+          <p>{PROFILE.location}</p>
+        </div>
+      </div>
+    </footer>
   );
 }

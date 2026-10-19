@@ -1,157 +1,90 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SITE } from "../data/site";
+import { useEffect, useState } from "react";
+import { NAV, PROFILE } from "../data/cv";
+import { asset, useScrollSpy, useTheme } from "../lib/hooks";
+import Icon from "./Icon";
 
-function applyTheme(mode) {
-  document.documentElement.setAttribute("data-theme", mode);
-  try { localStorage.setItem("theme", mode); } catch (e) { /* noop */ }
-}
+const IDS = NAV.map((n) => n.id);
 
-const LINKS = [
-  { id: "work", label: "WORK" },
-  { id: "about", label: "ABOUT" },
-  { id: "stack", label: "SKILLS" },
-  { id: "certificate", label: "CREDENTIALS" },
-  { id: "journey", label: "JOURNEY" },
-  { id: "contact", label: "CONTACT" },
-];
-
-export default function Nav({ caseActive, caseNum, introPlay, onBack, onNext }) {
-  const [mode, setMode] = useState(
-    () => document.documentElement.getAttribute("data-theme") || "light"
-  );
-  const [active, setActive] = useState("");
+export default function Nav() {
+  const active = useScrollSpy(IDS);
+  const [theme, toggleTheme] = useTheme();
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const clockRef = useRef(null);
-  const progressRef = useRef(null);
 
-  /* live clock */
   useEffect(() => {
-    const tick = () => {
-      const d = new Date();
-      const p = (n) => String(n).padStart(2, "0");
-      if (clockRef.current) {
-        clockRef.current.textContent = `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
-      }
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  /* scroll state + reading progress */
-  useLayoutEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    let st;
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && progressRef.current) {
-      st = gsap.fromTo(progressRef.current,
-        { scaleX: 0 },
-        {
-          scaleX: 1, ease: "none",
-          scrollTrigger: { start: 0, end: "max", scrub: 0.4 },
-        });
-    }
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", open);
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    const onResize = () => window.innerWidth > 900 && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      st && st.scrollTrigger && st.scrollTrigger.kill();
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
     };
-  }, []);
-
-  /* section spy */
-  useEffect(() => {
-    const sections = LINKS.map((l) => document.getElementById(l.id)).filter(Boolean);
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
-      { rootMargin: "-38% 0px -55% 0px" }
-    );
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
-  }, []);
-
-  /* entrance */
-  useLayoutEffect(() => {
-    if (introPlay) return;
-    return;
-  }, [introPlay]);
-
-  useEffect(() => {
-    if (!introPlay) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    gsap.from(".nav__logo, .nav__links li, .nav__right > *", {
-      autoAlpha: 0, y: -10, duration: 0.7, stagger: 0.055, ease: "expo.out", clearProps: "all",
-    });
-  }, [introPlay]);
-
-  const toggleTheme = () => {
-    const next = mode === "dark" ? "light" : "dark";
-    setMode(next);
-    applyTheme(next);
-  };
+  }, [open]);
 
   return (
-    <header className={"nav" + (scrolled ? " is-scrolled" : "")} id="nav">
-      <div className="nav__inner">
-        <a href="#top" className="nav__logo" data-cursor="link">
-          MAHMOUD&nbsp;EL-TANTAWY<span className="nav__sq" aria-hidden="true"></span>
+    <header className={`nav ${scrolled ? "is-scrolled" : ""} ${open ? "is-open" : ""}`}>
+      <div className="nav__bar container">
+        <a className="nav__brand" href="#top" onClick={() => setOpen(false)} aria-label={`${PROFILE.name}, back to top`}>
+          <span className="nav__mono" aria-hidden="true">ME</span>
+          <span className="nav__name">{PROFILE.name}</span>
         </a>
 
         <nav className="nav__links" aria-label="Primary">
-          <button
-            className="nav__back" data-cursor="link"
-            hidden={!caseActive} onClick={onBack}
-          >
-            {"\u2190"}&nbsp;BACK
-          </button>
-          <span className="nav__case-label mono" hidden={!caseActive}>
-            PROJECT&nbsp;<b className="accent">{String(caseNum).padStart(2, "0")}</b>
-          </span>
-          <ul id="navMenu" hidden={caseActive}>
-            {LINKS.map((l) => (
-              <li key={l.id}>
-                <a
-                  href={"#" + l.id}
-                  data-cursor="link"
-                  className={active === l.id ? "is-active" : ""}
-                  aria-current={active === l.id ? "true" : undefined}
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <button
-            className="nav__next mono" data-cursor="link"
-            hidden={!caseActive} onClick={onNext}
-          >
-            NEXT PROJECT&nbsp;{"\u2192"}
-          </button>
+          {NAV.map((n) => (
+            <a key={n.id} href={`#${n.id}`} className={active === n.id ? "is-active" : ""}>
+              {n.label}
+            </a>
+          ))}
         </nav>
 
-        <div className="nav__right">
+        <div className="nav__actions">
           <button
-            className="nav__theme" data-cursor="link"
+            type="button"
+            className="icon-btn"
             onClick={toggleTheme}
-            aria-pressed={mode === "dark"}
-            aria-label="Toggle dark / light theme"
-            title="Toggle theme"
+            aria-label={theme === "dark" ? "Switch to light appearance" : "Switch to dark appearance"}
           >
-            <span className="nav__theme-track"><span className="nav__theme-thumb"></span></span>
+            <Icon name={theme === "dark" ? "sun" : "moon"} size={18} />
           </button>
-          <p className="nav__clock mono" aria-hidden="true" hidden={caseActive}>
-            <span className="nav__clock-dot" aria-hidden="true"></span>
-            <b ref={clockRef}>00:00:00</b>&nbsp;LOCAL
-          </p>
+          <a className="btn btn--primary btn--sm nav__cv" href={asset(PROFILE.cv)} download>
+            Résumé
+          </a>
+          <button
+            type="button"
+            className="nav__burger"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span />
+            <span />
+          </button>
         </div>
       </div>
-      <span className="nav__progress" aria-hidden="true"><span ref={progressRef}></span></span>
+
+      <div id="mobile-menu" className="sheet-menu" aria-hidden={!open} inert={!open}>
+        <nav className="container" aria-label="Mobile">
+          {NAV.map((n, i) => (
+            <a key={n.id} href={`#${n.id}`} style={{ "--i": i }} onClick={() => setOpen(false)}>
+              {n.label}
+            </a>
+          ))}
+          <a className="sheet-menu__cv" href={asset(PROFILE.cv)} download style={{ "--i": NAV.length }}>
+            <Icon name="download" size={18} /> Download Résumé
+          </a>
+        </nav>
+      </div>
     </header>
   );
 }
