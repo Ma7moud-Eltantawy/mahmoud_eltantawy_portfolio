@@ -12,6 +12,10 @@ React 19 + Vite, hand-written CSS design system (no UI framework), deployed to G
 
 All content lives in [`src/data/cv.js`](src/data/cv.js) and mirrors the CV in `public/Mahmoud_Eltantawy_CV.pdf`. Update both together.
 
+## Portfolio assistant
+
+A bilingual (English / Arabic) chat guide, built from `src/data/cv.js` with no backend. See [`docs/ASSISTANT.md`](docs/ASSISTANT.md) for how it works, how to extend it, and the optional AI setup.
+
 ## Design system
 
 - `src/styles/tokens.css`: color, type, radius, spacing, and motion tokens, with light and dark palettes (follows the system setting; the nav toggle overrides it)
