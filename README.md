@@ -10,7 +10,7 @@ React 19 + Vite, hand-written CSS design system (no UI framework), deployed to G
 
 ## Editing content
 
-All content lives in [`src/data/cv.js`](src/data/cv.js) and mirrors the CV in `public/Mahmoud_Eltantawy_CV.pdf`. Update both together.
+All content lives in [`src/data/cv.js`](src/data/cv.js) and mirrors the CV in `public/Mahmoud_Eltantawy.pdf`. Update both together.
 
 ## Portfolio assistant
 

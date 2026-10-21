@@ -57,7 +57,7 @@ export default function Nav() {
             <Icon name={theme === "dark" ? "sun" : "moon"} size={18} />
           </button>
           <a className="btn btn--primary btn--sm nav__cv" href={asset(PROFILE.cv)} download>
-            Résumé
+            Resume
           </a>
           <button
             type="button"
@@ -81,7 +81,7 @@ export default function Nav() {
             </a>
           ))}
           <a className="sheet-menu__cv" href={asset(PROFILE.cv)} download style={{ "--i": NAV.length }}>
-            <Icon name="download" size={18} /> Download Résumé
+            <Icon name="download" size={18} /> Download Resume
           </a>
         </nav>
       </div>

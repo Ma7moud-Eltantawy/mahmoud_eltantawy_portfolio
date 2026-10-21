@@ -1,6 +1,6 @@
 /* ============================================================
    CV CONTENT — single source of truth for the whole site.
-   Everything here mirrors Mahmoud_Eltantawy_CV.pdf.
+   Everything here mirrors Mahmoud_Eltantawy.pdf.
    ============================================================ */
 
 export const PROFILE = {
@@ -17,7 +17,7 @@ export const PROFILE = {
   github: "https://github.com/ma7moud-eltantawy",
   githubLabel: "github.com/ma7moud-eltantawy",
   portfolio: "https://ma7moud-eltantawy.github.io/mahmoud_eltantawy_portfolio/",
-  cv: "Mahmoud_Eltantawy_CV.pdf",
+  cv: "Mahmoud_Eltantawy.pdf",
   photo: "imgs/profile.webp",
   current: { role: "Software Engineer", company: "Dolf Technologies" },
   languages: ["Arabic", "English"],
@@ -303,7 +303,7 @@ export const SPECIALIZATION = {
 
 export const CERTIFICATIONS = [
   { title: "API Gateway Getting Started", issuer: "AWS Training & Certification", date: "Aug 2026", mark: "AWS", tone: "orange", url: "https://drive.google.com/file/d/1qsq-gitqQIje4glt2hQfHWQD3onMBW-k/view?usp=sharing" },
-  { title: "Foundations of Project Management", issuer: "Google, Coursera", date: "Aug 2023", mark: "G", tone: "blue", url: "https://www.coursera.org/account/accomplishments/certificate/AW2G88RPWUBG" },
+  { title: "Foundations of Project Management", issuer: "Google, Coursera", date: "Aug 2023", mark: "G", tone: "blue", url: "https://www.coursera.org/account/accomplishments/verify/AW2G88RPWUBG" },
   { title: "Flutter Clean Architecture (In Arabic)", issuer: "Udemy", date: "May 2023", mark: "U", tone: "purple", url: "https://www.udemy.com/certificate/UC-2076ada3-2d25-4dc6-a7f1-655e31e33805/" },
   { title: "The Complete 2022 Flutter & Dart Development Course [Arabic]", issuer: "Udemy", date: "Jul 2022", mark: "U", tone: "purple", url: "https://www.udemy.com/certificate/UC-b6fa0c24-4166-4664-a9ba-f9aff3dc830d/" },
   { title: "The Complete Node.js Course (RESTful Web Services with Node.js, Express, and MongoDB)", issuer: "Maharatech", mark: "M", tone: "green" },

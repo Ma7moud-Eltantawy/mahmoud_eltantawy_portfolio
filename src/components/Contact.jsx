@@ -82,7 +82,7 @@ export function Footer() {
           {NAV.map((n) => (
             <a key={n.id} href={`#${n.id}`}>{n.label}</a>
           ))}
-          <a href={asset(PROFILE.cv)} download>Résumé (PDF)</a>
+          <a href={asset(PROFILE.cv)} download>Resume (PDF)</a>
         </nav>
         <div className="footer__bottom">
           <p>Copyright © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</p>
