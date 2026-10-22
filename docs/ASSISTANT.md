@@ -8,13 +8,18 @@ Everything runs in the browser. There's no backend, API key, or database.
 
 | File | Role |
 |---|---|
-| `src/assistant/engine.js` | Turns a message into a structured reply: keyword intents (EN + AR) plus lookup of project names and technologies |
+| `src/assistant/engine.js` | Turns a message into a structured reply: keyword intents (EN, Arabic incl. Egyptian phrasing), small talk, lookup of projects, companies, technologies and glossary terms (with typo tolerance), and follow-ups on the current topic |
+| `src/assistant/glossary.js` | Plain-language definitions for "what is …?" questions (EN + AR) |
 | `src/assistant/i18n.js` | Interface text, reply phrasing, and Arabic renderings of CV content |
 | `src/assistant/useAssistant.js` | Conversation state: messages, language, typing / error status (kept in `sessionStorage` for the tab) |
 | `src/assistant/Reply.jsx` | Contextual UI per reply: profile, experience, skills, project cards, contact options, certifications |
 | `src/assistant/Assistant.jsx` | Floating button, panel, composer, language switch |
 | `src/assistant/assistant.css` | Styles built on `src/styles/tokens.css` |
 | `src/assistant/ai.js` | Optional AI fallback (off by default) |
+
+**Conversation memory:** each reply can set a topic (a project, company, skill, or glossary term). Short follow-ups such as "tell me more", "what was his role?", "what was it built with?", "where can I see it?", or "show me another" answer about that topic, and "yes" accepts the first suggested question. The topic lives in `sessionStorage` with the chat.
+
+**Careful topics:** salary, remote work or relocation, and personal questions are never answered with invented details: the assistant points to contacting Mahmoud directly.
 
 **Source of truth:** every fact comes from `src/data/cv.js`. When you add a project, skill, or certification there, the assistant picks it up automatically. You only need to update `i18n.js` for Arabic text that the CV doesn't contain:
 

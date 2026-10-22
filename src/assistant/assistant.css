@@ -490,6 +490,14 @@ a.a-cert:hover .a-strong {
   padding-top: 10px;
 }
 
+.a-company .a-muted a {
+  color: var(--link);
+}
+
+.a-chips--block {
+  margin-top: 0;
+}
+
 .a-stores {
   display: flex;
   flex-wrap: wrap;

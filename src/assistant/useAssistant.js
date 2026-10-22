@@ -29,6 +29,8 @@ export function useAssistant() {
   const [messages, setMessages] = useState(() => saved?.messages || []);
   const [status, setStatus] = useState("idle");
 
+  // what the conversation is about, so follow-ups like "tell me more" have a subject
+  const ctx = useRef(saved?.ctx || {});
   const timer = useRef(0);
   const request = useRef(null);
   const failed = useRef(null);
@@ -37,7 +39,7 @@ export function useAssistant() {
 
   useEffect(() => {
     try {
-      sessionStorage.setItem(STORE, JSON.stringify({ lang, messages }));
+      sessionStorage.setItem(STORE, JSON.stringify({ lang, messages, ctx: ctx.current }));
     } catch {
       /* storage full or blocked: the chat still works for this visit */
     }
@@ -55,7 +57,9 @@ export function useAssistant() {
 
   const respond = useCallback(async (text, replyLang, history) => {
     const gen = generation.current;
-    const reply = answer(text);
+    const reply = answer(text, ctx.current);
+    // a reply without its own topic keeps the previous one; its first chip is the open offer
+    ctx.current = { ...(reply.ctx !== undefined ? reply.ctx : ctx.current), offer: reply.suggest?.[0] || null };
     setStatus("typing");
 
     if (reply.key === "fallback" && aiEnabled) {
@@ -111,6 +115,7 @@ export function useAssistant() {
     clearTimeout(timer.current);
     request.current?.abort();
     failed.current = null;
+    ctx.current = {};
     setMessages([]);
     setStatus("idle");
   }, []);

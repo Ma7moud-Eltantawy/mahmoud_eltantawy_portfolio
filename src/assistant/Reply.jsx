@@ -13,6 +13,7 @@ import {
 import { asset } from "../lib/hooks";
 import Icon from "../components/Icon";
 import { OTHER } from "./engine.js";
+import { GLOSSARY } from "./glossary.js";
 import { STRINGS } from "./i18n.js";
 
 /* Contextual UI ("GenUI") for assistant replies: each reply key maps to
@@ -165,7 +166,7 @@ function ProjectsBlock({ ids }) {
   );
 }
 
-function ProjectDetail({ id, other, t }) {
+function ProjectDetail({ id, other, t, full = false }) {
   const p = id ? byId[id] : OTHER[other];
   if (!p) return null;
   const bullets = p.bullets || [p.desc];
@@ -180,7 +181,7 @@ function ProjectDetail({ id, other, t }) {
         <p className="a-detail__title">{p.title}</p>
         {p.subtitle ? <p className="a-muted" dir="auto">{p.subtitle}</p> : null}
         <ul className="a-bullets" dir="auto">
-          {bullets.slice(0, 3).map((b) => (
+          {bullets.slice(0, full ? undefined : 3).map((b) => (
             <li key={b}>{b}</li>
           ))}
         </ul>
@@ -198,6 +199,55 @@ function ProjectDetail({ id, other, t }) {
     </article>
   );
 }
+
+/* one job: role, dates, what he did, and the stack */
+function CompanyBlock({ index, t, full = false }) {
+  const job = EXPERIENCE[index];
+  if (!job) return null;
+  return (
+    <article className="a-card a-detail__body a-company">
+      <div className="a-job__top">
+        <div>
+          <p className="a-strong" dir="auto">{job.role}</p>
+          <p className="a-muted">
+            {job.companyUrl ? (
+              <a href={job.companyUrl} target="_blank" rel="noopener noreferrer">{job.company}</a>
+            ) : (
+              job.company
+            )}{" "}
+            · {t.place(job.location)}
+          </p>
+        </div>
+        {job.current ? <span className="pill pill--live">{t.ui.now}</span> : null}
+      </div>
+      <p className="a-meta">
+        {t.date(job.start)} – {job.end === "Present" ? t.ui.present : t.date(job.end)}
+      </p>
+      <ul className="a-bullets" dir="auto">
+        {job.bullets.slice(0, full ? undefined : 2).map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
+      <ul className="chips a-chips">
+        {job.tags.map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function TechChips({ items }) {
+  return (
+    <ul className="chips a-chips a-chips--block">
+      {items.map((x) => (
+        <li key={x}>{x}</li>
+      ))}
+    </ul>
+  );
+}
+
+const projectOf = (d) => (d.id ? byId[d.id] : OTHER[d.other]);
 
 const CHANNELS = {
   whatsapp: (t) => ({ icon: "whatsapp", href: whatsappLink(t.whatsappText), value: PROFILE.phone, ltr: true, external: true }),
@@ -338,7 +388,20 @@ const BLOCKS = {
   skills: (d, t) => <SkillsBlock t={t} />,
   skill: (d, t) => (d.ids.length ? <ProjectsBlock ids={d.ids.slice(0, 4)} /> : d.group ? <SkillsBlock t={t} keys={[d.group]} /> : null),
   projects: (d) => <ProjectsBlock ids={d.ids} />,
-  project: (d, t) => <ProjectDetail id={d.id} other={d.other} t={t} />,
+  project: (d, t) => <ProjectDetail id={d.id} other={d.other} t={t} full={d.full} />,
+  projectRole: (d, t) => <ProjectDetail id={d.id} other={d.other} t={t} full />,
+  projectTech: (d) => (projectOf(d)?.tech ? <TechChips items={projectOf(d).tech} /> : null),
+  projectLinks: (d, t) =>
+    projectOf(d)?.links?.length ? <StoreLinks links={projectOf(d).links} all /> : <ContactBlock t={t} only={["whatsapp", "linkedin"]} />,
+  current: (d, t) => <CompanyBlock index={d.index} t={t} />,
+  company: (d, t) => <CompanyBlock index={d.index} t={t} full={d.full} />,
+  years: (d, t) => <ExperienceBlock t={t} />,
+  skillGroup: (d, t) => <SkillsBlock t={t} keys={[d.group]} />,
+  term: (d) => (d.ids?.length ? <ProjectsBlock ids={d.ids} /> : null),
+  isMahmoud: (d, t) => <ContactBlock t={t} only={["whatsapp", "linkedin", "email"]} />,
+  salary: (d, t) => <ContactBlock t={t} only={["whatsapp", "linkedin", "email"]} />,
+  availability: (d, t) => <ContactBlock t={t} only={["whatsapp", "linkedin", "email"]} />,
+  negative: (d, t) => <ContactBlock t={t} only={["whatsapp", "email"]} />,
   contact: (d, t) => <ContactBlock t={t} only={["whatsapp", "email", "linkedin", "github", "phone"]} />,
   hire: (d, t) => <ContactBlock t={t} only={["whatsapp", "linkedin", "email", "github"]} />,
   whatsapp: (d, t) => <ContactBlock t={t} only={["whatsapp"]} />,
@@ -357,6 +420,17 @@ function textData(reply, t) {
   if (reply.key === "skill") return { ...d, group: d.group ? groupTitle(d.group, t) : null };
   if (reply.key === "projects") return { ...d, category: d.category ? categoryLabel(d.category, t) : null };
   if (reply.key === "project") return { title: d.id ? byId[d.id]?.title : d.other };
+  if (reply.key === "projectRole" || reply.key === "projectTech" || reply.key === "projectLinks") {
+    const p = projectOf(d) || {};
+    return { title: p.title, role: p.role, tech: p.tech || [], has: Boolean(p.links?.length) };
+  }
+  if (reply.key === "current" || reply.key === "company") {
+    const job = EXPERIENCE[d.index] || {};
+    return { company: job.company, role: job.role, start: t.date(job.start || ""), end: t.date(job.end || ""), current: job.current };
+  }
+  if (reply.key === "years") return { years: STATS[0].value, count: EXPERIENCE.length };
+  if (reply.key === "skillGroup") return { group: groupTitle(d.group, t) };
+  if (reply.key === "term") return { def: GLOSSARY[d.key]?.[t.code] || GLOSSARY[d.key]?.en, ids: d.ids || [] };
   return d;
 }
 
