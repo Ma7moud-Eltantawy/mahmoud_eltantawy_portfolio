@@ -6,9 +6,15 @@ import Icon from "./Icon";
 
 const CATEGORY_LABEL = Object.fromEntries(PROJECT_FILTERS.map((f) => [f.key, f.label]));
 
+const STORES = {
+  play: { icon: "play", label: "Google Play" },
+  appstore: { icon: "apple", label: "App Store" },
+  github: { icon: "github", label: "GitHub" },
+};
+
 function StoreLink({ link, compact = false }) {
   if (!link) return null;
-  const play = link.kind === "play";
+  const store = STORES[link.kind] || STORES.github;
   return (
     <a
       className={`store-link ${compact ? "store-link--compact" : ""}`}
@@ -17,10 +23,24 @@ function StoreLink({ link, compact = false }) {
       rel="noopener noreferrer"
       onClick={(e) => e.stopPropagation()}
     >
-      <Icon name={play ? "play" : "github"} size={compact ? 14 : 16} />
-      <span>{play ? "Google Play" : "GitHub"}</span>
+      <Icon name={store.icon} size={compact ? 14 : 16} />
+      <span>{store.label}</span>
     </a>
   );
+}
+
+/* One button per store on cards; the first link of each kind is enough there. */
+const firstPerStore = (links = []) => links.filter((l, i) => links.findIndex((x) => x.kind === l.kind) === i);
+
+/* Links grouped by published app, for projects that ship more than one. */
+function groupByApp(links = []) {
+  const groups = [];
+  links.forEach((l) => {
+    const g = groups.find((x) => x.app === (l.app || ""));
+    if (g) g.links.push(l);
+    else groups.push({ app: l.app || "", links: [l] });
+  });
+  return groups;
 }
 
 function ProjectSheet({ project, onClose }) {
@@ -87,9 +107,18 @@ function ProjectSheet({ project, onClose }) {
               <li key={t}>{t}</li>
             ))}
           </ul>
-          {project.link ? (
+          {project.links?.length ? (
             <div className="modal__actions">
-              <StoreLink link={project.link} />
+              {groupByApp(project.links).map((g) => (
+                <div key={g.app || "links"} className="modal__app">
+                  {g.app ? <p className="modal__app-name">{g.app}</p> : null}
+                  <div className="modal__stores">
+                    {g.links.map((l) => (
+                      <StoreLink key={l.url} link={l} />
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           ) : null}
         </div>
@@ -111,7 +140,7 @@ export default function Projects() {
         <SectionHeader
           eyebrow="Projects"
           title="Work that's out in the world."
-          lead="Production apps on Google Play, gateway platforms, and QA programs, each built with the same care."
+          lead="Production apps on Google Play and the App Store, gateway platforms, and QA programs, each built with the same care."
         />
 
         <Reveal className="segmented" role="tablist" aria-label="Filter projects" style={{ "--idx": activeIndex, "--count": PROJECT_FILTERS.length }}>
@@ -154,7 +183,11 @@ export default function Projects() {
                   <span className="link-more">
                     Learn more <Icon name="chevronRight" size={14} stroke={2.2} />
                   </span>
-                  <StoreLink link={p.link} compact />
+                  <span className="project__stores">
+                    {firstPerStore(p.links).map((l) => (
+                      <StoreLink key={l.url} link={l} compact />
+                    ))}
+                  </span>
                 </div>
               </div>
             </Reveal>
@@ -170,7 +203,7 @@ export default function Projects() {
                 {p.status ? <span className="pill">{p.status}</span> : null}
               </div>
               <p>{p.desc}</p>
-              {p.link ? <StoreLink link={p.link} compact /> : null}
+              {p.links?.map((l) => <StoreLink key={l.url} link={l} compact />)}
             </Reveal>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import { CERTIFICATIONS, EDUCATION, PROFILE, SPECIALIZATION } from "../data/cv";
+import { asset } from "../lib/hooks";
 import Reveal, { SectionHeader } from "./Reveal";
 import Icon from "./Icon";
 
@@ -23,8 +24,12 @@ export default function Credentials() {
 
         <Reveal className="spec">
           <div className="spec__intro">
-            <span className="spec__badge">
-              <Icon name="award" size={28} />
+            <span className={`spec__badge ${SPECIALIZATION.logo ? "spec__badge--logo" : ""}`}>
+              {SPECIALIZATION.logo ? (
+                <img src={asset(SPECIALIZATION.logo)} alt={SPECIALIZATION.issuer} width="60" height="60" loading="lazy" />
+              ) : (
+                <Icon name="award" size={28} />
+              )}
             </span>
             <p className="eyebrow eyebrow--onDark">
               {SPECIALIZATION.issuer} · {SPECIALIZATION.platform}
@@ -51,7 +56,13 @@ export default function Credentials() {
         <div className="certs">
           {CERTIFICATIONS.map((c, i) => (
             <Reveal key={c.title} className="cert card" delay={(i % 3) * 70}>
-              <span className={`cert__mark tone-${c.tone}`} aria-hidden="true">{c.mark}</span>
+              {c.logo ? (
+                <span className="cert__mark cert__mark--logo">
+                  <img src={asset(c.logo)} alt={c.issuer} width="48" height="48" loading="lazy" />
+                </span>
+              ) : (
+                <span className={`cert__mark tone-${c.tone}`} aria-hidden="true">{c.mark}</span>
+              )}
               <h4 className="cert__title">{c.title}</h4>
               <p className="cert__issuer">
                 {c.issuer}

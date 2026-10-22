@@ -646,7 +646,22 @@ a.link-more:hover,
 }
 
 .modal__actions {
+  display: grid;
+  gap: 16px;
   margin-top: 28px;
+}
+
+.modal__app-name {
+  margin-bottom: 8px;
+  font-size: var(--fs-footnote);
+  font-weight: 600;
+  color: var(--label-2);
+}
+
+.modal__stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 @media (max-width: 640px) {

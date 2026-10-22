@@ -857,6 +857,14 @@
   margin-bottom: 6px;
 }
 
+.project__stores {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .project__foot {
   display: flex;
   align-items: center;
@@ -1136,6 +1144,25 @@
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0;
+}
+
+/* issuer logos sit on white in both themes, like an app icon */
+.cert__mark--logo,
+.spec__badge--logo {
+  overflow: hidden;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.cert__mark--logo img,
+.spec__badge--logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spec__badge--logo {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .tone-orange { background: linear-gradient(135deg, #ffb340, #ff6a00); }

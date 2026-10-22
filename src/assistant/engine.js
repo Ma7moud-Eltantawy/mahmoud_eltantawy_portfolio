@@ -91,11 +91,11 @@ function topIntent(text) {
 const PROJECT_ALIASES = {
   qiyasi: ["qiyasi", "قياسي"],
   taqeem: ["taqeem", "تقييم"],
-  "ezee-erp": ["erp", "ezee manager", "tebalink erp"],
+  "ezee-erp": ["erp", "ezee manager", "ezee manager pro", "tebalink erp", "tebalink"],
   "saaed-pay": ["saaed pay", "saaedpay", "saaed", "ساعد باي", "سعيد باي"],
   "ezee-restaurant": ["ezee restaurant", "restaurant", "pos", "point of sale", "مطعم", "مطاعم", "نقاط البيع", "نقاط بيع", "كاشير"],
   "ezee-hr": ["ezee hr", "hr", "human resources", "attendance", "موارد بشريه", "الموارد البشريه", "حضور"],
-  ecommerce: ["ecommerce", "e commerce", "white label", "متجر", "تجاره الكترونيه", "التجاره الالكترونيه"],
+  ecommerce: ["ecommerce", "e commerce", "white label", "jory care", "jory", "جوري", "جوري كير", "متجر", "تجاره الكترونيه", "التجاره الالكترونيه"],
   alfakhra: ["alfakhra", "الفاخره", "tailoring", "خياطه"],
 };
 

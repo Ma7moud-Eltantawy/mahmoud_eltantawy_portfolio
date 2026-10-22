@@ -107,14 +107,36 @@ function SkillsBlock({ t, keys }) {
   );
 }
 
+const STORES = {
+  play: { icon: "play", label: "Google Play" },
+  appstore: { icon: "apple", label: "App Store" },
+  github: { icon: "github", label: "GitHub" },
+};
+
 function StoreLink({ link }) {
-  if (!link) return null;
-  const play = link.kind === "play";
+  const store = STORES[link.kind] || STORES.github;
   return (
     <a className="store-link store-link--compact" href={link.url} target="_blank" rel="noopener noreferrer">
-      <Icon name={play ? "play" : "github"} size={14} />
-      <span>{play ? "Google Play" : "GitHub"}</span>
+      <Icon name={store.icon} size={14} />
+      <span>{link.app && link.label ? `${link.app} · ${store.label}` : store.label}</span>
     </a>
+  );
+}
+
+/* cards keep one button per store; the detail view lists every app's links */
+const firstPerStore = (links = []) => links.filter((l, i) => links.findIndex((x) => x.kind === l.kind) === i);
+const multiApp = (links = []) => new Set(links.map((l) => l.app).filter(Boolean)).size > 1;
+
+function StoreLinks({ links = [], all = false }) {
+  if (!links.length) return null;
+  const list = all ? links : firstPerStore(links);
+  const named = all && multiApp(links);
+  return (
+    <div className="a-stores">
+      {list.map((l) => (
+        <StoreLink key={l.url} link={named ? { ...l, label: true } : l} />
+      ))}
+    </div>
   );
 }
 
@@ -134,7 +156,7 @@ function ProjectsBlock({ ids }) {
               ))}
             </ul>
             <div className="a-project__foot">
-              <StoreLink link={p.link} />
+              <StoreLinks links={p.links} />
             </div>
           </div>
         </li>
@@ -170,7 +192,7 @@ function ProjectDetail({ id, other, t }) {
           </ul>
         ) : null}
         <div className="a-project__foot">
-          <StoreLink link={p.link} />
+          <StoreLinks links={p.links} all />
         </div>
       </div>
     </article>
@@ -209,13 +231,27 @@ function ContactBlock({ t, only }) {
   );
 }
 
+/* issuer logo when there is one, coloured initials otherwise */
+function CertMark({ logo, issuer, fallback, tone }) {
+  if (logo) {
+    return (
+      <span className="cert__mark cert__mark--logo a-cert__mark">
+        <img src={asset(logo)} alt={issuer} width="34" height="34" loading="lazy" />
+      </span>
+    );
+  }
+  return (
+    <span className={`cert__mark tone-${tone} a-cert__mark`} aria-hidden="true">
+      {fallback}
+    </span>
+  );
+}
+
 function CertsBlock({ t }) {
   return (
     <div className="a-card a-list">
       <a className="a-cert a-cert--spec" href={SPECIALIZATION.url} target="_blank" rel="noopener noreferrer">
-        <span className="cert__mark tone-blue a-cert__mark" aria-hidden="true">
-          <Icon name="award" size={18} />
-        </span>
+        <CertMark logo={SPECIALIZATION.logo} issuer={SPECIALIZATION.issuer} fallback={<Icon name="award" size={18} />} tone="blue" />
         <span className="a-cert__text">
           <span className="a-strong" dir="auto">{SPECIALIZATION.title}</span>
           <span className="a-muted">
@@ -227,7 +263,7 @@ function CertsBlock({ t }) {
       {CERTIFICATIONS.map((c) => {
         const body = (
           <>
-            <span className={`cert__mark tone-${c.tone} a-cert__mark`} aria-hidden="true">{c.mark}</span>
+            <CertMark logo={c.logo} issuer={c.issuer} fallback={c.mark} tone={c.tone} />
             <span className="a-cert__text">
               <span className="a-strong" dir="auto">{c.title}</span>
               <span className="a-muted">

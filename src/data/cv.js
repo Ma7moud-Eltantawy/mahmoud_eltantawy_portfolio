@@ -24,11 +24,11 @@ export const PROFILE = {
 };
 
 export const SUMMARY =
-  "Flutter Developer and Software Engineer with nearly 3 years of professional experience building production mobile apps with Flutter and Dart, including multi-tenant ERP, restaurant POS, HR, and fintech payment apps published on Google Play. Experienced in Clean Architecture, BLoC/GetX state management, offline-first sync, REST API and WebSocket integration, and app releases with Shorebird, Fastlane, and GitHub Actions. Also works on API Gateway management with Apache APISIX and Keycloak (API routing, authentication and authorization, API security), and completed the University of Minnesota Software Development Lifecycle (SDLC) Specialization.";
+  "Flutter Developer and Software Engineer with nearly 4 years of professional experience building production mobile apps with Flutter and Dart, including multi-tenant ERP, restaurant POS, HR, and fintech payment apps published on Google Play. Experienced in Clean Architecture, BLoC/GetX state management, offline-first sync, REST API and WebSocket integration, and app releases with Shorebird, Fastlane, and GitHub Actions. Also works on API Gateway management with Apache APISIX and Keycloak (API routing, authentication and authorization, API security), and completed the University of Minnesota Software Development Lifecycle (SDLC) Specialization.";
 
 export const STATS = [
-  { value: 3, prefix: "~", suffix: " yrs", label: "Professional Flutter & software engineering experience" },
-  { value: 4, suffix: "", label: "Production apps live on Google Play" },
+  { value: 4, prefix: "~", suffix: " yrs", label: "Professional Flutter & software engineering experience" },
+  { value: 6, suffix: "", label: "Production apps live on Google Play & App Store" },
   { value: 11, suffix: "", label: "Projects across ERP, POS, fintech, HR & gateways" },
   { value: 11, suffix: "", label: "Certifications, incl. a University of Minnesota specialization" },
 ];
@@ -137,7 +137,7 @@ export const EXPERIENCE = [
   {
     role: "Flutter Developer",
     company: "Dar Alsaaed",
-    companyUrl: "https://www.darsaaed.com/ar",
+    companyUrl: "https://www.darsaaed.com/",
     location: "Riyadh, Saudi Arabia",
     start: "Dec 2023",
     end: "Jun 2024",
@@ -151,7 +151,8 @@ export const EXPERIENCE = [
   },
 ];
 
-/* category: used by the segmented filter */
+/* category: used by the segmented filter
+   links: store / code links; `app` names the published app when a project ships more than one */
 export const PROJECTS = [
   {
     id: "qiyasi",
@@ -189,7 +190,12 @@ export const PROJECTS = [
     category: "mobile",
     image: "imgs/proj_ezee_erp.webp",
     tech: ["Flutter", "Dart", "Offline Sync", "PDF Generation"],
-    link: { kind: "play", url: "https://play.google.com/store/apps/details?id=com.tebalink.ezee_click_reports" },
+    links: [
+      { kind: "play", app: "Tebalink ERP", url: "https://play.google.com/store/apps/details?id=com.tebalink.ezee_click_reports" },
+      { kind: "appstore", app: "Tebalink ERP", url: "https://apps.apple.com/sa/app/tebalink-erp/id1543597521" },
+      { kind: "play", app: "Ezee Manager Pro", url: "https://play.google.com/store/apps/details?id=com.tebalink.ezee_manager_app" },
+      { kind: "appstore", app: "Ezee Manager Pro", url: "https://apps.apple.com/us/app/ezee-manager-pro-app/id1570118455" },
+    ],
     bullets: [
       "Enhanced a Flutter multi-tenant ERP in which each business runs in an isolated environment with secure data separation, supporting online and offline operation with automatic synchronization.",
       "Built printing and PDF modules, added financial reports, updated invoice calculations, and refined UI/UX and workflows.",
@@ -202,7 +208,7 @@ export const PROJECTS = [
     category: "mobile",
     image: "imgs/proj_saaed_pay.webp",
     tech: ["Flutter", "Dart", "NFC Payments", "NearPay"],
-    link: { kind: "play", url: "https://play.google.com/store/apps/details?id=sa.saaedpay.app.google" },
+    links: [{ kind: "play", url: "https://play.google.com/store/apps/details?id=sa.saaedpay.app.google" }],
     bullets: [
       "Contributed to migrating the company's payment application from native development to cross-platform Flutter.",
       "Worked on secure digital payments, NFC payments (NearPay integration), wallet management, bill payments, money transfers, and transaction history.",
@@ -216,7 +222,7 @@ export const PROJECTS = [
     category: "mobile",
     image: "imgs/proj_ezee_pos.webp",
     tech: ["Flutter", "Dart", "SQL Server"],
-    link: { kind: "play", url: "https://play.google.com/store/apps/details?id=com.tebalink.ezee_resturant&hl=en-US" },
+    links: [{ kind: "play", url: "https://play.google.com/store/apps/details?id=com.tebalink.ezee_resturant&hl=en-US" }],
     bullets: [
       "Built a local restaurant POS system from scratch in Flutter, connected directly to SQL Server without an API layer.",
       "Implemented order processing, billing, table management, and real-time synchronization between kitchen, cashier, and waiter sections.",
@@ -231,7 +237,7 @@ export const PROJECTS = [
     category: "mobile",
     image: "imgs/proj_ezee_hr.webp",
     tech: ["Flutter", "Dart", "RESTful APIs"],
-    link: { kind: "github", url: "https://github.com/Ma7moud-Eltantawy/ezee_hr" },
+    links: [{ kind: "github", url: "https://github.com/Ma7moud-Eltantawy/ezee_hr" }],
     bullets: [
       "Built an HR mobile application from scratch in Flutter, using RESTful APIs for real-time data synchronization.",
       "Implemented QR code-based check-in/out, leave requests, attendance reports, employee records, and role-based access control.",
@@ -244,6 +250,10 @@ export const PROJECTS = [
     category: "mobile",
     image: "imgs/proj_ecommerce.webp",
     tech: ["Flutter", "Dart", "Payment Integration"],
+    links: [
+      { kind: "play", app: "Jory Care", url: "https://play.google.com/store/apps/details?id=com.jorycare.commercial" },
+      { kind: "appstore", app: "Jory Care", url: "https://apps.apple.com/sa/app/jory-care/id6778858095" },
+    ],
     bullets: [
       "Built a Flutter multi-tenant e-commerce app in which each client receives a customized version publishable on Google Play, with a private dashboard for products, orders, payments, layout, and settings.",
       "Integrated secure payments, real-time notifications, smart search, and API syncing, with Arabic and English support.",
@@ -256,7 +266,7 @@ export const PROJECTS = [
     category: "mobile",
     image: "imgs/proj_alfakhra.webp",
     tech: ["Flutter", "Dart", "Migration"],
-    link: { kind: "play", url: "https://play.google.com/store/apps/details?id=com.alfakhera.alfakhera" },
+    links: [{ kind: "appstore", url: "https://apps.apple.com/sa/app/alfakhera/id1317763515" }],
     bullets: ["First phase of a native-to-Flutter migration for a Saudi men's tailoring company app."],
   },
 ];
@@ -271,12 +281,12 @@ export const OTHER_PROJECTS = [
     title: "Illuminate",
     status: "Graduation Project",
     desc: "Flutter app with separate teacher (volunteer) and student versions to help illiterate adults learn reading and writing.",
-    link: { kind: "github", url: "https://github.com/Ma7moud-Eltantawy/illuminate" },
+    links: [{ kind: "github", url: "https://github.com/Ma7moud-Eltantawy/illuminate" }],
   },
   {
     title: "Negozio Store",
     desc: "Flutter e-commerce app using Provider, Google Maps, Firebase Cloud Messaging, and the Alan AI voice assistant.",
-    link: { kind: "github", url: "https://github.com/Ma7moud-Eltantawy/Negozio-store" },
+    links: [{ kind: "github", url: "https://github.com/Ma7moud-Eltantawy/Negozio-store" }],
   },
 ];
 
@@ -291,6 +301,7 @@ export const SPECIALIZATION = {
   title: "Software Development Lifecycle (SDLC) Specialization",
   issuer: "University of Minnesota",
   platform: "Coursera",
+  logo: "imgs/logos/umn.png",
   date: "Oct 2026",
   url: "https://www.coursera.org/account/accomplishments/specialization/6FNUY48NQSUY",
   courses: [
@@ -302,12 +313,12 @@ export const SPECIALIZATION = {
 };
 
 export const CERTIFICATIONS = [
-  { title: "API Gateway Getting Started", issuer: "AWS Training & Certification", date: "Aug 2026", mark: "AWS", tone: "orange", url: "https://drive.google.com/file/d/1qsq-gitqQIje4glt2hQfHWQD3onMBW-k/view?usp=sharing" },
-  { title: "Foundations of Project Management", issuer: "Google, Coursera", date: "Aug 2023", mark: "G", tone: "blue", url: "https://www.coursera.org/account/accomplishments/verify/AW2G88RPWUBG" },
-  { title: "Flutter Clean Architecture (In Arabic)", issuer: "Udemy", date: "May 2023", mark: "U", tone: "purple", url: "https://www.udemy.com/certificate/UC-2076ada3-2d25-4dc6-a7f1-655e31e33805/" },
-  { title: "The Complete 2022 Flutter & Dart Development Course [Arabic]", issuer: "Udemy", date: "Jul 2022", mark: "U", tone: "purple", url: "https://www.udemy.com/certificate/UC-b6fa0c24-4166-4664-a9ba-f9aff3dc830d/" },
-  { title: "The Complete Node.js Course (RESTful Web Services with Node.js, Express, and MongoDB)", issuer: "Maharatech", mark: "M", tone: "green" },
-  { title: "Introduction to Flutter Development Using Dart", issuer: "The App Brewery", date: "Aug 2020", mark: "AB", tone: "pink", url: "https://drive.google.com/file/d/1_YxLbZWNSWaBFBSzoT7zFmPmth4G8Kq6/view?usp=sharing" },
+  { title: "API Gateway Getting Started", issuer: "AWS Training & Certification", date: "Aug 2026", mark: "AWS", tone: "orange", logo: "imgs/logos/aws.png", url: "https://drive.google.com/file/d/1qsq-gitqQIje4glt2hQfHWQD3onMBW-k/view?usp=sharing" },
+  { title: "Foundations of Project Management", issuer: "Google, Coursera", date: "Aug 2023", mark: "G", tone: "blue", logo: "imgs/logos/google.png", url: "https://www.coursera.org/account/accomplishments/verify/AW2G88RPWUBG" },
+  { title: "Flutter Clean Architecture (In Arabic)", issuer: "Udemy", date: "May 2023", mark: "U", tone: "purple", logo: "imgs/logos/udemy.png", url: "https://www.udemy.com/certificate/UC-2076ada3-2d25-4dc6-a7f1-655e31e33805/" },
+  { title: "The Complete 2022 Flutter & Dart Development Course [Arabic]", issuer: "Udemy", date: "Jul 2022", mark: "U", tone: "purple", logo: "imgs/logos/udemy.png", url: "https://www.udemy.com/certificate/UC-b6fa0c24-4166-4664-a9ba-f9aff3dc830d/" },
+  { title: "The Complete Node.js Course (RESTful Web Services with Node.js, Express, and MongoDB)", issuer: "Maharatech", mark: "M", tone: "green", logo: "imgs/logos/maharatech.png" },
+  { title: "Introduction to Flutter Development Using Dart", issuer: "The App Brewery", date: "Aug 2020", mark: "AB", tone: "pink", logo: "imgs/logos/appbrewery.png", url: "https://drive.google.com/file/d/1_YxLbZWNSWaBFBSzoT7zFmPmth4G8Kq6/view?usp=sharing" },
 ];
 
 export const EDUCATION = {

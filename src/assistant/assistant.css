@@ -490,6 +490,12 @@ a.a-cert:hover .a-strong {
   padding-top: 10px;
 }
 
+.a-stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .a-project__foot:empty {
   display: none;
 }

@@ -79,7 +79,7 @@ export const STRINGS = {
       role: `${PROFILE.current.role} at ${PROFILE.current.company}`,
       location: PROFILE.location,
       summary: null, // English uses the CV summary as written
-      stats: ["Years of experience", "Apps on Google Play", "Projects"],
+      stats: ["Years of experience", "Live apps on Google Play & App Store", "Projects"],
     },
     date: (d) => d,
     place: (p) => p,
@@ -154,8 +154,8 @@ export const STRINGS = {
       role: `مهندس برمجيات في ${PROFILE.current.company}`,
       location: "الخبر، المنطقة الشرقية، المملكة العربية السعودية",
       summary:
-        "مطوّر Flutter ومهندس برمجيات بخبرة احترافية تقارب 3 سنوات في بناء تطبيقات موبايل للإنتاج بـ Flutter و Dart، منها نظام ERP متعدد المستأجرين، ونظام نقاط بيع للمطاعم، وتطبيقات موارد بشرية ومدفوعات منشورة على Google Play. ويعمل أيضًا على إدارة بوابات API باستخدام Apache APISIX و Keycloak.",
-      stats: ["سنوات خبرة", "تطبيقات على Google Play", "مشاريع"],
+        "مطوّر Flutter ومهندس برمجيات بخبرة احترافية تقارب 4 سنوات في بناء تطبيقات موبايل للإنتاج بـ Flutter و Dart، منها نظام ERP متعدد المستأجرين، ونظام نقاط بيع للمطاعم، وتطبيقات موارد بشرية ومدفوعات منشورة على Google Play. ويعمل أيضًا على إدارة بوابات API باستخدام Apache APISIX و Keycloak.",
+      stats: ["سنوات خبرة", "تطبيقات على Google Play و App Store", "مشاريع"],
     },
     skillGroups: {
       mobile: "تطوير الموبايل",
