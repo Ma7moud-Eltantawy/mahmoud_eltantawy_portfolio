@@ -24,7 +24,7 @@ export const PROFILE = {
 };
 
 export const SUMMARY =
-  "Flutter Developer and Software Engineer with nearly 4 years of professional experience building production mobile apps with Flutter and Dart, including multi-tenant ERP, restaurant POS, HR, and fintech payment apps published on Google Play. Experienced in Clean Architecture, BLoC/GetX state management, offline-first sync, REST API and WebSocket integration, and app releases with Shorebird, Fastlane, and GitHub Actions. Also works on API Gateway management with Apache APISIX and Keycloak (API routing, authentication and authorization, API security), and completed the University of Minnesota Software Development Lifecycle (SDLC) Specialization.";
+  "Flutter Developer and Software Engineer with nearly 4 years of professional experience building production mobile apps with Flutter and Dart, including multi-tenant ERP, restaurant POS, HR, and fintech payment apps published on Google Play and the App Store. Experienced in Clean Architecture, BLoC/GetX state management, offline-first sync, REST API and WebSocket integration, and app releases with Shorebird, Fastlane, and GitHub Actions. Also works on API Gateway management with Apache APISIX and Keycloak (API routing, authentication and authorization, API security), and completed the University of Minnesota Software Development Lifecycle (SDLC) Specialization.";
 
 export const STATS = [
   { value: 4, prefix: "~", suffix: " yrs", label: "Professional Flutter & software engineering experience" },
@@ -255,7 +255,7 @@ export const PROJECTS = [
       { kind: "appstore", app: "Jory Care", url: "https://apps.apple.com/sa/app/jory-care/id6778858095" },
     ],
     bullets: [
-      "Built a Flutter multi-tenant e-commerce app in which each client receives a customized version publishable on Google Play, with a private dashboard for products, orders, payments, layout, and settings.",
+      "Built a Flutter multi-tenant e-commerce app in which each client receives a customized version publishable on the app stores, with a private dashboard for products, orders, payments, layout, and settings; Jory Care is a live client app built on the platform.",
       "Integrated secure payments, real-time notifications, smart search, and API syncing, with Arabic and English support.",
     ],
   },
